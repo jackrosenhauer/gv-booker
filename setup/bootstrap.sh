@@ -7,6 +7,9 @@ if ! [ -L /var/www ]; then
 fi
 
 #mariadb
+export DEBIAN_FRONTEND=noninteractive
+sudo debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password password PASS'
+sudo debconf-set-selections <<< 'mariadb-server-10.0 mysql-server/root_password_again password PASS'
 apt-get install software-properties-common
 apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
 add-apt-repository 'deb http://mirrors.accretive-networks.net/mariadb/repo/10.0/ubuntu trusty main'
