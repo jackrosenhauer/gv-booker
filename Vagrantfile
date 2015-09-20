@@ -74,4 +74,6 @@ Vagrant.configure(2) do |config|
   #config.vm.network :forwarded_port, guest: 5000, host: 5123
   #postgres port
   #config.vm.network :forwarded_port, guest: 5432, host: 5432
+  #mysql port
+  config.vm.network :forwarded_port, guest: 3306, host: 3306
 end

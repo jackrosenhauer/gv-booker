@@ -32,9 +32,13 @@ pip install psycopg2
 pip install flask-migrate
 pip install flask-restless
 
-
 #NodeJS and packages
 npm cache clean -f
+
+#allows remote connections
+sed -i 's/bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/my.cnf
+mysql -uroot -pPASS < /vagrant/setup/root.sql
+service mysql restart
 
 cd /vagrant
 npm install
