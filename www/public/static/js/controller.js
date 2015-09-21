@@ -2,7 +2,7 @@
   'use strict';
 
   function Controller(model, view){
-    
+
   }
 
   window.app = window.app || {};

@@ -8,5 +8,5 @@
   window.$qsa = function(selection, scope){
     return (scope || document).querySelectorAll(selector);
   }
-  
+
 })(window)
