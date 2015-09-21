@@ -16,4 +16,7 @@
     "url": "https://github.com/jackrosenhauer/gv-booker/issues"
   },
   "homepage": "https://github.com/jackrosenhauer/gv-booker#readme",
+  "devDependencies": {
+    "mocha": "^2.3.3"
+  }
 }
