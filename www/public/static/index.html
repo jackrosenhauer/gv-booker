@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>GV Booker</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
 </head>
 <body>
   <nav>
@@ -22,6 +23,25 @@
   <script src="js/view.js"></script>
   <script src="js/controller.js"></script>
   <script src="js/helpers.js"></script>
+  <script src="../../../bower_components/handlebars/handlebars.js"></script>
 
+  <script id="entry-template" type="text/x-handlebars-template">
+    <div class="entry">
+    <h1>{{title}}</h1>
+      <div class="body">
+        {{body}}
+      </div>
+    </div>
+  </script>
+
+  <script>
+    var source = document.getElementById("entry-template").text;
+    var template = Handlebars.compile(source);
+
+    var context = {"title": "My title", "body": "My body!"};
+    var html = template(context);
+
+    document.getElementsByTagName("body")[0].innerHTML = html;
+  </script>
 </body>
 </html>
