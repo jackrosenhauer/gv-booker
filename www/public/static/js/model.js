@@ -11,7 +11,7 @@
     this.storage = storage;
   }
 
-  Mode.prototype.create = function(){
+  Model.prototype.create = function(){
 
   }
 
