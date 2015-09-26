@@ -8,4 +8,4 @@
 
   var gvbooker = new Booker("gv-booker");
 
-})(window)
+})(window);

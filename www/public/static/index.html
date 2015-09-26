@@ -3,27 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>GV Booker</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css"></link>
+    <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
-  <nav>
+  <nav class="padding">
     <input id="signin" type="button" value="sign in">
   </nav>
 
-  <article>
+  <aside id="filterlist" class="floatleft padding">
+    <h3>Room Options</h3>
+    <div id="roomoptions">
+    </div>
+  </aside>
+
+  <article id="calender" class="floatleft padding">
   Greetings.
   </article>
 
   <footer>
   </footer>
-
+</body>
   <!-- scripts go at the end for performance  -->
 
   <script src="js/model.js"></script>
   <script src="js/view.js"></script>
   <script src="js/controller.js"></script>
   <script src="js/helpers.js"></script>
-  <script src="../../../bower_components/handlebars/handlebars.js"></script>
+  <script src="bower_components/handlebars/handlebars.js"></script>
 
   <script id="entry-template" type="text/x-handlebars-template">
     <div class="entry">
@@ -41,7 +48,6 @@
     var context = {"title": "My title", "body": "My body!"};
     var html = template(context);
 
-    document.getElementsByTagName("body")[0].innerHTML = html;
+    // document.getElementsByTagName("body")[0].innerHTML = html;
   </script>
-</body>
 </html>
