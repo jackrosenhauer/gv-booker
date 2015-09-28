@@ -13,6 +13,7 @@
     switch (viewCmd){
       case "month":
         console.log("(view) render => month");
+        console.log(args);
         break;
       case "week":
         console.log("(view) render => week");

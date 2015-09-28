@@ -8,9 +8,10 @@
 </head>
 <body>
   <nav class="padding">
-    <input type="text" id="login-username" placeholder="Username">
-    <input type="password" id="login-password" placeholder="Password">
+    <input id="login-username"type="text" placeholder="Username">
+    <input id="login-password" type="password" placeholder="Password">
     <input id="signin" type="button" value="Log In">
+    <input id="register" type="button" value="Register">
   </nav>
 
   <aside id="filterlist" class="floatleft padding">
@@ -28,13 +29,16 @@
 </body>
   <!-- scripts go at the end for performance  -->
 
+  <!-- Bower components and templates -->
+  <script src="bower_components/handlebars/handlebars.js"></script>
+
+  <!-- MVC files -->
   <script src="js/helpers.js"></script>
   <script src="js/model.js"></script>
   <script src="js/view.js"></script>
   <script src="js/controller.js"></script>
   <script src="js/store.js"></script>
   <script src="js/app.js"></script>
-  <script src="bower_components/handlebars/handlebars.js"></script>
 
   <script id="entry-template" type="text/x-handlebars-template">
     <div class="entry">
