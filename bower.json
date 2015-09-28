@@ -1,6 +1,10 @@
 {
-  "name": "gv-booker",
+  "name": "static",
   "version": "0.0.0",
+  "homepage": "https://github.com/jackrosenhauer/gv-booker",
+  "authors": [
+    "jackrosenhauer <jackrosenhauer@gmail.com>"
+  ],
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -10,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
-    "handlebars": "~4.0.2"
+    "handlebars": "~4.0.3",
+    "normalize-css": "normalize.css#~3.0.3"
   }
 }
