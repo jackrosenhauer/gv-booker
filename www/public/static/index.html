@@ -8,7 +8,9 @@
 </head>
 <body>
   <nav class="padding">
-    <input id="signin" type="button" value="sign in">
+    <input type="text" id="login-username" placeholder="Username">
+    <input type="password" id="login-password" placeholder="Password">
+    <input id="signin" type="button" value="Log In">
   </nav>
 
   <aside id="filterlist" class="floatleft padding">
@@ -26,10 +28,12 @@
 </body>
   <!-- scripts go at the end for performance  -->
 
+  <script src="js/helpers.js"></script>
   <script src="js/model.js"></script>
   <script src="js/view.js"></script>
   <script src="js/controller.js"></script>
-  <script src="js/helpers.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
   <script src="bower_components/handlebars/handlebars.js"></script>
 
   <script id="entry-template" type="text/x-handlebars-template">

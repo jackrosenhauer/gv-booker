@@ -1,6 +1,7 @@
 (function (window){
   'use strict';
   function Store(name, callback){
+    callback = callback || function(){};
     this.dbName = name;
     if (!localStorage[name]){
       var data = {
@@ -16,7 +17,7 @@
       localStorage[name] = JSON.stringify(data);
     }
 
-    callback.call(this, JSOn.parse(localStorage[name]));
+    callback.call(this, JSON.parse(localStorage[name]));
   }
 
   Store.prototype.find = function(){

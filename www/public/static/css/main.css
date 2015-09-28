@@ -18,7 +18,7 @@ body{
 
 nav{
   background-color: red;
-  display: flex 0px;
+  display: flex;
   justify-content: flex-end;
   margin-bottom: 10px;
   /*width: 100%;
@@ -40,10 +40,6 @@ nav{
   background-color: blue;
 }
 
-#signin{
-  top: 0;
-}
-
 aside{
 
 }
@@ -51,6 +47,7 @@ aside{
 input{
   height: 20px;
   width: 60px;
+	margin-right: 5px;
 }
 
 h3{

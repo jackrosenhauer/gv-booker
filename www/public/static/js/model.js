@@ -11,7 +11,15 @@
     this.storage = storage;
   }
 
-  Model.prototype.create = function(){
+  Model.prototype.createUser = function(){
+
+  };
+
+  Model.prototype.createRoom = function(){
+
+  };
+
+  Model.prototype.createReservation = function(){
 
   };
 
@@ -32,5 +40,5 @@
   };
 
   window.app = window.app || {};
-  window.Model = Model;
+  window.app.Model = Model;
 })(window);
