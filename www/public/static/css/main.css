@@ -20,7 +20,6 @@ nav {
     background-color: skyblue;
     display: flex;
     justify-content: flex-end;
-    /*I sort of like no margin here */
     margin-bottom: 10;
     /*width: 100%;
   justify-content: flex-end;*/
@@ -32,24 +31,29 @@ nav {
 
 #filterlist {
     width: 18%;
-    height: auto;
+    height: 80%;
     background-color: whitesmoke;
 }
 
 
 #calendar-window {
-    width: 80%;
-    height: 80%;
-    background-color: grey;
+    position: right;
+    width:79.893%;
+    height: 84%;
+    background-color: whitesmoke;
     opacity: 100;
+    border: 1px solid#d9d9d9;
+        border-top: 0px; 
+        
 }
 
 #calendar-bar{
-    width: 99.9%;
+    width: 100%;
     height: 12%;
     background-color: whitesmoke;
     border: 1px solid #d9d9d9;
-    
+        border-left: 0px;
+        border-right: 0px;
 }
 
 #current-month {
