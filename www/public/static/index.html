@@ -1,61 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>GV Booker</title>
     <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
+
 <body>
-  <nav class="padding">
-    <input id="login-username"type="text" placeholder="Username">
-    <input id="login-password" type="password" placeholder="Password">
-    <input id="signin" type="button" value="Log In">
-    <input id="register" type="button" value="Register">
-  </nav>
+    <nav class="padding">
+        <input id="login-username" type="text" placeholder="Username">
+        <input id="login-password" type="password" placeholder="Password">
+        <input id="signin" type="button" value="Log In">
+        <input id="register" type="button" value="Register">
+    </nav>
 
-  <aside id="filterlist" class="floatleft padding">
-    <h3>Room Options</h3>
-    <div id="roomoptions">
-    </div>
-  </aside>
+    <aside id="filterlist" class="floatleft padding">
+        <h3>Room Options</h3>
+        <div id="roomoptions">
+        </div>
+    </aside>
 
-  <article id="calender" class="floatleft padding">
-  Greetings.
-  </article>
+    <article id="calendar-window" class="floatleft">
+        <div id="calendar-bar">
+        
+        
+        </div>
+    
+    
+    </article>
 
-  <footer>
-  </footer>
+    <footer>
+    </footer>
 </body>
-  <!-- scripts go at the end for performance  -->
 
-  <!-- Bower components and templates -->
-  <script src="bower_components/handlebars/handlebars.js"></script>
 
-  <!-- MVC files -->
-  <script src="js/helpers.js"></script>
-  <script src="js/model.js"></script>
-  <script src="js/view.js"></script>
-  <script src="js/controller.js"></script>
-  <script src="js/store.js"></script>
-  <script src="js/app.js"></script>
 
-  <script id="entry-template" type="text/x-handlebars-template">
+<!-- scripts go at the end for performance  -->
+
+<!-- Bower components and templates -->
+<script src="bower_components/handlebars/handlebars.js"></script>
+
+<!-- MVC files -->
+<script src="js/helpers.js"></script>
+<script src="js/model.js"></script>
+<script src="js/view.js"></script>
+<script src="js/controller.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+
+<script id="entry-template" type="text/x-handlebars-template">
     <div class="entry">
-    <h1>{{title}}</h1>
-      <div class="body">
-        {{body}}
-      </div>
+        <h1>{{title}}</h1>
+        <div class="body">
+            {{body}}
+        </div>
     </div>
-  </script>
+</script>
 
-  <script>
+<script>
     var source = document.getElementById("entry-template").text;
     var template = Handlebars.compile(source);
 
-    var context = {"title": "My title", "body": "My body!"};
+    var context = {
+        "title": "My title",
+        "body": "My body!"
+    };
     var html = template(context);
 
     // document.getElementsByTagName("body")[0].innerHTML = html;
-  </script>
+</script>
+
 </html>
