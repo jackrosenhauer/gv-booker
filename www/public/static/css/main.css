@@ -42,9 +42,6 @@ nav{
     width:80%;
     height: 100%;
     background-color: whitesmoke;
-    /*border: 1px solid#d9d9d9;
-        border-top: 0px; */
-        
 }
 
 #calendar-bar{
@@ -57,14 +54,16 @@ nav{
         border-top: 0px;
 }
 
-.daynames{
+.weekdays-header-wrapper{
+    height: 3%;
     width: 100%;
-    height: 5%;
-    padding: 0%;
-    margin: 0;
-    overflow: auto;
-    list-style: none;
     text-align: center;
+    
+}
+.dayname{
+    height: 3%;
+    width: calc(100% / 7);
+    float: left;
 }
 
 .daynames_item{
@@ -76,17 +75,16 @@ nav{
 
 .calendar-day-container{
     height: 100%;
-    width: 14.0%;
+    width: calc(100% / 7.07);
     float: left;
     border: 1px solid #d9d9d9;
+        border-top: 0px;
+        border-bottom: 0px;
 }
 
 .calendar-day-number{
     height: 15%;
     width: 100%;
-    
-    
-
 }
 
 .calendar-day-data{
@@ -99,8 +97,12 @@ nav{
 }
 
 .week_row{
-    height:17.6%;
+    height:18%;
     width: 100%;
+    border: 1px solid #d9d9d9;
+        border-left: 0px;
+        border-right: 0px;
+    
         
 }
 
