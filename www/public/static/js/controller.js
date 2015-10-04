@@ -50,7 +50,7 @@
 
       default:
         console.log("hash: '" + hash + "'");
-        self.view.render("month", new Date(self.currentDate.getFullYear(), self.currentDate.getMonth(), 1));
+        // self.view.render("month", new Date(self.currentDate.getFullYear(), self.currentDate.getMonth(), 1));
         console.log("(controller) setView -> default");
     }
   }
