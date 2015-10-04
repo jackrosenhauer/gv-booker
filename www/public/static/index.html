@@ -9,10 +9,10 @@
 </head>
 
 <body>
-    <nav class="padding">
+    <nav id="home" class="padding home">
         <input id="login-username" type="text" placeholder="Username">
         <input id="login-password" type="password" placeholder="Password">
-        <input id="signin" type="button" value="Log In">
+        <input id="login" type="button" value="Log In">
         <input id="register" type="button" value="Register">
     </nav>
 
@@ -24,7 +24,7 @@
 
     <article id="calendar-window" class="floatleft">
         <div id="calendar-bar">
-            
+
         </div>
         <div class="month">
             <!-- <section class="timezone-picker"></section> -->
@@ -50,13 +50,13 @@
                 <li class="daynames_item">
                     Saturday
                 </li>
-        
-            
+
+
             </ul>
         </div>
-    
-    
-    
+
+
+
     </article>
 
     <footer>
@@ -85,6 +85,20 @@
             {{body}}
         </div>
     </div>
+</script>
+
+<script id="login-template" type="text/x-handlebars-template">
+  <div class="centered">
+    Username: <input type="textbox"><br>
+    Password: <input type="textbox"><br>
+  </div>
+</script>
+
+<script id="month-cal" type="text/x-handlebars-template">
+  <div>
+    insert a month cal right here
+  </div>
+
 </script>
 
 <script>
