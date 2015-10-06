@@ -21,7 +21,7 @@ nav{
     background-color: skyblue;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 10;
+    margin-bottom: 5;
     /*width: 100%;
   justify-content: flex-end;*/
 }
@@ -32,8 +32,42 @@ nav{
 
 #filterlist {
     width: 18%;
-    height: 95%;
+    height: 96%;
     background-color: whitesmoke;
+}
+
+#roomoptions{
+    width: 100%;
+    height: 95%;
+}
+
+#options-text{
+    width:100%;
+    height: 5%;;
+}
+
+#selections-container{
+    width:100%;
+    height:95%;
+}
+
+#selections-wrapper{
+
+    
+}
+
+#seating-number-selection{
+    width: 100%;
+    height: calc(100%/8);
+    
+}
+
+#phone-selection{
+    
+}
+
+#tv-selection{
+    
 }
 
 
@@ -75,11 +109,17 @@ nav{
 
 .calendar-day-container{
     height: 100%;
-    width: calc(100% / 7.07);
+    width: calc(100% / 7);
     float: left;
-    border: 1px solid #d9d9d9;
+    /* border: 1px solid #d9d9d9;
         border-top: 0px;
-        border-bottom: 0px;
+        border-bottom: 0px; */
+}
+
+.calendar-day-wrapper{
+    height:100%;
+    width: 99%;
+    border: 1px solid #d9d9d9; 
 }
 
 .calendar-day-number{
@@ -99,9 +139,9 @@ nav{
 .week_row{
     height:18%;
     width: 100%;
-    border: 1px solid #d9d9d9;
+    /* border: 1px solid #d9d9d9;
         border-left: 0px;
-        border-right: 0px;
+        border-right: 0px; */
 }
 
 input {
@@ -115,6 +155,6 @@ h3 {
     vertical-align: middle;
     background: cream;
     line-height: 40px;
-    height: 40px;
+    height: 5%;
     margin: 0;
 }
