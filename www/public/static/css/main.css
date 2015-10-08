@@ -18,7 +18,7 @@ body {
 }
 
 nav{
-    background-color: skyblue;
+    background-color: #0065A4;
     display: flex;
     justify-content: flex-end;
     margin-bottom: 5;
@@ -46,13 +46,21 @@ nav{
     height: 5%;;
 }
 
+
+
 #selections-container{
     width:100%;
     height:95%;
 }
 
 #selections-wrapper{
+    padding: 10%;
+    
+}
 
+.option{
+    padding: 5%;
+    
     
 }
 
@@ -88,6 +96,27 @@ nav{
         border-top: 0px;
 }
 
+#month-bar-name{
+    float:left;
+    font-size: 30px;
+    height: 100%;
+    width:15%;
+}
+    
+#month-switch-next{
+    float:left;
+    height:100%;
+    width: 5%;
+}
+
+
+#month-switch-prev{
+    float:left;
+    height:100%;
+    width: 5%;
+}
+    
+    
 .weekdays-header-wrapper{
     height: 3%;
     width: 100%;
