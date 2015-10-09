@@ -1,11 +1,16 @@
-suite('Array', function() {
+suite('Controller', function() {
+
   setup(function() {
-    // ...
+    var app = app.Booker();
   });
 
-  suite('#indexOf()', function() {
-    test('should return -1 when not present', function() {
+  suite('#userRegistration(username, password, email)', function() {
+    test('username = null', function() {
       assert.equal(-1, [1,2,3].indexOf(4));
     });
+
+
   });
+
+
 });

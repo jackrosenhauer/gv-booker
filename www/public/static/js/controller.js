@@ -18,10 +18,10 @@
 
   }
   //User functions
-  Controller.prototype.userRegistration = function(data){
+  Controller.prototype.userRegistration = function(username, password, email){
     var self = this;
 
-    if (data["username"] && data["password"]){
+    if (username && password && email){
 
     }else{
 
