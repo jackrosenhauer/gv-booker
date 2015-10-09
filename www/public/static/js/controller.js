@@ -89,6 +89,10 @@
     }
   }
 
+  Controller.prototype.test = function(){
+    return "do you see this";
+  }
+
   window.app = window.app || {};
   window.app.Controller = Controller;
 
