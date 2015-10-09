@@ -17,8 +17,8 @@
     })
 
   }
-
-  Controller.prototype.createUser = function(data){
+  //User functions
+  Controller.prototype.userRegistration = function(data){
     var self = this;
 
     if (data["username"] && data["password"]){
@@ -26,17 +26,51 @@
     }else{
 
     }
+  }
+
+  Controller.prototype.userLogin = function(username, password){
 
   }
 
-  Controller.prototype.createRoom = function(data){
+  //Reservation functions
+  Controller.prototype.userCreateReservation = function(date, user, startTime, endTime){
 
   }
 
-  Controller.prototype.createReservation = function(data){
+  Controller.prototype.userVoidReservation = function(date, user, startTime){
 
   }
 
+  Controller.prototype.extendReservation = function(date, user, startTime, endTime){
+
+  }
+
+  //Admin functions
+  Controller.prototype.adminCreateRoom = function(data){
+
+  }
+
+  Controller.prototype.adminUpdateRoomInfo = function(){
+
+  }
+
+  Controller.prototype.adminCreateReservation = function(data){
+
+  }
+
+  Controller.prototype.adminVoidReservation = function(){
+
+  }
+
+  Controller.prototype.adminCreateUser = function(){
+
+  }
+
+  Controller.prototype.adminRemoveUser = function(){
+
+  }
+
+  //View functions
   Controller.prototype.setView = function(hash){
     var self = this;
     hash = hash.split("/")[1];

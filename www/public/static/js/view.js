@@ -55,7 +55,8 @@
 
         var template = document.getElementById("month-cal").text;
         template = Handlebars.compile(template);
-
+        var result = template();
+        console.log(result);
         body.innerHTML = template();
         break;
 
