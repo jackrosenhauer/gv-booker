@@ -7,33 +7,118 @@
 <body>
   <div id="mocha"></div>
 
+  <script src="js/validator.js"></script>
+  <script src="js/helpers.js"></script>
+  <script src="js/model.js"></script>
+  <script src="js/view.js"></script>
+  <script src="js/controller.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/app.js"></script>
+
   <script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
   <script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
   <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+  <script src="bower_components/chai/chai.js"></script>
+
   <script>
+    window.assert = chai.assert;
+
     mocha.setup('tdd')
     mocha.checkLeaks();
-    mocha.globals(['jQuery']);
-    suite('Array', function() {
-      setup(function() {
-        // ...
+    //mocha.globals(['jQuery']);
+
+    suite('Validator', function(){
+
+      setup(function(){
+
       });
 
-      suite('#indexOf()', function() {
-        test('should return -1 when not present', function() {
-          assert.equal(-1, [1,2,3].indexOf(4));
+      suite('#isEmail(email)', function(){
+        test('email = undefined', function(){
+          assert.equal(false, validator.email());
+        });
+        test('email = null', function(){
+          assert.equal(false, validator.email(null));
+        });
+        test('email = "', function(){
+          assert.equal(false, validator.email(""));
+        });
+        test('email = "testemail"', function(){
+          assert.equal(false, validator.email("testemail"));
+        });
+        test('email = "testemail@test"', function(){
+          assert.equal(false, validator.email("testemail@test"));
+        });
+        test('email = "testemail@test.com"', function(){
+          assert.equal(true, validator.email("testemail@test.com"));
         });
       });
 
+      suite('#isUsername(username)', function(){
+        test('username = undefined', function(){
+          assert.equal(false, validator.username());
+        });
+        test('username = null', function(){
+          assert.equal(false, validator.username(null));
+        });
+        test('username = ""', function(){
+          assert.equal(false, validator.username(""));
+        });
+        test('username = "testuser"', function(){
+          assert.equal(true, validator.username("testuser"));
+        });
+      });
+
+      suite('#isPassword(password)', function(){
+        test('password = undefined', function(){
+          assert.equal(false, validator.password());
+        });
+        test('password = null', function(){
+          assert.equal(false, validator.password(null));
+        });
+        test('password = ""', function(){
+          assert.equal(false, validator.password(""));
+        });
+        test('password = "testpassword"', function(){
+          assert.equal(true, validator.password("testpassword"));
+        });
+      })
     });
+
     suite('Controller', function() {
       setup(function() {
         //var app = app.Booker();
       });
+
       suite('#userRegistration(username, password, email)', function() {
-        test('username = null', function() {
-          assert.equal(-1, [1,2,3].indexOf(4));
+        test('all params are undefined', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration());
         });
+
+        test('all params are null', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration(null, null, null));
+        });
+
+        test('username is an empty string', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration(""));
+        });
+
+        test('username,password and email are empty strings', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration("", "", ""));
+        });
+
+        test('returns false when an invalid email is provided', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration("testuser", "testpass", ""));
+        });
+
+        test('returns false when an invalid password is provided', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration("testuser", "", "test@email.com"));
+        });
+
+        test('returns true when a valid username, password and email are provided', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration("testuser", "testpass", "test@email.com"));
+        });
+
       });
     });
 
