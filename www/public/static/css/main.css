@@ -70,6 +70,11 @@ nav{
     
 }
 
+#number-box{
+    width: 15%;
+    
+}
+
 #phone-selection{
     
 }
@@ -97,23 +102,46 @@ nav{
 }
 
 #month-bar-name{
+    position: relative;
     float:left;
     font-size: 30px;
     height: 100%;
     width:15%;
+    top: 15%;
 }
     
 #month-switch-next{
+    text-align: center;
     float:left;
     height:100%;
     width: 5%;
+}
+
+#next-button{
+    position: relative;
+    top: 25%;
+    width: 75%;
+}
+
+#prev-button{
+    position: relative;
+    top: 25%;
+    width: 75%;
 }
 
 
 #month-switch-prev{
     float:left;
+    text-align: center;
     height:100%;
     width: 5%;
+}
+
+#view-switch{
+    float:left;
+    height:100%;
+    width: 5%;
+    
 }
     
     
