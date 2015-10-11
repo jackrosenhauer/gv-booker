@@ -25,17 +25,20 @@
             <div id="selections-container">
                 <div id="selections-wrapper">
                     <div id="seating-number-selection" class="option">
-                        <input type="number" min="1" max="10">
+                        <input type="number" id="number-box" min="1" max="10">
                         Number of Seats
                     </div>
                     <div id="whiteboard-selection" class="option">
                         <input type="checkbox">Whiteboard
                     </div>
                     <div id="phone-selection" class="option">
-                        <input type="checkbox">Phone
+                        <input type="checkbox">Polycom
                     </div>
                     <div id="tv-selection" class="option">
-                        <input type="checkbox">Television
+                        <input type="checkbox">TV
+                    </div>
+                    <div id="webcam-selection" class="option">
+                        <input type="checkbox">Webcam
                     </div>
                 </div>
             </div>
@@ -47,8 +50,14 @@
             <div id="month-bar-name">
                 Month Name
             </div>
-            <div id="month-switch-next"> </div>
-            <div id="month-switch-prev"> </div>
+             <div id="month-switch-prev"> 
+                    <input id="prev-button" type="button" value="<">
+            </div>
+            <div id="month-switch-next">
+                    <input id="next-button" type="button" value=">">
+            </div>
+        
+            <div id="view-switch" > </div>
         </div>
         <div class="weekdays-header-wrapper">
             <!-- <section class="timezone-picker"></section> -->
