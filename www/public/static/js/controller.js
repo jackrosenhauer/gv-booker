@@ -1,5 +1,5 @@
 (function(window){
-  'use strict';
+  "use strict";
 
   function Controller(model, view){
     this.model = model;
@@ -7,7 +7,7 @@
     this.currentDate = new Date();
     var self = this;
 
-    this.view.bind('login', function(){
+    this.view.bind("login", function(){
       // self.setView("#login");
       // window.location.hash = "#login";
     });
@@ -16,11 +16,11 @@
     //   // window.location.hash = ""
     // })
 
-    this.view.bind('reg', function(){
+    this.view.bind("reg", function(){
       window.location.hash = "#register"
-    })
+    });
 
-    this.view.bind('reg-submit', function(username, password, email){
+    this.view.bind("reg-submit", function(username, password, email){
       self.userRegistration(username, password, email);
     });
 

@@ -1,5 +1,5 @@
 (function(window){
-  'use strict';
+  "use strict";
 
   function View(){
     this.$login = qs("#login");
@@ -17,7 +17,7 @@
       switch (event){
 
           case "login":
-            $on(self.$login, 'click', function(){
+            $on(self.$login, "click", function(){
               // event.stopPropiation();
               console.log("(view) bind => 'login')");
               handler();
@@ -38,11 +38,12 @@
             })
             break;
           case "reg-submit":
-            $delegate(self.$calWin, '#reg-submit', "click", function(){
+            $delegate(self.$calWin, "#reg-submit", "click", function(){
               console.log("submit registration");
-              var username = qs('#reg-username').value;
-              var password = qs('#reg-password').value;
-              var email = qs('#reg-email').value;
+              var username = qs("#reg-username").value;
+              var password = qs("#reg-password").value;
+              var email = qs("#reg-email").value;
+
               handler(username, password, email);
             });
             break;
@@ -101,7 +102,7 @@
         self.showRegistrationFailedView(qs("#registration-message"));
         break;
       default:
-        console.log('viewcmd default');
+        console.log("viewcmd default");
     }
 
   }
@@ -111,13 +112,13 @@
   }
   View.prototype.showRegistrationView = function(element){
     var html = "";
-    html += '<div>';
-    html += '<div>Username: <input id="reg-username" type="text"></input></div>';
-    html += '<div>password: <input id="reg-password" type="text"></input></div>';
-    html += '<div>E-mail: <input id="reg-email" type="text"></input></div>';
-    html += '<button id="reg-submit">Okay</button><br>';
-    html += '<label id="registration-message"></label>'
-    html += '</div>';
+    html += "<div>";
+    html += "<div>Username: <input id='reg-username' type='text'></input></div>";
+    html += "<div>password: <input id='reg-password' type='text'></input></div>";
+    html += "<div>E-mail: <input id='reg-email' type='text'></input></div>";
+    html += "<button id='reg-submit'>Okay</button><br>";
+    html += "<label id='registration-message'></label>";
+    html += "</div>";
     element.innerHTML = html;
   }
 
