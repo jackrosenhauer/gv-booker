@@ -120,6 +120,15 @@ nav {
     width: 75%;
 }
 
+#view-button {
+    position: relative;
+    text-align: center;
+    top: 30%;
+    width: 100%;
+    font-size: 75%;
+    te
+}
+
 #month-switch-prev {
     float: left;
     text-align: center;
