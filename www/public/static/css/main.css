@@ -9,7 +9,7 @@ body {
     margin-right: 2%;
     height: 800px;
     width: 96%;
-    font-family:"MetaNormal";
+    font-family: "MetaNormal";
 }
 
 .floatleft {
@@ -17,7 +17,7 @@ body {
     float: left;
 }
 
-nav{
+nav {
     background-color: #0065A4;
     display: flex;
     justify-content: flex-end;
@@ -31,112 +31,128 @@ nav{
 }
 
 #filterlist {
-    width: 18%;
-    height: 96%;
+    float: left;
+    width: 20%;
+    height: 100%;
     background-color: whitesmoke;
+    
 }
 
-#roomoptions{
+#roomoptions {
     width: 100%;
     height: 95%;
 }
 
-#options-text{
-    width:100%;
-    height: 5%;;
+#options-text {
+    width: 100%;
+    height: 5%;
+    ;
 }
 
-
-
-#selections-container{
-    width:100%;
-    height:95%;
+#selections-container {
+    width: 100%;
+    height: 95%;
 }
 
-#selections-wrapper{
+#selections-wrapper {
     padding: 10%;
-    
 }
 
-.option{
+.option {
     padding: 5%;
-    
-    
 }
 
-#seating-number-selection{
+#seating-number-selection {
     width: 100%;
     height: calc(100%/8);
-    
 }
 
-#phone-selection{
-    
+#number-box {
+    width: 15%;
 }
 
-#tv-selection{
-    
-}
+#phone-selection {}
 
+#tv-selection {}
 
 #calendar-window {
     position: right;
-    width:80%;
+    width: 80%;
     height: 100%;
     background-color: whitesmoke;
 }
 
-#calendar-bar{
+#calendar-bar {
     width: 100%;
     height: 7%;
     background-color: whitesmoke;
     border: 1px solid #d9d9d9;
-        border-left: 1px;
-        border-right: 0px;
-        border-top: 0px;
+    border-left: 1px;
+    border-right: 0px;
+    border-top: 0px;
 }
 
-#month-bar-name{
-    float:left;
+#month-bar-name {
+    position: relative;
+    float: left;
     font-size: 30px;
     height: 100%;
-    width:15%;
+    width: 15%;
+    top: 15%;
 }
-    
-#month-switch-next{
-    float:left;
-    height:100%;
+
+#month-switch-next {
+    text-align: center;
+    float: left;
+    height: 100%;
     width: 5%;
 }
 
+#next-button {
+    position: relative;
+    top: 30%;
+    width: 75%;
+}
 
-#month-switch-prev{
-    float:left;
-    height:100%;
+#prev-button {
+    position: relative;
+    top: 30%;
+    width: 75%;
+}
+
+#month-switch-prev {
+    float: left;
+    text-align: center;
+    height: 100%;
     width: 5%;
 }
-    
-    
-.weekdays-header-wrapper{
+
+#view-switch {
+    float: left;
+    height: 100%;
+    width: 5%;
+}
+
+.weekdays-header-wrapper {
     height: 3%;
     width: 100%;
     text-align: center;
-    
 }
-.dayname{
+
+.dayname {
     height: 3%;
     width: calc(100% / 7);
     float: left;
 }
 
-.daynames_item{
+.daynames_item {
     height: 5%;
     float: left;
     margin-right: 5%;
     margin-left: 5%;
 }
 
-.calendar-day-container{
+.calendar-day-container {
     height: 100%;
     width: calc(100% / 7);
     float: left;
@@ -145,18 +161,18 @@ nav{
         border-bottom: 0px; */
 }
 
-.calendar-day-wrapper{
-    height:100%;
+.calendar-day-wrapper {
+    height: 100%;
     width: 99%;
-    border: 1px solid #d9d9d9; 
+    border: 1px solid #d9d9d9;
 }
 
-.calendar-day-number{
+.calendar-day-number {
     height: 15%;
     width: 100%;
 }
 
-.calendar-day-data{
+.calendar-day-data {
     width: 100%;
     height: 85%;
 }
@@ -165,8 +181,8 @@ nav{
     font-color: black;
 }
 
-.week_row{
-    height:18%;
+.week_row {
+    height: 18%;
     width: 100%;
     /* border: 1px solid #d9d9d9;
         border-left: 0px;
@@ -186,4 +202,84 @@ h3 {
     line-height: 40px;
     height: 5%;
     margin: 0;
+}
+
+
+/* Styles for week view */
+
+#week-view-container {
+    height: 93%;
+    width: 100%;
+}
+
+ol,
+li,
+ul {
+    list-style: none;
+}
+
+#week-header {
+    height: 5%;
+    width: 100%;
+    float: left;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#week-spacer {
+    float: left;
+    width: 5%;
+    height: 100%;
+}
+
+#week-spacer- {
+    float: left;
+    width: 2%;
+    height: 100%;
+}
+
+.week-label {
+    float: left;
+    height: 100%;
+    width: calc(93%/7);
+    text-align: center;
+    vertical-align: center;
+}
+
+#week-view-wrapper {
+    float: left;
+    height: 95%;
+    width: 100%;
+}
+
+#day-hour-sidebar {
+    float: left;
+    width: 5%;
+    height: 150%
+}
+
+.hour-label {
+
+    height: calc(150%/24);
+    width: 100%;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+}
+
+#week-view {
+    float: left;
+    height: 150%;
+    width: 94%;
+}
+
+.week-day-container {
+    float: left;
+    height: 100%;
+    width: calc(100%/7);
+}
+
+.week-hour-wrapper {
+    height: calc(150%/24);
+    width: 100%;
+    border: 1px solid #d9d9d9;
 }
