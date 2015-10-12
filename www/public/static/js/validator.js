@@ -8,7 +8,7 @@ var validator = (function(window){
 
   var isUsername = function(username){
     if (!username) return false;
-    var regex = new RegExp(/^[a-zA-Z]+$/);
+    var regex = new RegExp(/^[a-zA-Z0-9_-]+$/);
     return regex.test(username);
   }
 

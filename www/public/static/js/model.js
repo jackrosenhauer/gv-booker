@@ -35,6 +35,7 @@
     var self = this;
     //var user = this.storage["users"][username];
     if (typeof self.storage["users"][username] !== "undefined"){
+      //return true;
       return self.storage["users"][username];
     }
 

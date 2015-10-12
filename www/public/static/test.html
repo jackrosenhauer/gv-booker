@@ -151,6 +151,21 @@
           window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
           assert.equal(true, window.gvbooker.controller.userLogin("testuser", "testpass"));
         });
+
+        test('returns false when username and password are invalid', function(){
+          window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
+          assert.equal(false, window.gvbooker.controller.userLogin("testuser123", "testpass23"));
+        });
+
+        test('returns false when username is invalid', function(){
+          window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
+          assert.equal(false, window.gvbooker.controller.userLogin("testuser123", "testpass"));
+        });
+
+        test('returns false when pasword is invalid', function(){
+          window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
+          assert.equal(false, window.gvbooker.controller.userLogin("testuser", "testpass123"));
+        });
       });
 
       suite('#userCreateReservation(date, user, startTime, endTime)', function(){
@@ -165,7 +180,7 @@
         });
       });
 
-      suite('#extendReservation(date, user, startTime, endTime)', function(){
+      suite('#userExtendReservation(date, user, startTime, endTime)', function(){
         test('', function(){
           assert.equal(true, true);
         });
@@ -174,40 +189,6 @@
 
       suite('#adminCreateRoom(roomInfo)', function(){
         setup(function(){
-          var room1 = {
-            "building": "mac",
-            "roomNumber": "A1-118",
-            "seating": "30"
-          }
-
-          var room2 = {
-            "building": "mac",
-            "roomNumber": "A1-116",
-            "seating": "100"
-          }
-
-          var room3 = {
-            "building": "mac",
-            "roomNumber": "B1-116",
-            "seating": "10"
-          }
-
-          var changeRoom1 = {
-            "building": "mac",
-            "roomNumber": "A1-118",
-            "seating": "25"
-          }
-
-          var badRoom1 = {
-            "building": "",
-            "roomNumber": "",
-            "seating": ""
-          };
-
-          var badRoom2 = {
-            "building": ""
-          };
-
 
         });
 
@@ -260,6 +241,7 @@
               "seating": 25
           }));
         });
+
       });
 
       suite('#adminUpdateRoomInfo()', function(){
@@ -268,9 +250,44 @@
         });
       });
 
+      suite('#isAdmin()', function(){
+        test('true by default', function(){
+
+          window.gvbooker.controller.isAdmin = function(){
+            return true;
+          };
+          console.log(window.gvbooker.controller.isAdmin);
+          assert.equal(true, window.gvbooker.controller.isAdmin());
+        });
+
+        test('true when we inject our method', function(){
+          window.gvbooker.controller.isAdmin = function(){
+            return false;
+          };
+          assert.equal(false, window.gvbooker.controller.isAdmin());
+        });
+      })
+
       suite('#adminCreateUser()', function(){
-        test('', function(){
-          assert.equal(true, true);
+        setup(function(){
+          window.gvbooker.controller.isAdmin = function(){
+            return true;
+          };
+        })
+        //when admin is true
+        test('when currentUser is an admin', function(){
+          assert.equal(true, window.gvbooker.controller.adminCreateUser("testuser2", "testpass", "test@gmail.com"));
+        });
+
+        //when admin is false
+        test('when currentUser is not an admin', function(){
+          //injection, we replace the method
+          window.gvbooker.controller.isAdmin = function(){
+            console.log("god mode not enabled :()");
+            return false;
+          };
+
+          assert.equal(false, window.gvbooker.controller.adminCreateUser("testuser", "testpass", "test@gmail.com"));
         });
       });
 

@@ -30,15 +30,24 @@
   //User functions
   Controller.prototype.userRegistration = function(username, password, email){
     var self = this;
+    // console.log(validator.username(username));
+    // console.log(validator.password(password));
+    // console.log(validator.email(email));
+
     if (validator.username(username) && validator.password(password) && validator.email(email)){
+      // console.log('valid inputs');
       //check if username exists in the model
       //if false, create user else return false
       if (!self.model.getUser(username)){
         self.model.createUser(username, password, email);
         self.setView("#registration-success");
+        // console.log("reg success");
         return true;
       }
+
+      // console.log ("valid inputs");
     }
+    // console.log('reg failure');
     self.setView("#registration-failed");
     return false;
   }
@@ -46,17 +55,20 @@
   Controller.prototype.userLogin = function(username, password){
     var self = this;
     if (validator.username(username) && validator.password(password)){
+      console.log("login creds match validation scheme");
       var user = self.model.getUser(username);
       //console.log(user);
-      if (user){
+      if (typeof user !== "undefined"){
         if( user.username === username && user.password === password){
           //successful login
+          console.log("login success");
           self.setView("#login-success");
           self.currentUser = user;
           return true;
         }
       }
     }
+    // console.log("login failed");
     self.setView("#login-failed");
     return false;
   }
@@ -76,7 +88,7 @@
 
   }
 
-  Controller.prototype.extendReservation = function(date, user, startTime, endTime){
+  Controller.prototype.userExtendReservation = function(date, user, startTime, newEndTime){
 
   }
 
@@ -119,24 +131,54 @@
     return false;
   }
 
-  Controller.prototype.adminUpdateRoomInfo = function(){
-
+  Controller.prototype.adminUpdateRoomInfo = function(building, roomNumber){
+    var self = this;
+    if (self.isAdmin(self.currentuser)){
+      //admin stuff
+    }
+    //user is not admin
+    return false;
   }
 
-  Controller.prototype.adminCreateReservation = function(data){
-
+  Controller.prototype.adminCreateReservation = function(username, password, email){
+    var self = this;
+    if (self.isAdmin(self.currentuser)){
+      //admin stuff
+    }
+    //user is not admin
+    return false;
   }
 
   Controller.prototype.adminVoidReservation = function(){
+    var self = this;
+    if (self.isAdmin(self.currentuser)){
+      //admin stuff
+    }
 
+    //user is not admin
+    return false;
   }
 
-  Controller.prototype.adminCreateUser = function(){
-
+  Controller.prototype.adminCreateUser = function(username, password, email){
+    var self = this;
+    if (self.isAdmin(self.currentuser)){
+      console.log("Im an admin!");
+      var test =  self.userRegistration(username, password, email);
+      console.log(test);
+      return test;
+    }
+    console.log("not an admin");
+    //user is not admin
+    return false;
   }
 
-  Controller.prototype.adminRemoveUser = function(){
-
+  Controller.prototype.adminRemoveUser = function(username){
+    var self = this;
+    if (self.isAdmin(self.currentuser)){
+      //do stuff
+    }
+    //user is not admin
+    return false;
   }
 
   //View functions
@@ -170,7 +212,7 @@
 
 
   //return true for now until we figure out user permissions
-  Controller.prototype.isAdmin = function(){
+  Controller.prototype.isAdmin = function(user){
     return true;
   };
 
