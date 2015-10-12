@@ -31,14 +31,27 @@
     window.storage = this.storage;
   }
 
+  Model.prototype.deleteUser = function(username){
+    var self = this;
+    if (self.getUser(username)){
+      delete self.storage["users"][username];
+      console.log("deleteing user");
+      return true;
+    }else{
+      console.log("user does not exist123");
+      return false;
+    }
+  }
+
   Model.prototype.getUser = function(username){
     var self = this;
+    console.log("getting user");
     //var user = this.storage["users"][username];
     if (typeof self.storage["users"][username] !== "undefined"){
-      //return true;
       return self.storage["users"][username];
     }
 
+    console.log("user does not exist321");
     return false;
   }
 

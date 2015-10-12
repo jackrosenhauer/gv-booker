@@ -14,7 +14,7 @@ var validator = (function(window){
 
   var isPassword = function(password){
     if (!password) return false;
-    var regex = new RegExp(/^[a-zA-Z]+$/);
+    var regex = new RegExp(/^[a-zA-Z0-9]+$/);
     return regex.test(password);
   }
 

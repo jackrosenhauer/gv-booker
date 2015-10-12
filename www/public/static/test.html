@@ -15,7 +15,7 @@
   <script type="text/javascript" src="bower_components/chai/chai.js"></script>
   <script type="text/javascript" src="bower_components/blanket/dist/qunit/blanket.min.js" data-cover-adapter="bower_components/blanket/src/adapters/mocha-blanket.js"></script>
 
-  <script type="text/javascript" src="js/validator.js"></script>
+  <script type="text/javascript" src="js/validator.js" data-cover></script>
   <script type="text/javascript" src="js/helpers.js"></script>
   <script type="text/javascript" src="js/model.js"></script>
   <script type="text/javascript" src="js/view.js"></script>
@@ -28,6 +28,8 @@
     mocha.checkLeaks();
   </script>
   <script type="text/javascript" src="tests/controller.js"></script>
+  <script type="text/javascript" src="tests/validator.js"></script>
+  <!-- <script type="text/javascript" src="tests/model.js"></script> -->
   <script>
     mocha.run();
   </script>

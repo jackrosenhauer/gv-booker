@@ -1,65 +1,11 @@
-suite('Validator', function(){
-
-  setup(function(){
-
-  });
-
-  suite('#isEmail(email)', function(){
-    test('email = undefined', function(){
-      assert.equal(false, validator.email());
-    });
-    test('email = null', function(){
-      assert.equal(false, validator.email(null));
-    });
-    test('email = "', function(){
-      assert.equal(false, validator.email(""));
-    });
-    test('email = "testemail"', function(){
-      assert.equal(false, validator.email("testemail"));
-    });
-    test('email = "testemail@test"', function(){
-      assert.equal(false, validator.email("testemail@test"));
-    });
-    test('email = "testemail@test.com"', function(){
-      assert.equal(true, validator.email("testemail@test.com"));
-    });
-  });
-
-  suite('#isUsername(username)', function(){
-    test('username = undefined', function(){
-      assert.equal(false, validator.username());
-    });
-    test('username = null', function(){
-      assert.equal(false, validator.username(null));
-    });
-    test('username = ""', function(){
-      assert.equal(false, validator.username(""));
-    });
-    test('username = "testuser"', function(){
-      assert.equal(true, validator.username("testuser"));
-    });
-  });
-
-  suite('#isPassword(password)', function(){
-    test('password = undefined', function(){
-      assert.equal(false, validator.password());
-    });
-    test('password = null', function(){
-      assert.equal(false, validator.password(null));
-    });
-    test('password = ""', function(){
-      assert.equal(false, validator.password(""));
-    });
-    test('password = "testpassword"', function(){
-      assert.equal(true, validator.password("testpassword"));
-    });
-  })
-});
-
 suite('Controller', function() {
   setup(function() {
     localStorage.clear();
     gvbooker.controller.setView = function(){}
+    window.gvbooker.controller.isAdmin = function(){
+      return true;
+    };
+    window.gvbooker.model.storage["users"] = {};
   });
 
   suite('#userRegistration(username, password, email)', function() {
@@ -92,7 +38,8 @@ suite('Controller', function() {
     });
 
     test('returns false when username already exists', function() {
-      assert.equal(false, window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com"))
+      window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
+      assert.equal(false, window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com"));
     });
 
   });
@@ -259,27 +206,27 @@ suite('Controller', function() {
   });
 
   suite('#adminRemoveUser()', function(){
-    test('', function(){
-      assert.equal(true, true);
+    test('returns false when user is undefined', function(){
+      assert.equal(false, window.gvbooker.controller.adminRemoveUser());
+    });
+
+    test('returns false when user is null', function(){
+      assert.equal(false, window.gvbooker.controller.adminRemoveUser(null));
+    });
+
+    test('returns false when user does not exist', function(){
+      assert.equal(false, window.gvbooker.controller.adminRemoveUser("testuser"));
+    });
+
+    test('returns true when user does exist', function(){
+      window.gvbooker.controller.adminCreateUser("testuser", "testpass", "test@gmail.com")
+      assert.equal(true, window.gvbooker.controller.adminRemoveUser("testuser"));
     });
   });
 
   suite('#test()', function(){
     test('returns "do you see this"', function(){
       assert.equal("do you see this", window.gvbooker.controller.test());
-    });
-  });
-
-});
-
-suite('Model', function(){
-  setup(function(){
-
-  });
-
-  suite('', function(){
-    test('', function(){
-
     });
   });
 

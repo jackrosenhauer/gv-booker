@@ -20,7 +20,7 @@
     "camelcase": 2,
     "require-jsdoc": 2,
     "comma-style": 2,
-    "comma-spacing": [2, "after"],
+    "comma-spacing": [2, {"after": true}],
     "consistance-this": [2, "self"]
   }
 }

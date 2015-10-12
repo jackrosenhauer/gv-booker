@@ -7,9 +7,13 @@
     this.currentDate = new Date();
     var self = this;
 
-    this.view.bind("login", function(){
-      // self.setView("#login");
-      // window.location.hash = "#login";
+    this.view.bind("login", function(username, password){
+      self.userLogin(username, password);
+    });
+
+    this.view.bind("logout", function(){
+      self.userLogout();
+      self.setView("#default");
     });
 
     // self.view.bind('default', function(){
@@ -17,7 +21,7 @@
     // })
 
     this.view.bind("reg", function(){
-      window.location.hash = "#register"
+      window.location.hash = "#register";
     });
 
     this.view.bind("reg-submit", function(username, password, email){
@@ -30,9 +34,6 @@
   //User functions
   Controller.prototype.userRegistration = function(username, password, email){
     var self = this;
-    // console.log(validator.username(username));
-    // console.log(validator.password(password));
-    // console.log(validator.email(email));
 
     if (validator.username(username) && validator.password(password) && validator.email(email)){
       // console.log('valid inputs');
@@ -53,6 +54,7 @@
   }
 
   Controller.prototype.userLogin = function(username, password){
+    console.log("logging in user");
     var self = this;
     if (validator.username(username) && validator.password(password)){
       console.log("login creds match validation scheme");
@@ -62,8 +64,9 @@
         if( user.username === username && user.password === password){
           //successful login
           console.log("login success");
-          self.setView("#login-success");
           self.currentUser = user;
+          self.setView("#login-success");
+
           return true;
         }
       }
@@ -76,6 +79,7 @@
   Controller.prototype.userLogout = function(){
     var self = this;
     self.currentUser = undefined;
+    self.setView("#default");
     //show default
   }
 
@@ -163,9 +167,7 @@
     var self = this;
     if (self.isAdmin(self.currentuser)){
       console.log("Im an admin!");
-      var test =  self.userRegistration(username, password, email);
-      console.log(test);
-      return test;
+      return self.userRegistration(username, password, email);
     }
     console.log("not an admin");
     //user is not admin
@@ -176,6 +178,8 @@
     var self = this;
     if (self.isAdmin(self.currentuser)){
       //do stuff
+      return self.model.deleteUser(username);
+
     }
     //user is not admin
     return false;
@@ -196,23 +200,35 @@
         break;
       case '#login-success':
         console.log("setView #login-success");
+        window.location.hash = "#login-success";
+        self.view.render("login-success", {"currentUser" : self.currentUser});
         break;
       case "#registration-failed":
         self.view.render("registration-failed");
+        window.location.hash = "#registration-failed";
         break;
       case '#login-failed':
         console.log("setView #login-failed");
+        window.location.hash = "#login-failed";
+        self.view.render("login-failed");
         break;
+        case "#registration-success":
+          window.location.hash = "#registration-success";
+          self.view.render("registration-success");
+          break;
       default:
         console.log("hash: '" + hash + "'");
         // self.view.render("month", new Date(self.currentDate.getFullYear(), self.currentDate.getMonth(), 1));
         console.log("(controller) setView -> default");
+        window.location.hash = "#default";
+        self.view.render("default");
     }
   }
 
 
   //return true for now until we figure out user permissions
   Controller.prototype.isAdmin = function(user){
+    console.log("I'm an admiN!");
     return true;
   };
 
