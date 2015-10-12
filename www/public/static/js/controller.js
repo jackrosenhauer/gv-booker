@@ -2,34 +2,62 @@
   'use strict';
 
   function Controller(model, view){
+    this.model = model;
+    this.view = view;
+    this.currentDate = new Date();
     var self = this;
-    self.model = model;
-    self.view = view;
-    self.currentDate = new Date();
 
-    self.view.bind('login', function(){
+    this.view.bind('login', function(){
       // self.setView("#login");
       // window.location.hash = "#login";
     });
 
-    self.view.bind('default', function(){
-      // window.location.hash = ""
+    // self.view.bind('default', function(){
+    //   // window.location.hash = ""
+    // })
+
+    this.view.bind('reg', function(){
+      window.location.hash = "#register"
     })
+
+    this.view.bind('reg-submit', function(username, password, email){
+      self.userRegistration(username, password, email);
+    });
+
+    this.currentSession;
 
   }
   //User functions
   Controller.prototype.userRegistration = function(username, password, email){
     var self = this;
-
-    if (username && password && email){
-
-    }else{
-
+    console.log("user reg: " + username + ", password: " + password + ", email: " + email);
+    if (validator.username(username) && validator.password(password) && validator.email(email)){
+      //check if username exists in the model
+      //if false, create user else return false
+      if (!self.model.getUser(username)){
+        self.model.createUser(username, password, email);
+        self.setView("#registration-success");
+        return true;
+      }
     }
+    self.setView("#registration-failed");
+    return false;
   }
 
   Controller.prototype.userLogin = function(username, password){
-
+    var self = this;
+    if (validator.username(username) && validator.password(password)){
+      var user = self.model.getUser(username);
+      if (user){
+        if( user.username === username && user.password === password){
+          //successful login
+          self.setview("#login-success");
+          return true;
+        }
+      }
+    }
+    self.setView("#login-failed");
+    return false;
   }
 
   //Reservation functions
@@ -73,15 +101,25 @@
   //View functions
   Controller.prototype.setView = function(hash){
     var self = this;
-    hash = hash.split("/")[1];
-    console.log("(controller) setView => '" + hash + "'");
+    console.log("hash: " + hash);
+    if (hash.indexOf("/") !== -1){
+      hash = hash.split("/")[1];
+    }
+    // hash = hash.split("/")[1];
     switch (hash){
       case '#login':
         // window.location.hash = "#/login"
         self.view.render("login");
-        // window.location.hash = "#/login"
         break;
-
+      case '#login-success':
+        console.log("setView #login-success");
+        break;
+      case "#registration-failed":
+        self.view.render("registration-failed");
+        break;
+      case '#login-failed':
+        console.log("setView #login-failed");
+        break;
       default:
         console.log("hash: '" + hash + "'");
         // self.view.render("month", new Date(self.currentDate.getFullYear(), self.currentDate.getMonth(), 1));

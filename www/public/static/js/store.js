@@ -20,6 +20,11 @@
     callback.call(this, JSON.parse(localStorage[name]));
   }
 
+  Store.prototype.findUser = function(username){
+    var self = this;
+    return self.localStorage[self.dbName]["users"][username];
+  };
+
   Store.prototype.find = function(){
 
   };

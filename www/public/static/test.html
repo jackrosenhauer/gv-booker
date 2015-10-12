@@ -6,7 +6,9 @@
 </head>
 <body>
   <div id="mocha"></div>
-
+  <script>
+    localStorage.clear();
+  </script>
   <script src="js/validator.js"></script>
   <script src="js/helpers.js"></script>
   <script src="js/model.js"></script>
@@ -87,7 +89,7 @@
 
     suite('Controller', function() {
       setup(function() {
-        //var app = app.Booker();
+        localStorage.clear();
       });
 
       suite('#userRegistration(username, password, email)', function() {
@@ -116,7 +118,10 @@
         });
 
         test('returns true when a valid username, password and email are provided', function() {
-          assert.equal(false, window.gvbooker.controller.userRegistration("testuser", "testpass", "test@email.com"));
+          var user = window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
+          assert.equal(user.username, "testuser");
+          assert.equal(user.password, "testpass");
+          assert.equal(user.email, "test@gmail.com");
         });
 
       });
