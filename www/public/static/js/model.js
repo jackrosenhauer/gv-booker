@@ -34,23 +34,53 @@
   Model.prototype.getUser = function(username){
     var self = this;
     //var user = this.storage["users"][username];
-    if (typeof self.storage["users"][username] === "undefined"){
-      return false;
-    }else{
-      return user;
+    if (typeof self.storage["users"][username] !== "undefined"){
+      return self.storage["users"][username];
     }
+
+    return false;
   }
 
   Model.prototype.createUser = function(username, password, email){
     var self = this;
     var user = {"username": username, "password": password, "email": email};
-    this.storage["users"].push(user);
+    this.storage["users"][username] = user;
+    // this.storage["users"].push(user);
     this.saveState();
-    return user;
+    return this.storage["users"][username];
   };
 
-  Model.prototype.createRoom = function(){
 
+  //building, roomNumber and seating are all required (and are used as a primary key)
+  //whiteboard, polycom, tv and webcam are optional and if not provided
+  Model.prototype.createRoom = function(building, roomNumber, seating, whiteboard, polycom, tv, webcam){
+    var self = this;
+    var key = building + roomNumber;
+
+    //create a room object for storage and checking
+    var room = {
+      "building": building,
+      "roomNumber": roomNumber,
+      "seating": seating,
+      "whiteboard": whiteboard,
+      "polycom": polycom,
+      "tv": tv,
+      "webcam": webcam
+    };
+
+    if (self.storage["rooms"][key]){
+      //room already exists
+      return false;
+    }else{
+      //store it
+      self.storage["rooms"][key] = room;
+    }
+
+    //created the room
+    self.saveState();
+    return true;
+    //or we could return the room object to the Controller -> View
+    // return room;
   };
 
   Model.prototype.createReservation = function(){

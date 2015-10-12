@@ -24,13 +24,12 @@
       self.userRegistration(username, password, email);
     });
 
-    this.currentSession;
+    this.currentUser;
 
   }
   //User functions
   Controller.prototype.userRegistration = function(username, password, email){
     var self = this;
-    console.log("user reg: " + username + ", password: " + password + ", email: " + email);
     if (validator.username(username) && validator.password(password) && validator.email(email)){
       //check if username exists in the model
       //if false, create user else return false
@@ -48,16 +47,24 @@
     var self = this;
     if (validator.username(username) && validator.password(password)){
       var user = self.model.getUser(username);
+      //console.log(user);
       if (user){
         if( user.username === username && user.password === password){
           //successful login
-          self.setview("#login-success");
+          self.setView("#login-success");
+          self.currentUser = user;
           return true;
         }
       }
     }
     self.setView("#login-failed");
     return false;
+  }
+
+  Controller.prototype.userLogout = function(){
+    var self = this;
+    self.currentUser = undefined;
+    //show default
   }
 
   //Reservation functions
@@ -74,8 +81,42 @@
   }
 
   //Admin functions
-  Controller.prototype.adminCreateRoom = function(data){
+  Controller.prototype.adminCreateRoom = function(roomInfo){
+    var self = this;
+    if (typeof roomInfo === "undefined"){
+      return false;
+    }
+    //roomInfo is undefined
+    // if (!!roomInfo){ console.log("roomInfo is undefiend"); return false }
 
+    if (self.isAdmin(self.currentUser)){
+      if (!roomInfo["building"] || (roomInfo["building"] === undefined) || (roomInfo["building"].length === 0)){
+        //invalid building
+        //console.log("invalid building");
+        return false;
+      }else if (!roomInfo["roomNumber"] || (roomInfo["roomNumber"] === undefined) || (roomInfo["roomNumber"].length === 0)){
+        //invalid roomNumber
+        //console.log("invalid roomNumber");
+        return false;
+      }else if (!roomInfo["seating"] || (roomInfo["seating"] === undefined) || (roomInfo["seating"].length === 0)){
+        //invalid seating
+        //console.log("invalid seating");
+        return false;
+      }else{
+
+        roomInfo["whiteboard"] = roomInfo["whiteboard"] || false;
+        roomInfo["polycom"] = roomInfo["polycom"] || false;
+        roomInfo["tv"] = roomInfo["tv"] || false;
+        roomInfo["webcam"] = roomInfo["webcam"] || false;
+
+        return self.model.createRoom(roomInfo["building"], roomInfo["roomNumber"], roomInfo["seating"], roomInfo["whiteboard"], roomInfo["polycom"], roomInfo["tv"], roomInfo["webcam"]);
+      }
+
+    }else{
+      //return "You don't have admin privs, sorry";
+      return false;
+    }
+    return false;
   }
 
   Controller.prototype.adminUpdateRoomInfo = function(){
@@ -126,6 +167,12 @@
         console.log("(controller) setView -> default");
     }
   }
+
+
+  //return true for now until we figure out user permissions
+  Controller.prototype.isAdmin = function(){
+    return true;
+  };
 
   Controller.prototype.test = function(){
     return "do you see this";

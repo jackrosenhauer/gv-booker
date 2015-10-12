@@ -23,11 +23,13 @@
   <script src="bower_components/chai/chai.js"></script>
 
   <script>
+
     window.assert = chai.assert;
 
     mocha.setup('tdd')
     mocha.checkLeaks();
     //mocha.globals(['jQuery']);
+
 
     suite('Validator', function(){
 
@@ -90,6 +92,7 @@
     suite('Controller', function() {
       setup(function() {
         localStorage.clear();
+        gvbooker.controller.setView = function(){}
       });
 
       suite('#userRegistration(username, password, email)', function() {
@@ -118,13 +121,184 @@
         });
 
         test('returns true when a valid username, password and email are provided', function() {
-          var user = window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
-          assert.equal(user.username, "testuser");
-          assert.equal(user.password, "testpass");
-          assert.equal(user.email, "test@gmail.com");
+          assert.equal(true, window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com"));
+        });
+
+        test('returns false when username already exists', function() {
+          assert.equal(false, window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com"))
         });
 
       });
+
+      suite('#userLogin(username, password)', function(){
+        test('returns false when username and password are undefined', function(){
+          assert.equal(false, window.gvbooker.controller.userLogin());
+        });
+
+        test('returns false when username and password are null', function(){
+          assert.equal(false, window.gvbooker.controller.userLogin(null, null));
+        });
+
+        test('returns false when username and password are ""', function(){
+          assert.equal(false, window.gvbooker.controller.userLogin("", ""));
+        });
+
+        test('returns false when username does not exist', function(){
+          assert.equal(false, window.gvbooker.controller.userLogin("testing", "testpass"));
+        });
+
+        test('returns true when username and password are valid', function(){
+          window.gvbooker.controller.userRegistration("testuser", "testpass", "test@gmail.com");
+          assert.equal(true, window.gvbooker.controller.userLogin("testuser", "testpass"));
+        });
+      });
+
+      suite('#userCreateReservation(date, user, startTime, endTime)', function(){
+        test('', function(){
+          assert.equal(true, true);
+        });
+      });
+
+      suite('#userVoidRegistration(date, user, startTime)', function(){
+        test('', function(){
+          assert.equal(true, true);
+        });
+      });
+
+      suite('#extendReservation(date, user, startTime, endTime)', function(){
+        test('', function(){
+          assert.equal(true, true);
+        });
+      });
+
+
+      suite('#adminCreateRoom(roomInfo)', function(){
+        setup(function(){
+          var room1 = {
+            "building": "mac",
+            "roomNumber": "A1-118",
+            "seating": "30"
+          }
+
+          var room2 = {
+            "building": "mac",
+            "roomNumber": "A1-116",
+            "seating": "100"
+          }
+
+          var room3 = {
+            "building": "mac",
+            "roomNumber": "B1-116",
+            "seating": "10"
+          }
+
+          var changeRoom1 = {
+            "building": "mac",
+            "roomNumber": "A1-118",
+            "seating": "25"
+          }
+
+          var badRoom1 = {
+            "building": "",
+            "roomNumber": "",
+            "seating": ""
+          };
+
+          var badRoom2 = {
+            "building": ""
+          };
+
+
+        });
+
+        test('retrun false when all roomInfo is undefined', function(){
+          var room = window.gvbooker.controller.adminCreateRoom();
+          assert.equal(false, room);
+        });
+
+        test('retrun false when all params are undefined', function(){
+          var room = window.gvbooker.controller.adminCreateRoom({});
+          assert.equal(false, room);
+        });
+
+        test('return false when all params are null', function(){
+          assert.equal(false, window.gvbooker.controller.adminCreateRoom({
+              "building": null,
+              "roomNumber": null,
+              "seating": null
+          }));
+        });
+
+        test('return false when roomNumber and seating are null', function(){
+          assert.equal(false, window.gvbooker.controller.adminCreateRoom({
+              "building": "mac",
+              "roomNumber": null,
+              "seating": null
+          }));
+        });
+
+        test('return false when only seating is null', function(){
+          assert.equal(false, window.gvbooker.controller.adminCreateRoom({
+              "building": "mac",
+              "roomNumber": "A-118",
+              "seating": null
+          }));
+        });
+
+        test('return true for valid room', function(){
+          assert.equal(true, window.gvbooker.controller.adminCreateRoom({
+              "building": "mac",
+              "roomNumber": "A-118",
+              "seating": 25
+          }));
+        });
+
+        test('return false when room already exists', function(){
+          assert.equal(false, window.gvbooker.controller.adminCreateRoom({
+              "building": "mac",
+              "roomNumber": "A-118",
+              "seating": 25
+          }));
+        });
+      });
+
+      suite('#adminUpdateRoomInfo()', function(){
+        test('', function(){
+          assert.equal(true, true);
+        });
+      });
+
+      suite('#adminCreateUser()', function(){
+        test('', function(){
+          assert.equal(true, true);
+        });
+      });
+
+      suite('#adminRemoveUser()', function(){
+        test('', function(){
+          assert.equal(true, true);
+        });
+      });
+
+      suite('#test()', function(){
+        test('returns "do you see this"', function(){
+          assert.equal("do you see this", window.gvbooker.controller.test());
+        });
+      });
+
+    });
+
+    suite('Model', function(){
+      setup(function(){
+
+      });
+
+      suite('', function(){
+        test('', function(){
+
+        });
+      });
+
     });
 
     mocha.run();
