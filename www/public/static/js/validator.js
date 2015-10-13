@@ -2,7 +2,7 @@ var validator = (function(window){
 
   var isEmail = function(email){
     if (!email) return false;
-    var regex = new RegExp(/^[a-zA-Z0-9_.]+@[a-zA-Z]+\.[a-zA-Z0-9]+$/);
+    var regex = new RegExp(/^[a-zA-Z0-9_.]+@[a-zA-Z0-9_.]+\.[a-zA-Z0-9]+$/);
     return regex.test(email);
   }
 

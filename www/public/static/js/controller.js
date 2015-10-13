@@ -16,10 +16,6 @@
       self.setView("#default");
     });
 
-    // self.view.bind('default', function(){
-    //   // window.location.hash = ""
-    // })
-
     this.view.bind("reg", function(){
       window.location.hash = "#register";
     });

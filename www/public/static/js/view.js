@@ -2,6 +2,7 @@
   "use strict";
 
   function View(){
+    var self = this;
     this.$login = qs("#login");
     this.$home = qs(".home");
     this.$register = qs("#register");
@@ -11,8 +12,24 @@
     this.$loginMessage = qs("#login-message");
     this.$logout = qs("#logout");
     this.$defaultBodyHTML = document.getElementsByTagName("body")[0].innerHTML;
-    this.$defaultNavHTML = this.$home.innerHTML;
-    this.$defaultCalWinHTML = this.$calWin.innerHTML;
+    // this.$defaultNavHTML = this.$home.innerHTML;
+    // this.$defaultCalWinHTML = this.$calWin.innerHTML;
+    this.$defaultNavHTML = (function(){
+      var home = self.$home;
+      if (home !== null){
+        return self.$home.innerHTML;
+      }
+      return "";
+    })();
+    
+    this.$defaultCalWinHTML = (function(){
+      var calWin = self.$calWin;
+      if (calWin !== null){
+        return self.$calWin.innerHTML;
+      }
+      return "";
+    })();
+
     //registration
     this.$submitRegistration = qs("reg-submit");
   }

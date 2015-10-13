@@ -23,6 +23,12 @@ suite('Validator', function(){
     test('email = "testemail@test.com"', function(){
       assert.equal(true, validator.email("testemail@test.com"));
     });
+    test('email = "testemail123@test.com"', function(){
+      assert.equal(true, validator.email("testemail123@test.com"));
+    });
+    test('email = "testemail123@test123.com"', function(){
+      assert.equal(true, validator.email("testemail123@test123.com"));
+    });
   });
 
   suite('#isUsername(username)', function(){
@@ -38,6 +44,12 @@ suite('Validator', function(){
     test('username = "testuser"', function(){
       assert.equal(true, validator.username("testuser"));
     });
+    test('username = "testuser123"', function(){
+      assert.equal(true, validator.username("testuser123"));
+    });
+    test('username = "123testuser123"', function(){
+      assert.equal(true, validator.username("123testuser123"));
+    });
   });
 
   suite('#isPassword(password)', function(){
@@ -52,6 +64,12 @@ suite('Validator', function(){
     });
     test('password = "testpassword"', function(){
       assert.equal(true, validator.password("testpassword"));
+    });
+    test('password = "123testpassword"', function(){
+      assert.equal(true, validator.password("123testpassword"));
+    });
+    test('password = "123testpassword123"', function(){
+      assert.equal(true, validator.password("123testpassword123"));
     });
   })
 });
