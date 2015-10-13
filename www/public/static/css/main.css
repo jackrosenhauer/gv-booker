@@ -76,7 +76,7 @@ nav {
 #tv-selection {}
 
 #calendar-window {
-    position: right;
+    /*position: right;*/
     width: 80%;
     height: 100%;
     background-color: whitesmoke;
@@ -126,7 +126,6 @@ nav {
     top: 30%;
     width: 100%;
     font-size: 75%;
-    te
 }
 
 #month-switch-prev {
@@ -207,7 +206,7 @@ input {
 h3 {
     text-align: center;
     vertical-align: middle;
-    background: cream;
+    background: mintcream;
     line-height: 40px;
     height: 5%;
     margin: 0;
@@ -252,7 +251,7 @@ ul {
     height: 100%;
     width: calc(93%/7);
     text-align: center;
-    vertical-align: center;
+    vertical-align: middle;
 }
 
 #week-view-wrapper {

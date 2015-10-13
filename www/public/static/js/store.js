@@ -1,3 +1,7 @@
+/**
+ * This module is currently not used, may use it when connecting to a database
+ */
+
 (function (window){
   'use strict';
   function Store(name, callback){

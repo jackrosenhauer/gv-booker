@@ -1,11 +1,20 @@
 (function(window){
   "use strict";
 
+  /**
+   * Main constructor
+   * @param model - model for the controller (holds our data)
+   * @param view - view for the controller (controls what the user sees)
+   * @constructor - Also binds our views callbacks
+     */
+
   function Controller(model, view){
+    var self = this;
     this.model = model;
     this.view = view;
     this.currentDate = new Date();
-    var self = this;
+
+    this.currentUser;
 
     this.view.bind("login", function(username, password){
       self.userLogin(username, password);
@@ -23,11 +32,16 @@
     this.view.bind("reg-submit", function(username, password, email){
       self.userRegistration(username, password, email);
     });
-
-    this.currentUser;
-
   }
+  
   //User functions
+  /**
+   * Registers a user with a username, pasword and email
+   * @param username - Username of the user being registered
+   * @param password - Password of the user being registered
+   * @param email - Email of the user being registered
+   * @returns {boolean} - Returns true if the user was successfully registered, false otherwise
+     */
   Controller.prototype.userRegistration = function(username, password, email){
     var self = this;
 
@@ -47,8 +61,14 @@
     // console.log('reg failure');
     self.setView("#registration-failed");
     return false;
-  }
+  };
 
+  /**
+   * Logs in a user with a supplied username/password
+   * @param username - Username to login with
+   * @param password - Password for the username
+   * @returns {boolean} - Returns true if successfully logged in, false otherwise
+     */
   Controller.prototype.userLogin = function(username, password){
     console.log("logging in user");
     var self = this;
@@ -70,29 +90,38 @@
     // console.log("login failed");
     self.setView("#login-failed");
     return false;
-  }
+  };
 
+  /**
+   * Logs out the current user and resets the view to default
+   */
   Controller.prototype.userLogout = function(){
     var self = this;
     self.currentUser = undefined;
     self.setView("#default");
     //show default
-  }
+  };
 
   //Reservation functions
   Controller.prototype.userCreateReservation = function(date, user, startTime, endTime){
 
-  }
+  };
 
   Controller.prototype.userVoidReservation = function(date, user, startTime){
 
-  }
+  };
 
   Controller.prototype.userExtendReservation = function(date, user, startTime, newEndTime){
 
-  }
+  };
 
   //Admin functions
+
+  /**
+   * As admin, creates a room
+   * @param roomInfo - Contains the rooms building, room number, seating and optional params such as tv, whiteboard, polycom or webcam
+   * @returns {boolean} - returns true if the room was created, false otherwise
+     */
   Controller.prototype.adminCreateRoom = function(roomInfo){
     var self = this;
     if (typeof roomInfo === "undefined"){
@@ -124,13 +153,18 @@
         return self.model.createRoom(roomInfo["building"], roomInfo["roomNumber"], roomInfo["seating"], roomInfo["whiteboard"], roomInfo["polycom"], roomInfo["tv"], roomInfo["webcam"]);
       }
 
-    }else{
-      //return "You don't have admin privs, sorry";
-      return false;
     }
-    return false;
-  }
 
+    //return "You don't have admin privs, sorry";
+    return false;
+  };
+
+  /**
+   * As admin, changes the room information (will eventually include tv, whiteboard, etc)
+   * @param building - Building that the room is in
+   * @param roomNumber - Room number
+   * @returns {boolean} - Returns true if the room was updated, false otherwise
+     */
   Controller.prototype.adminUpdateRoomInfo = function(building, roomNumber){
     var self = this;
     if (self.isAdmin(self.currentuser)){
@@ -138,17 +172,31 @@
     }
     //user is not admin
     return false;
-  }
+  };
 
-  Controller.prototype.adminCreateReservation = function(username, password, email){
+
+  /**
+   * As admin, creates a reservation
+   * @param username - Username to create the reservation under
+   * @param building - Building that the reservation is fore
+   * @param roomNumber - Room number of the reservation
+   * @param startTime - Start time of the reservation
+   * @param endTime - Ending time of the reservation
+     * @returns {boolean}
+     */
+  Controller.prototype.adminCreateReservation = function(username, building, roomNumber, startTime, endTime){
     var self = this;
     if (self.isAdmin(self.currentuser)){
       //admin stuff
     }
     //user is not admin
     return false;
-  }
+  };
 
+  /**
+   * As admin, void a reservation and free the slot
+   * @returns {boolean} - returns true if the reservation with voided, false otherwise
+     */
   Controller.prototype.adminVoidReservation = function(){
     var self = this;
     if (self.isAdmin(self.currentuser)){
@@ -157,8 +205,15 @@
 
     //user is not admin
     return false;
-  }
+  };
 
+  /**
+   * As admin, creates a user with a specified username, password and email
+   * @param username - New user username
+   * @param password - New user password
+   * @param email - New User email
+   * @returns {boolean} - Returns true if the user was created, false otherwise
+     */
   Controller.prototype.adminCreateUser = function(username, password, email){
     var self = this;
     if (self.isAdmin(self.currentuser)){
@@ -168,8 +223,13 @@
     console.log("not an admin");
     //user is not admin
     return false;
-  }
+  };
 
+  /**
+   * As admin, remove a user
+   * @param username - Username to remove
+   * @returns {boolean} - returns true if use is removed, false is failure occurs
+     */
   Controller.prototype.adminRemoveUser = function(username){
     var self = this;
     if (self.isAdmin(self.currentuser)){
@@ -179,9 +239,14 @@
     }
     //user is not admin
     return false;
-  }
+  };
 
   //View functions
+
+  /**
+   * Tells the view to change views depending what the hash is
+   * @param hash - window.location.hash or hash to switch view to
+     */
   Controller.prototype.setView = function(hash){
     var self = this;
     console.log("hash: " + hash);
@@ -219,18 +284,26 @@
         window.location.hash = "#default";
         self.view.render("default");
     }
-  }
+  };
 
 
   //return true for now until we figure out user permissions
-  Controller.prototype.isAdmin = function(user){
+  /**
+   * Returns true if the current user is an admin
+   * @returns {boolean}
+     */
+  Controller.prototype.isAdmin = function(){
     console.log("I'm an admiN!");
     return true;
   };
 
+  /**
+   * Test function
+   * @returns {string}
+     */
   Controller.prototype.test = function(){
     return "do you see this";
-  }
+  };
 
   window.app = window.app || {};
   window.app.Controller = Controller;
