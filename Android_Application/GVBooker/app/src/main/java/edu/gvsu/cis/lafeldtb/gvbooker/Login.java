@@ -1,5 +1,6 @@
 package edu.gvsu.cis.lafeldtb.gvbooker;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -7,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.HashMap;
 
 
 public class Login extends ActionBarActivity implements View.OnClickListener {
@@ -17,13 +21,42 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     EditText passwordEdit;
     Button loginButton;
 
+    //map of users for testing
+    HashMap<String, User> users = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         usernameEdit = (EditText) findViewById(R.id.username_editor);
-        usernameEdit.setOnClickListener(this);
+        passwordEdit = (EditText) findViewById(R.id.password_editor);
+        loginButton = (Button) findViewById(R.id.login_button);
+        loginButton.setOnClickListener(this);
+
+        //test user for debugging
+        User test = new User("test", "test");
+        users.put(test.getUsername(), test);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v == loginButton)
+        {
+            //TODO: set an on click for the login screen
+            username = usernameEdit.getText().toString();
+            password = passwordEdit.getText().toString();
+            if(users.containsKey(username)) {
+                if (users.get(username).validPassword(username, password)) {
+                    Intent i = new Intent(getApplicationContext(), UserProfile.class);
+                    i.putExtra("username", username);
+                    startActivity(i);
+                }
+            }else {
+                Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
+            }
+        }
 
     }
 
@@ -50,8 +83,5 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     }
 
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }

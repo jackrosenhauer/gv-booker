@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="edu.gvsu.cis.lafeldtb.gvbooker.UserProfile">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="&lt;&lt;username placeholder>>"
+        android:id="@+id/username_label"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="35dp"
+        android:gravity="center_vertical|center_horizontal" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Reservation"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_centerInParent="true" />
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Reserved Rooms"
+        android:id="@+id/button2"
+        android:layout_below="@+id/button"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button" />
+</RelativeLayout>
