@@ -52,6 +52,8 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
                     Intent i = new Intent(getApplicationContext(), UserProfile.class);
                     i.putExtra("username", username);
                     startActivity(i);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
                 }
             }else {
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
