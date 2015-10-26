@@ -1,39 +1,54 @@
+/**
+ * This module is currently not used, may use it when connecting to a database
+ */
+
 (function (window){
   'use strict';
   function Store(name, callback){
+    callback = callback || function(){};
     this.dbName = name;
     if (!localStorage[name]){
       var data = {
         "users": [],
         "rooms": [],
-        "reservations": []
-      }
+        "reservations": [],
+        "permissions": {
+          "user": 0,
+          "admin": 1
+        }
+      };
+
       localStorage[name] = JSON.stringify(data);
     }
 
-    callback.call(this, JSOn.parse(localStorage[name]));
+    callback.call(this, JSON.parse(localStorage[name]));
   }
 
-  Store.prototype.find(){
+  Store.prototype.findUser = function(username){
+    var self = this;
+    return self.localStorage[self.dbName]["users"][username];
+  };
 
-  }
+  Store.prototype.find = function(){
 
-  Store.prototype.findAll(){
+  };
 
-  }
+  Store.prototype.findAll = function(){
 
-  Store.prototype.save(){
+  };
 
-  }
+  Store.prototype.save = function(){
 
-  Store.prototype.remove(){
+  };
 
-  }
+  Store.prototype.remove = function(){
 
-  Store.prototype.drop(){
+  };
 
-  }
+  Store.prototype.drop = function(){
+
+  };
 
   window.app = window.app || {};
   window.app.Store = Store;
-})(window)
+})(window);

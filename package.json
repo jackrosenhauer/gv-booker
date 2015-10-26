@@ -4,7 +4,7 @@
   "description": "<some desc here>",
   "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/jackrosenhauer/gv-booker#readme",
   "devDependencies": {
+    "babel": "^5.8.23",
+    "eslint": "^1.6.0",
+    "jasmine": "^2.3.2",
     "mocha": "^2.3.3"
   }
 }
