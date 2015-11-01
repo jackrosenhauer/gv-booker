@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -22,7 +23,8 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     Button loginButton;
 
     //map of users for testing
-    HashMap<String, User> users = new HashMap<>();
+    HashMap<String, User> dummyUsers = new HashMap<>();
+   // ArrayList<User> dumbUsers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,9 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
 
         //test user for debugging
         User test = new User("test", "test");
-        users.put(test.getUsername(), test);
+
+        //dumbUsers.add(test);
+        dummyUsers.put(test.getUsername(), test);
 
     }
 
@@ -47,10 +51,11 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
             //TODO: set an on click for the login screen
             username = usernameEdit.getText().toString();
             password = passwordEdit.getText().toString();
-            if(users.containsKey(username)) {
-                if (users.get(username).validPassword(username, password)) {
+            if(dummyUsers.containsKey(username)) {
+                if (dummyUsers.get(username).validPassword(username, password)) {
                     Intent i = new Intent(getApplicationContext(), UserProfile.class);
-                    i.putExtra("username", username);
+                    //i.putExtra("username", username);
+                    i.putExtra("user", dummyUsers.get(username));
                     startActivity(i);
                 } else {
                     Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();

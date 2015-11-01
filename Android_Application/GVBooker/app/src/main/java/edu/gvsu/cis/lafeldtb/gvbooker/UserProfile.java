@@ -5,24 +5,31 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 
-public class UserProfile extends ActionBarActivity {
+public class UserProfile extends ActionBarActivity implements View.OnClickListener {
 
-    public String username;
-    public TextView usernameLabel;
+    public User person;
+    private TextView usernameLabel;
+    private Button createReservationButton;
+    private Button reservedRoomsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         usernameLabel = (TextView) findViewById(R.id.username_label);
-
+        createReservationButton = (Button) findViewById(R.id.create_reservation_button);
+        createReservationButton.setOnClickListener(this);
+        reservedRoomsButton = (Button) findViewById(R.id.reserved_rooms_button);
+        reservedRoomsButton.setOnClickListener(this);
 
         Intent j = getIntent();
-        username = j.getStringExtra("username");
-        usernameLabel.setText(username);
+        person = j.getParcelableExtra("user");
+        usernameLabel.setText(person.getUsername());
 
     }
 
@@ -46,5 +53,10 @@ public class UserProfile extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

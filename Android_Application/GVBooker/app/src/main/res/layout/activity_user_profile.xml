@@ -20,7 +20,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Create Reservation"
-        android:id="@+id/button"
+        android:id="@+id/create_reservation_button"
         android:layout_alignParentBottom="false"
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
@@ -31,8 +31,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Reserved Rooms"
-        android:id="@+id/button2"
-        android:layout_below="@+id/button"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button" />
+        android:id="@+id/reserved_rooms_button"
+        android:layout_below="@+id/create_reservation_button"
+        android:layout_alignRight="@+id/create_reservation_button"
+        android:layout_alignEnd="@+id/create_reservation_button" />
 </RelativeLayout>
