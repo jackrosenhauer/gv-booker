@@ -20,6 +20,8 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     EditText usernameEdit;
     EditText passwordEdit;
     Button loginButton;
+    Button createAccountButton;
+
 
     //map of users for testing
     HashMap<String, User> users = new HashMap<>();
@@ -32,8 +34,9 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         usernameEdit = (EditText) findViewById(R.id.username_editor);
         passwordEdit = (EditText) findViewById(R.id.password_editor);
         loginButton = (Button) findViewById(R.id.login_button);
+        createAccountButton = (Button) findViewById(R.id.createAccountButton);
         loginButton.setOnClickListener(this);
-
+        createAccountButton.setOnClickListener(this);
         //test user for debugging
         User test = new User("test", "test");
         users.put(test.getUsername(), test);
@@ -58,6 +61,12 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
             }else {
                 Toast.makeText(getApplicationContext(), "Invalid username or password", Toast.LENGTH_SHORT).show();
             }
+        }
+        if(v == createAccountButton)
+        {
+            Intent i = new Intent(getApplicationContext(), CreateAccount.class);
+            startActivity(i);
+
         }
 
     }
