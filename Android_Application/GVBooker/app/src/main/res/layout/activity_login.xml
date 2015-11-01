@@ -1,7 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="edu.gvsu.cis.lafeldtb.gvbooker.Login">
+    tools:context="edu.gvsu.cis.lafeldtb.gvbooker.Login"
+    android:background="#88b3da">
 
     <EditText
         android:layout_width="fill_parent"
@@ -12,7 +13,9 @@
         android:layout_alignParentBottom="false"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/username_label" />
+        android:layout_below="@+id/username_label"
+        android:hint="username or email"
+        android:gravity="center_horizontal" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -21,18 +24,24 @@
         android:id="@+id/username_label"
         android:gravity="center_vertical|center_horizontal"
         android:textSize="24dp"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentStart="true" />
+        android:layout_marginTop="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Password"
         android:id="@+id/password_label"
-        android:layout_below="@+id/username_editor"
-        android:layout_centerHorizontal="true"
         android:textSize="24dp"
-        android:gravity="center_horizontal" />
+        android:gravity="center_horizontal"
+        android:layout_below="@+id/username_editor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="27dp"
+        android:visibility="invisible" />
 
     <EditText
         android:layout_width="fill_parent"
@@ -41,7 +50,9 @@
         android:ems="10"
         android:id="@+id/password_editor"
         android:layout_below="@+id/password_label"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:hint="password"
+        android:gravity="center_horizontal" />
 
     <Button
         android:layout_width="wrap_content"
@@ -49,5 +60,25 @@
         android:text="Login"
         android:id="@+id/login_button"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create an Account"
+        android:id="@+id/createAccountButton"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="or"
+        android:id="@+id/textView"
+        android:layout_below="@+id/login_button"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
