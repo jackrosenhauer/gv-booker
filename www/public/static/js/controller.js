@@ -15,23 +15,102 @@
 
     this.currentUser;
 
-    this.view.bind("login", function(username, password){
-      self.userLogin(username, password);
-    });
+    this.view.bind("nav", this.navHandler);
 
-    this.view.bind("logout", function(){
-      self.userLogout();
-      self.setView("#default");
-    });
+    this.view.bind("filter", this.filterHandler);
 
-    this.view.bind("reg", function(){
-      window.location.hash = "#register";
-    });
+    this.view.bind("body", this.bodyHandler);
 
-    this.view.bind("reg-submit", function(username, password, email){
-      self.userRegistration(username, password, email);
-    });
+
+
+
+
+    // this.view.bind("login", function(username, password){
+    //   self.userLogin(username, password);
+    // });
+    //
+    // this.view.bind("logout", function(){
+    //   self.userLogout();
+    //   self.setView("#default");
+    // });
+    //
+    // this.view.bind("reg", function(){
+    //   window.location.hash = "#register";
+    // });
+    //
+    // this.view.bind("reg-submit", function(username, password, email){
+    //   self.userRegistration(username, password, email);
+    // });
+
+    this.defaultStartTime = {
+      "hours": 8,
+      "minutes": 0
+    };
+    this.defaultEndTime = {
+      "hours": 23,
+      "minutes": 0
+    };
   }
+
+  Controller.prototype.navHandler = function(event){
+    var target = event.target;
+    var id = target.id;
+    var classes = target.className;
+    switch (id){
+      case "login":
+
+        console.log(id);
+        break;
+      case "register":
+        console.log(id);
+        break;
+      case "nav":
+        console.log(id);
+        break;
+      default:
+        //do nothing
+        break;
+    }
+  };
+
+  Controller.prototype.filterHandler = function(event){
+    var type = event.type, target = event.target, id = target.id, classes = target.className;
+    console.log(target);
+    console.log(event.target + ", " + type + ", id: " + id);
+    if (type === "keyup"){
+      switch (id){
+        case "seating-number-selection":
+          break;
+        default:
+          //console.log("uncaught filter handler.. type:" + type + ", id: " + id);
+      }
+    }else if (type === "click"){
+      switch (id){
+        case "whiteboard-selection":
+          break;
+        case "phone-selection":
+          break;
+        case "tv-selection":
+          break;
+        case "webcam-selection":
+          break;
+        default:
+          //console.log("uncaught filter handler.. type:" + type + ", id: " + id);
+      }
+    }else{
+      //do nothing
+
+      console.log("uncaught filter handler.. type:" + type + ", id: " + id);
+    }
+  };
+
+  Controller.prototype.bodyHandler = function(event){
+
+  };
+
+  Controller.prototype.useTemplate = function(){
+
+  };
 
   //User functions
   /**

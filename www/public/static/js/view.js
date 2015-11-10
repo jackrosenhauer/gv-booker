@@ -19,6 +19,14 @@
     this.$logout = qs("#logout");
     this.$defaultBodyHTML = document.getElementsByTagName("body")[0].innerHTML;
 
+    this.$nav = qs("#nav");
+    this.$filter = qs("#filter");
+    this.$body = qs("#calendar-window");
+
+    console.log(this.$nav);
+    console.log(this.$filter);
+    console.log(this.$body);
+
     //registration
     this.$submitRegistration = qs("reg-submit");
 
@@ -117,6 +125,20 @@
    * @param event - The event that the controller is binding
    * @param handler - The callback function from the controller
      */
+  View.prototype.setHTML = function(element, html){
+    var self = this;
+    switch (element){
+      case "nav":
+        this.$nav.innerHTML = html;
+      break;
+      case "filter":
+        this.$filter.innerHTML = html;
+      break;
+      case "body":
+        this.$body.innerHTML = html;
+      break;
+    }
+  }
   View.prototype.bind = function(event, handler){
     var self = this;
     if (this.$login){
@@ -170,6 +192,16 @@
             $delegate(self.$calWin, "#reg-cancel", "click", function(){
               self.$calWin.innerHTML = self.$defaultCalWinHTML;
             });
+            break;
+          case "nav":
+            this.$nav.addEventListener("click", handler);
+            break;
+          case "filter":
+            this.$filter.addEventListener("click", handler);
+            this.$filter.addEventListener("keyup", handler);
+            break;
+          case "body":
+            this.$body.addEventListener("click", handler);
             break;
           default:
             console.log("(view) bind => '" + event + "'");

@@ -17,8 +17,27 @@
         <input id="register" type="button" value="Register">
     </nav>
 
-    <aside id="filterlist">
-        <h3>Room Options</h3>
+    <aside id="filter" style="padding: 10px;">
+      <h3>Room Option Filter</h3>
+      Please check boxes according to room needs. Calendar will show openings.
+      <div id="roomoptions" style"display: block;">
+        <input type="number" id="seating-selection" min="1" max="10">
+        <label for="seating-selection"># of seats</label><br>
+
+        <input type="checkbox" id="whiteboard-selection">
+        <label for="whiteboard-selection">Whiteboard?</label><br>
+
+        <input type="checkbox" id="phone-selection">
+        <label for="phone-selection">Phone?</label><br>
+
+        <input type="checkbox" id="tv-selection">
+        <label for="tv-selection">TV?</label><br>
+
+        <input type="checkbox" id="webcam-selection">
+        <label for="webcam-selectin">Webcam?</label><br>
+
+      </div>
+        <!-- <h3>Room Options</h3>
         <div id="roomoptions">
             <div id="options-text">
                 Please check boxes according to room needs. Calendar will show open days:
@@ -42,11 +61,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+
+        </div> -->
     </aside>
 
     <article id="calendar-window" class="floatleft">
-      <div id="calendar-bar">
+      <div id="calendar-bar" style="height: 40px;">
           <div id="bar-title">
               Some stuff goes here
           </div>
@@ -55,7 +75,7 @@
               <input id="next-button" type="button" value=">">
               <input id="view-button" type="button" value="week view">
           </div>
-        </div>
+      </div><br>
         <div id="calendar-body">
           <div class="weekdays-header-wrapper">
               <!-- <section class="timezone-picker"></section> -->
@@ -339,78 +359,17 @@
 </script>
 
 <script id="bar-template" type="text/x-handlebars-template">
-    <div class="bar-title" style="float: left;">{{month}}, {{day}} {{year}}</div>
+    <!-- <div class="bar-title" style="float: left; font-size: 32px; font-color: blue; padding: 10px;">{{month}}, {{day}} {{year}}</div> -->
+    <div style='text-align: center; float:left;'>{{month}}, {{day}} {{year}}</div>
     <input id="prev-button" style="float: right;" type="button" value="<">
     <input id="next-button" style="float: right;" type="button" value=">">
-    <input id="view-button" style="float: right;" type="button" value="week view">
+    <input id="viewMonth-button" style="float: right;" type="button" value="month view">
+    <input id="viewWeek-button" style="float: right;" type="button" value="week view">
+    <input id="viewDay-button" style="float: right;" type="button" value="day view">
 </script>
 
 <script>
-  //var months = ["January", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var calBar = document.getElementById("calendar-bar");
-  var months = {
-    0: {
-      "name": "January",
-      "abbrev": "Jan",
-      "numbrer": 1
-    },
-    1:{
-      "name": "February",
-      "abbrev": "Feb",
-      "number": 2
-    },
-    2:{
-      "name": "March",
-      "abbrev": "Mar",
-      "number": 3
-    },
-    3:{
-      "name": "April",
-      "abbrev": "Apr",
-      "number": 4
-    },
-    4:
-    {  "name": "May",
-      "abbrev": "May",
-      "number": 5
-    },
-    5:{
-      "name": "June",
-      "abbrev": "Jun",
-      "number": 6
-    },
-    6:{
-      "name": "July",
-      "abbrev": "Jul",
-      "number": 7
-    },
-    7:{
-      "name": "August",
-      "abbrev": "Aug",
-      "number": 8
-    },
-    8:{
-      "name": "September",
-      "abbrev": "Sep",
-      "number": 9
-    },
-    9:{
-      "name": "October",
-      "abbrev": "Oct",
-      "number": 10
-    },
-    10:{
-      "name": "November",
-      "abbrev": "Nov",
-      "number": 11
-    },
-    11:{
-      "name": "December",
-      "abbrev": "Dec",
-      "number": 12
-    }
-  };
-
   var calBarTitle = document.getElementById("bar-title");
   var calBody = document.getElementById("calendar-body");
 
@@ -466,17 +425,28 @@
     };
 
 
-    var html = '<table class="day-table">';
-    var times = getArrayOfTimes(startDate, endDate);
-    for (var i = 0, len = times.length; i < len; i++){
-      console.log(times[i]);
-      //i % 5 is where the # of openings should go
-      html += '<tr><td>' + times[i] + '</td><td>' + i % 5 + '</td></tr>';
-    }
-
-    html += '</table>';
+    // var html = '<table class="day-table">';
+    // var times = getArrayOfTimes(startDate, endDate);
+    // for (var i = 0, len = times.length; i < len; i++){
+    //   console.log(times[i]);
+    //   //i % 5 is where the # of openings should go
+    //   html += '<tr><td>' + times[i] + '</td><td>' + i % 5 + '</td></tr>';
+    // }
+    //
+    // html += '</table>';
     console.log(html);
 
+    var html = "<table style='height: 100%; width: 100%; background-color: red;'>";
+
+    var times = getArrayOfTimes(startDate, endDate);
+    for (var i = 0, len = times.length; i < len; i++){
+      html += "<tr style='width: auto; height: auto;'>";
+      html += "<td style='float: left; width: 20%; text-align: center; background-color: lime;'>" + times[i] + "</td>";
+      html += "<td style='float: left;'>" + times[i] + "</td>";
+      html += "</tr>";
+    }
+
+    html += "</table>";
 
     calBody.innerHTML = html;
   };
