@@ -320,7 +320,14 @@
 </script>
 
 <script id="month-template" type="text/x-handlebars-template">
-    <div>insert a month template here</div>
+    <div class = "week_row">
+        <div class="calendar-day-container">
+            <div class="calendar-day-wrapper">
+                <div class="calendar-day-number">{{day}}</div>
+                <div class="calendar-day-data">{{data}}</div>
+            </div>
+        </div>
+    </div>
 </script>
 
 <script id="week-template" type="text/x-handlebars-template">
@@ -342,7 +349,74 @@
 
 <script>
   //var months = ["January", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+<<<<<<< HEAD
   var calBar = document.getElementById("calendar-bar");
+=======
+  var months = {
+    0: {
+      "name": "January",
+      "abbrev": "Jan",
+      "numbrer": 1
+    },
+    1:{
+      "name": "February",
+      "abbrev": "Feb",
+      "number": 2
+    },
+    2:{
+      "name": "March",
+      "abbrev": "Mar",
+      "number": 3
+    },
+    3:{
+      "name": "April",
+      "abbrev": "Apr",
+      "number": 4
+    },
+    4:
+    {  "name": "May",
+      "abbrev": "May",
+      "number": 5
+    },
+    5:{
+      "name": "June",
+      "abbrev": "Jun",
+      "number": 6
+    },
+    6:{
+      "name": "July",
+      "abbrev": "Jul",
+      "number": 7
+    },
+    7:{
+      "name": "August",
+      "abbrev": "Aug",
+      "number": 8
+    },
+    8:{
+      "name": "September",
+      "abbrev": "Sep",
+      "number": 9
+    },
+    9:{
+      "name": "October",
+      "abbrev": "Oct",
+      "number": 10
+    },
+    10:{
+      "name": "November",
+      "abbrev": "Nov",
+      "number": 11
+    },
+    11:{
+      "name": "December",
+      "abbrev": "Dec",
+      "number": 12
+    }
+  };
+
+  var calBarTitle = document.getElementById("bar-title");
+>>>>>>> f9f76378e76b9c368faa1a4dc2f4ce7b081e9119
   var calBody = document.getElementById("calendar-body");
 
   var defaultStartTime = {
