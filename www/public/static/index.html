@@ -309,15 +309,6 @@
 <script src="js/store.js"></script>
 <script src="js/app.js"></script>
 
-<script id="entry-template" type="text/x-handlebars-template">
-    <div class="entry">
-        <h1>{{title}}</h1>
-        <div class="body">
-            {{body}}
-        </div>
-    </div>
-</script>
-
 <script id="login-template" type="text/x-handlebars-template">
     <div class="centered">
         Username:
@@ -329,99 +320,29 @@
 </script>
 
 <script id="month-template" type="text/x-handlebars-template">
-    <div>
-        insert a month template here
-    </div>
-
+    <div>insert a month template here</div>
 </script>
 
 <script id="week-template" type="text/x-handlebars-template">
-    <div>
-        insert a week template here
-    </div>
-
-</script>
-
-<script id="bar-template" type="text/x-handlebars-template">
-    {{month}}, {{day}} {{year}}
+    <div>insert a week template here</div>
 </script>
 
 <script id="day-template" type="text/x-handlebars-template">
-    <div>
-        Day Template
-    </div>
-    <div style="overflow-y: scroll; height:100%;">
-      {{start}}
-      {{end }}
+    <div>insert a day template</div>
+</script>
+
+<script id="bar-template" type="text/x-handlebars-template">
+    <div class="bar-title">{{month}}, {{day}} {{year}}<div>
+    <div style="width: auto; float: right;">
+      <input id="prev-button" type="button" value="<">
+      <input id="next-button" type="button" value=">">
+      <input id="view-button" type="button" value="week view">
     </div>
 </script>
 
 <script>
   //var months = ["January", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  var months = {
-    0: {
-      "name": "January",
-      "abbrev": "Jan",
-      "numbrer": 1
-    },
-    1:{
-      "name": "Feb",
-      "abbrev": "Feb",
-      "number": 2
-    },
-    2:{
-      "name": "March",
-      "abbrev": "Mar",
-      "number": 3
-    },
-    3:{
-      "name": "April",
-      "abbrev": "Apr",
-      "number": 4
-    },
-    4:
-    {  "name": "May",
-      "abbrev": "May",
-      "number": 5
-    },
-    5:{
-      "name": "June",
-      "abbrev": "Jun",
-      "number": 6
-    },
-    6:{
-      "name": "July",
-      "abbrev": "Jul",
-      "number": 7
-    },
-    7:{
-      "name": "August",
-      "abbrev": "Aug",
-      "number": 8
-    },
-    8:{
-      "name": "September",
-      "abbrev": "Sep",
-      "number": 9
-    },
-    9:{
-      "name": "October",
-      "abbrev": "Oct",
-      "number": 10
-    },
-    10:{
-      "name": "November",
-      "abbrev": "Nov",
-      "number": 11
-    },
-    11:{
-      "name": "December",
-      "abbrev": "Dec",
-      "number": 12
-    }
-  };
-
-  var calBarTitle = document.getElementById("bar-title");
+  var calBar = document.getElementById("calendar-bar");
   var calBody = document.getElementById("calendar-body");
 
   var defaultStartTime = {
@@ -450,6 +371,7 @@
 
   function dayView(month, day, year){
     //nav
+    var self = this;
     var startDate = new Date(year, month, day, defaultStartTime.hours, defaultStartTime.minutes);
     var endDate = new Date(year, month, day, defaultEndTime.hours, defaultEndTime.minutes);
     var source = document.getElementById("bar-template").text;
@@ -459,7 +381,9 @@
         "day": day,
         "year": year
     };
-    calBarTitle.innerHTML = template(context);
+
+    console.log(template(context));
+    calBar.innerHTML = template(context);
 
     //cal body
     source = document.getElementById("day-template").text;
@@ -471,7 +395,7 @@
     };
 
 
-    var html = '<table>';
+    var html = '<table class="day-table">';
     var times = getArrayOfTimes(startDate, endDate);
     for (var i = 0, len = times.length; i < len; i++){
       console.log(times[i]);

@@ -262,6 +262,7 @@
         console.log("setView #login-success");
         window.location.hash = "#login-success";
         self.view.render("login-success", {"currentUser" : self.currentUser});
+        self.view.render("day");
         break;
       case "#registration-failed":
         self.view.render("registration-failed");

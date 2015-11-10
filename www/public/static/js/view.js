@@ -37,6 +37,78 @@
       }
       return "";
     })();
+
+    var defaultStartTime = {
+      "hours": 8,
+      "minutes": 0
+    };
+    var defaultEndTime = {
+      "hours": 23,
+      "minutes": 0
+    };
+
+    var months = {
+      0: {
+        "name": "January",
+        "abbrev": "Jan",
+        "numbrer": 1
+      },
+      1:{
+        "name": "Feb",
+        "abbrev": "Feb",
+        "number": 2
+      },
+      2:{
+        "name": "March",
+        "abbrev": "Mar",
+        "number": 3
+      },
+      3:{
+        "name": "April",
+        "abbrev": "Apr",
+        "number": 4
+      },
+      4:
+      {  "name": "May",
+        "abbrev": "May",
+        "number": 5
+      },
+      5:{
+        "name": "June",
+        "abbrev": "Jun",
+        "number": 6
+      },
+      6:{
+        "name": "July",
+        "abbrev": "Jul",
+        "number": 7
+      },
+      7:{
+        "name": "August",
+        "abbrev": "Aug",
+        "number": 8
+      },
+      8:{
+        "name": "September",
+        "abbrev": "Sep",
+        "number": 9
+      },
+      9:{
+        "name": "October",
+        "abbrev": "Oct",
+        "number": 10
+      },
+      10:{
+        "name": "November",
+        "abbrev": "Nov",
+        "number": 11
+      },
+      11:{
+        "name": "December",
+        "abbrev": "Dec",
+        "number": 12
+      }
+    };
   }
 
   /**
@@ -52,8 +124,8 @@
           case "login":
             $delegate(self.$home, "#login", "click", function(){
               console.log("(view) bind => 'login')");
-              var username = self.$loginusername.value + "";
-              var password = self.$loginpassword.value + "";
+              var username = self.$loginusername.value;
+              var password = self.$loginpassword.value;
 
               console.log("username: " + username + ", password: " + password);
               if (!validator.username(username)){
@@ -150,7 +222,8 @@
         break;
 
       case "day":
-        console.log("(view) render => day");
+        console.log("(view) render => days");
+        self.dayView();
         break;
       case "register":
         self.showRegistration(body);
@@ -170,9 +243,9 @@
         html += "<div>Logged in as " + currentUser.username + "</div>";
         html += "<input id='logout' type='button' value='logout'></input>";
         self.$home.innerHTML = html;
+        //check back to the default view (month, week or day)
         break;
       default:
-
         //document.getElementsByTagName("body")[0].innerHTML = self.$defaultBodyHTML;
         self.$home.innerHTML = self.$defaultNavHTML;
     }
@@ -187,6 +260,10 @@
     element.innerHTML = "Failed to register, try a different username";
   };
 
+  View.prototype.dayView = function(){
+    var self = this;
+    self.$calWin.innerHTML = "NOPE";
+  }
   /**
    * Shows the registration form to the user
    * @param element - Element to change the innerHTML of

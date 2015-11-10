@@ -78,7 +78,6 @@ nav {
 #calendar-window {
     /*position: right;*/
     width: 80%;
-    height: 100%;
     background-color: whitesmoke;
 }
 
@@ -290,4 +289,21 @@ ul {
     height: calc(150%/24);
     width: 100%;
     border: 1px solid #d9d9d9;
+}
+
+.day-table{
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.day-table tr{
+  width: 100%;
+  height: 40px;
+  /*background-color: blue;*/
+  border: solid black 1px;
+}
+
+.day-table td{
+  width: calc(100/10);
 }
