@@ -10,8 +10,6 @@
  *
  */
 
-
-
 var app = (function(window){
   'use strict';
 

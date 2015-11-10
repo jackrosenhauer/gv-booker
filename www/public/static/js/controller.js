@@ -7,7 +7,6 @@
    * @param view - view for the controller (controls what the user sees)
    * @constructor - Also binds our views callbacks
      */
-
   function Controller(model, view){
     var self = this;
     this.model = model;
@@ -33,7 +32,7 @@
       self.userRegistration(username, password, email);
     });
   }
-  
+
   //User functions
   /**
    * Registers a user with a username, pasword and email
@@ -285,7 +284,6 @@
         self.view.render("default");
     }
   };
-
 
   //return true for now until we figure out user permissions
   /**

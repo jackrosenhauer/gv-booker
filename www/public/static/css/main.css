@@ -35,7 +35,7 @@ nav {
     width: 20%;
     height: 100%;
     background-color: whitesmoke;
-    
+
 }
 
 #roomoptions {
@@ -108,7 +108,7 @@ nav {
     width: 5%;
 }
 
-#next-button {
+/*#next-button {
     position: relative;
     top: 30%;
     width: 75%;
@@ -126,7 +126,7 @@ nav {
     top: 30%;
     width: 100%;
     font-size: 75%;
-}
+}*/
 
 #month-switch-prev {
     float: left;

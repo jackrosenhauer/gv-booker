@@ -1,5 +1,5 @@
 (function(window){
-  'use strict';
+  "use strict";
 
   /**
    *
@@ -7,7 +7,8 @@
    * @constructor - creates our storage data object (this.storage), builds its structure and then saves to localStorage
      */
   function Model(name){
-    this.name = name;
+    var self = this;
+    self.name = name;
     if (!localStorage[name]){
       var storage = {
         "users": [],
@@ -21,13 +22,13 @@
         "sessionSeed": 0
       };
 
-      localStorage[this.name] = JSON.stringify(storage);
-      this.storage = storage;
+      localStorage[self.name] = JSON.stringify(storage);
+      self.storage = storage;
     }else{
       //we already have local storage
-      this.storage = JSON.parse(localStorage[name]);
+      self.storage = JSON.parse(localStorage[name]);
     }
-    window.storage = this.storage;
+    window.storage = self.storage;
   }
 
   /**
@@ -39,7 +40,7 @@
     var self = this;
     if (self.getUser(username)){
       delete self.storage["users"][username];
-      //console.log("deleteing user");
+      console.log("deleteing user");
       return true;
     }else{
       return false;
@@ -53,11 +54,9 @@
      */
   Model.prototype.getUser = function(username){
     var self = this;
-
     if (typeof self.storage["users"][username] !== "undefined"){
       return self.storage["users"][username];
     }
-
     return false;
   };
 
@@ -68,13 +67,22 @@
    * @param email - Email of the new user
    * @returns {*} - Returns the user with the user created, false otherwise
      */
-  Model.prototype.createUser = function(username, password, email){
+  Model.prototype.createUser = function(username, password, email, permissions){
     var self = this;
-    var user = {"username": username, "password": password, "email": email};
-    this.storage["users"][username] = user;
-    // this.storage["users"].push(user);
-    this.saveState();
-    return this.storage["users"][username];
+    //checks if user exists
+
+    if (self.getUser(username)) return "username already exists";
+
+    var user = {
+      "username": username,
+      "password": password,
+       "email": email,
+       "permissions": permissions
+    };
+
+    self.storage["users"][username] = user;
+    self.saveState();
+    return self.storage["users"][username];
   };
 
 
@@ -96,6 +104,12 @@
     var self = this;
     var key = building + roomNumber;
 
+    //default to false
+    whiteboard = whiteboard || false;
+    polycom = polycom || false;
+    tv = tv || false;
+    webcam = webcam || false;
+
     //create a room object for storage and checking
     var room = {
       "building": building,
@@ -109,7 +123,7 @@
 
     if (self.storage["rooms"][key]){
       //room already exists
-      return false;
+      return "room already exists";
     }else{
       //store it
       self.storage["rooms"][key] = room;
@@ -122,53 +136,87 @@
     // return room;
   };
 
+  Model.prototype.getReservation = function(roomkey, startTime){
+    var self  = this;
+    return self.storage["reservations"][startTime.getFullYear()][startTime.getMonth()][startTime.getDay()][roomkey][d.getHours() + "" + d.getMinutes()];
+  }
+
   //creates a reservation into our storage and save it
-  Model.prototype.createReservation = function(){
+  Model.prototype.createReservation = function(roomkey, user, startTime, endTime){
+    var self = this;
 
-  };
+    //if the room exists, return an error
+    if (self.getReservation(roomkey, startTime)) return;
 
-  Model.prototype.read = function(){
+    var reservation = {
+      "roomkey": roomkey,
+      "startTime": startTime,
+      "endTime": endTime,
+      "user": user
+    };
 
-  };
-
-  Model.prototype.update = function(){
-
-  };
-
-  /*
-  Will Eventually remove a single object
-   */
-  Model.prototype.remove = function(){
-
+    self.storage["reservations"][startTime.getFullYear()][startTime.getMonth()][startTime.getDay()][roomkey][d.getHours() + "" + d.getMinutes()] = reservation;
+    self.saveState();
+    return reservation;
   };
 
   /**
    * Will eventually remove all of a type ("user", "rooms") or something
    */
-  Model.prototype.removeAll = function(){
-
+  Model.prototype.removeAll = function(key){
+    var self = this;
+    if (key !== "permissions"){
+      if (Array.isArray(self.storage[key])){
+        self.storage[key] = [];
+      }else{
+        self.storage[key] = {};
+      }
+    }
   };
 
   /**
    * Will get a session from the db
    */
-  Model.prototype.getSession = function(){
-
+  Model.prototype.getSession = function(sessionID){
+    var self = this;
+    return self.storage["sessions"][sessionID];
   };
 
   /**
    * Will eventually create a backend(in python) that uses sessionids
    */
-  Model.prototype.createSession = function(){
+  Model.prototype.createSession = function(userID){
+    var self = this;
+    var d = new Date();
+    var sessionID = self.storage["sessionSeed"];
 
+    var session = {
+      "sessionID": sessionID,
+      "userID": userID,
+      "createdTime": d
+    };
+
+    self.storage["sessionSeed"] = self.storage["sessionSeed"]++;
+    self.storage["sessions"][userID] = session;
+    self.saveState();
+    return sessionID;
   };
+
+  Model.prototype.getPermissions = function(){
+    var self = this;
+    return self.storage["permissions"];
+  }
+
+  Model.prototype.addPermission = function(id, bitmask){
+    var self = this;
+  }
 
   /**
    * Saves our storage object to localStorage
    */
   Model.prototype.saveState = function(){
     var self = this;
-    localStorage[this.name] = JSON.stringify(this.storage);
+    localStorage[self.name] = JSON.stringify(self.storage);
   };
 
   window.app = window.app || {};

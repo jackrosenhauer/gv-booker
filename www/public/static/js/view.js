@@ -29,7 +29,7 @@
       }
       return "";
     })();
-    
+
     this.$defaultCalWinHTML = (function(){
       var calWin = self.$calWin;
       if (calWin !== null){
@@ -37,8 +37,6 @@
       }
       return "";
     })();
-
-
   }
 
   /**
