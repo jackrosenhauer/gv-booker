@@ -339,19 +339,15 @@
 </script>
 
 <script id="bar-template" type="text/x-handlebars-template">
-    <div class="bar-title">{{month}}, {{day}} {{year}}<div>
-    <div style="width: auto; float: right;">
-      <input id="prev-button" type="button" value="<">
-      <input id="next-button" type="button" value=">">
-      <input id="view-button" type="button" value="week view">
-    </div>
+    <div class="bar-title" style="float: left;">{{month}}, {{day}} {{year}}</div>
+    <input id="prev-button" style="float: right;" type="button" value="<">
+    <input id="next-button" style="float: right;" type="button" value=">">
+    <input id="view-button" style="float: right;" type="button" value="week view">
 </script>
 
 <script>
   //var months = ["January", "Feb", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-<<<<<<< HEAD
   var calBar = document.getElementById("calendar-bar");
-=======
   var months = {
     0: {
       "name": "January",
@@ -416,7 +412,6 @@
   };
 
   var calBarTitle = document.getElementById("bar-title");
->>>>>>> f9f76378e76b9c368faa1a4dc2f4ce7b081e9119
   var calBody = document.getElementById("calendar-body");
 
   var defaultStartTime = {
@@ -443,11 +438,13 @@
       html += '</table>';
   }
 
+
   function dayView(month, day, year){
     //nav
     var self = this;
     var startDate = new Date(year, month, day, defaultStartTime.hours, defaultStartTime.minutes);
     var endDate = new Date(year, month, day, defaultEndTime.hours, defaultEndTime.minutes);
+
     var source = document.getElementById("bar-template").text;
     var template = Handlebars.compile(source);
     var context = {
