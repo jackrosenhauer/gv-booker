@@ -1,24 +1,13 @@
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 body {
-    /*margin-top: 2%;
-    margin-left: 2%;
-    margin-right: 2%;*/
-    height: 100%;
     width: 100%;
-    font-family: "MetaNormal";
     background-color: #de7329;
 }
 
 .floatleft {
-    display: flex 0px;
     float: left;
 }
 
-nav {
+#nav {
     background-color: #ffe6b4;
     display: flex;
     justify-content: flex-end;
@@ -30,257 +19,22 @@ nav {
     height: auto;
     background-color: #ffe6b4;
 }
-
-#roomoptions input{
-    width: 20px;
-    margin-left: 10px;
-    /*text-align: left;*/
-}
-
-#options-text {
-    width: 100%;
-    height: 5%;
-}
-
-#selections-container {
-    width: 100%;
-    height: 95%;
-}
-
-#selections-wrapper {
-    padding: 10%;
-}
-
-.option {
-    padding: 5%;
-}
-
-#seating-number-selection {
-    width: 100%;
-    height: calc(100%/8);
-}
-
-#number-box {
-    width: 15%;
-}
-
-#phone-selection {}
-
-#tv-selection {}
-
 #calendar-window {
     width: 80%;
-    height: 400px;
-    background-color: green;
+    /*height: 400px;*/
+    background-color: white;
 }
 
 #calendar-body{
-  height: 100vh;
   background-color: pink;
 }
+
 #calendar-bar {
-    width: 100%;
-    height: 40px;
-}
-
-#month-bar-name {
-    position: relative;
-    float: left;
-    font-size: 30px;
-    height: 100%;
-    width: 15%;
-    top: 15%;
-}
-
-#month-switch-next {
-    text-align: center;
-    float: left;
-    height: 100%;
-    width: 5%;
-}
-
-#next-button #prev-button #viewMonth-button #viewWeek-button #viewDay-button{
-      float: right;
-      width: auto;
-      height: auto;
-}
-/*
-#month-switch-prev {
-    float: left;
-    text-align: center;
-    height: 100%;
-    width: 5%;
-}
-
-#view-switch {
-    float: left;
-    height: 100%;
-    width: 5%;
-}
-
-.weekdays-header-wrapper {
-    height: 3%;
-    width: 100%;
-    text-align: center;
-}
-
-.dayname {
-    height: 3%;
-    width: calc(100% / 7);
-    float: left;
-}
-
-.daynames_item {
-    height: 5%;
-    float: left;
-    margin-right: 5%;
-    margin-left: 5%;
-}
-
-.calendar-day-container {
-    height: 100%;
-    width: calc(100% / 7);
-    float: left;
-    /* border: 1px solid #d9d9d9;
-        border-top: 0px;
-        border-bottom: 0px;
-}
-*/
-
-.calendar-day-wrapper {
-    height: 100%;
-    width: 99%;
-    border: 1px solid #d9d9d9;
-}
-
-.calendar-day-number {
-    height: 15%;
-    width: 100%;
-}
-
-.calendar-day-data {
-    width: 100%;
-    height: 85%;
-}
-
-#current-month {
-    font-color: black;
-}
-
-.week_row {
-    height: 18%;
-    width: 100%;
-    /* border: 1px solid #d9d9d9;
-        border-left: 0px;
-        border-right: 0px; */
-}
-
-input{
-
+    height: 50px;
+    background-color: mediumpurple;
 }
 
 h3 {
     text-align: center;
     vertical-align: middle;
-    /*background: mintcream;*/
-    line-height: 40px;
-    height: 5%;
-    margin: 0;
-}
-
-
-/* Styles for week view */
-
-#week-view-container {
-    height: 93%;
-    width: 100%;
-}
-
-ol,
-li,
-ul {
-    list-style: none;
-}
-
-#week-header {
-    height: 5%;
-    width: 100%;
-    float: left;
-    text-align: center;
-    vertical-align: middle;
-}
-
-#week-spacer {
-    float: left;
-    width: 5%;
-    height: 100%;
-}
-
-#week-spacer- {
-    float: left;
-    width: 2%;
-    height: 100%;
-}
-
-.week-label {
-    float: left;
-    height: 100%;
-    width: calc(93%/7);
-    text-align: center;
-    vertical-align: middle;
-}
-
-#week-view-wrapper {
-    float: left;
-    height: 95%;
-    width: 100%;
-}
-
-#day-hour-sidebar {
-    float: left;
-    width: 5%;
-    height: 150%
-}
-
-.hour-label {
-
-    height: calc(150%/24);
-    width: 100%;
-    border: 1px solid #d9d9d9;
-    text-align: center;
-}
-
-#week-view {
-    float: left;
-    height: 150%;
-    width: 94%;
-}
-
-.week-day-container {
-    float: left;
-    height: 100%;
-    width: calc(100%/7);
-}
-
-.week-hour-wrapper {
-    height: calc(150%/24);
-    width: 100%;
-    border: 1px solid #d9d9d9;
-}
-
-.day-table{
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-}
-
-.day-table tr{
-  width: 100%;
-  /*height: 40px;*/
-  /*background-color: blue;*/
-  border: solid black 1px;
-}
-
-.day-table td{
-  width: calc(100/10);
 }
