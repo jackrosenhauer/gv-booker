@@ -9,18 +9,18 @@
 </head>
 
 <body>
-    <nav id="nav" class="padding home">
-        <div id="login-message"></div>
-        <input id="login-username" type="text" placeholder="Username">
-        <input id="login-password" type="password" placeholder="Password">
-        <input id="login" type="button" value="Log In">
-        <input id="register" type="button" value="Register">
-    </nav>
+<nav id="nav">
+    <div id="login-message"></div>
+    <input id="login-username" type="text" placeholder="Username">
+    <input id="login-password" type="password" placeholder="Password">
+    <input id="login" type="button" value="Log In">
+    <input id="register" type="button" value="Register">
+</nav>
 
-    <aside id="filter" style="padding: 10px;">
-      <h3>Room Option Filter</h3>
-      Please check boxes according to room needs. Calendar will show openings.
-      <div id="roomoptions" style"display: block;">
+<aside id="filter">
+    <h3>Room Option Filter</h3>
+    Please check boxes according to room needs. Calendar will show openings.
+    <div id="roomoptions" style="">
         <input type="number" id="seating-selection" min="1" max="10">
         <label for="seating-selection"># of seats</label><br>
 
@@ -34,286 +34,286 @@
         <label for="tv-selection">TV?</label><br>
 
         <input type="checkbox" id="webcam-selection">
-        <label for="webcam-selectin">Webcam?</label><br>
-
-      </div>
-        <!-- <h3>Room Options</h3>
-        <div id="roomoptions">
-            <div id="options-text">
-                Please check boxes according to room needs. Calendar will show open days:
+        <label for="webcam-selection">Webcam?</label><br>
+    </div>
+    <!-- <h3>Room Options</h3>
+    <div id="roomoptions">
+        <div id="options-text">
+            Please check boxes according to room needs. Calendar will show open days:
+        </div>
+        <div id="selections-container">
+            <div id="selections-wrapper">
+                <div id="seating-number-selection" class="option">
+                    <input type="number" id="number-box" min="1" max="10"> Number of Seats
+                </div>
+                <div id="whiteboard-selection" class="option">
+                    <input type="checkbox">Whiteboard
+                </div>
+                <div id="phone-selection" class="option">
+                    <input type="checkbox">Polycom
+                </div>
+                <div id="tv-selection" class="option">
+                    <input type="checkbox">TV
+                </div>
+                <div id="webcam-selection" class="option">
+                    <input type="checkbox">Webcam
+                </div>
             </div>
-            <div id="selections-container">
-                <div id="selections-wrapper">
-                    <div id="seating-number-selection" class="option">
-                        <input type="number" id="number-box" min="1" max="10"> Number of Seats
-                    </div>
-                    <div id="whiteboard-selection" class="option">
-                        <input type="checkbox">Whiteboard
-                    </div>
-                    <div id="phone-selection" class="option">
-                        <input type="checkbox">Polycom
-                    </div>
-                    <div id="tv-selection" class="option">
-                        <input type="checkbox">TV
-                    </div>
-                    <div id="webcam-selection" class="option">
-                        <input type="checkbox">Webcam
-                    </div>
+        </div>
+
+    </div> -->
+</aside>
+
+<article id="calendar-window" class="floatleft">
+    <div id="calendar-bar" style="height: 40px;">
+        <!--<div id="bar-title">-->
+            <!--Some stuff goes here-->
+        <!--</div>-->
+        <!--<div style="width: auto; float: right;">-->
+            <!--<input id="prev-button" type="button" value="<">-->
+            <!--<input id="next-button" type="button" value=">">-->
+            <!--<input id="view-button" type="button" value="week view">-->
+        <!--</div>-->
+    </div>
+    <br>
+
+    <div id="calendar-body">
+        <div class="weekdays-header-wrapper">
+            <!-- <section class="timezone-picker"></section> -->
+            <div class="dayname">Sunday</div>
+            <div class="dayname">Monday</div>
+            <div class="dayname">Tuesday</div>
+            <div class="dayname">Wednesday</div>
+            <div class="dayname">Thursday</div>
+            <div class="dayname">Friday</div>
+            <div class="dayname">Saturday</div>
+        </div>
+        <div class="week_row" id="week_one">
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+        </div>
+        <div class="week_row" id="week_two">
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
                 </div>
             </div>
 
-        </div> -->
-    </aside>
-
-    <article id="calendar-window" class="floatleft">
-      <div id="calendar-bar" style="height: 40px;">
-          <div id="bar-title">
-              Some stuff goes here
-          </div>
-          <div style="width: auto; float: right;">
-              <input id="prev-button" type="button" value="<">
-              <input id="next-button" type="button" value=">">
-              <input id="view-button" type="button" value="week view">
-          </div>
-      </div><br>
-        <div id="calendar-body">
-          <div class="weekdays-header-wrapper">
-              <!-- <section class="timezone-picker"></section> -->
-              <div class="dayname">Sunday</div>
-              <div class="dayname">Monday</div>
-              <div class="dayname">Tuesday</div>
-              <div class="dayname">Wednesday</div>
-              <div class="dayname">Thursday</div>
-              <div class="dayname">Friday</div>
-              <div class="dayname">Saturday</div>
-          </div>
-          <div class="week_row" id="week_one">
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-          </div>
-          <div class="week_row" id="week_two">
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-
-          </div>
-          <div class="week_row" id="week_three">
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-          </div>
-          <div class="week_row" id="week_four">
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-          </div>
-          <div class="week_row" id="week_five">
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-              <div class="calendar-day-container">
-                  <div class="calendar-day-wrapper">
-                      <div class="calendar-day-number"></div>
-                      <div class="calendar-day-data"></div>
-                  </div>
-              </div>
-          </div>
-      </article>
         </div>
+        <div class="week_row" id="week_three">
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+        </div>
+        <div class="week_row" id="week_four">
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+        </div>
+        <div class="week_row" id="week_five">
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+            <div class="calendar-day-container">
+                <div class="calendar-day-wrapper">
+                    <div class="calendar-day-number"></div>
+                    <div class="calendar-day-data"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>
 
-
-    <footer>
-    </footer>
+<footer>
+</footer>
 </body>
 <!-- scripts go at the end for performance  -->
 
@@ -332,15 +332,17 @@
 <script id="login-template" type="text/x-handlebars-template">
     <div class="centered">
         Username:
-        <input type="textbox">
+        <input id="username" type="text">
+        <label for="username">Username</label>
         <br> Password:
-        <input type="textbox">
+        <input id="password" type="text">
+        <label for="password">Password</label>
         <br>
     </div>
 </script>
 
 <script id="month-template" type="text/x-handlebars-template">
-    <div class = "week_row">
+    <div class="week_row">
         <div class="calendar-day-container">
             <div class="calendar-day-wrapper">
                 <div class="calendar-day-number">{{day}}</div>
@@ -369,118 +371,120 @@
 </script>
 
 <script>
-  var calBar = document.getElementById("calendar-bar");
-  var calBarTitle = document.getElementById("bar-title");
-  var calBody = document.getElementById("calendar-body");
+    var calBar = document.getElementById("calendar-bar");
+    var calBarTitle = document.getElementById("bar-title");
+    var calBody = document.getElementById("calendar-body");
 
-  var defaultStartTime = {
-    "hours": 8,
-    "minutes": 0
-  };
-  var defaultEndTime = {
-    "hours": 23,
-    "minutes": 0
-  };
+    var defaultStartTime = {
+        "hours": 8,
+        "minutes": 0
+    };
+    var defaultEndTime = {
+        "hours": 23,
+        "minutes": 0
+    };
 
-  function weekView(month, day, year){
-    var html = '<table>';
+    function weekView(month, day, year) {
+        var html = '<table>';
         html += '<tr>';
-          html += '<td>Sunday</td>'
-          html += '<td>Monday</td>'
-          html += '<td>Tuesday</td>'
-          html += '<td>Wednesday</td>'
-          html += '<td>Thursday</td>'
-          html += '<td>Friday</td>'
-          html += '<td>Saturday</td>'
+        html += '<td>Sunday</td>';
+        html += '<td>Monday</td>';
+        html += '<td>Tuesday</td>';
+        html += '<td>Wednesday</td>';
+        html += '<td>Thursday</td>';
+        html += '<td>Friday</td>';
+        html += '<td>Saturday</td>';
         html += '</tr>';
 
-      html += '</table>';
-  }
-
-
-  function dayView(month, day, year){
-    //nav
-    var self = this;
-    var startDate = new Date(year, month, day, defaultStartTime.hours, defaultStartTime.minutes);
-    var endDate = new Date(year, month, day, defaultEndTime.hours, defaultEndTime.minutes);
-
-    var source = document.getElementById("bar-template").text;
-    var template = Handlebars.compile(source);
-    var context = {
-        "month": month,
-        "day": day,
-        "year": year
-    };
-
-    console.log(template(context));
-    calBar.innerHTML = template(context);
-
-    //cal body
-    source = document.getElementById("day-template").text;
-    template = Handlebars.compile(source);
-
-    var context = {
-      start: defaultStartTime,
-      end: defaultEndTime
-    };
-
-
-    // var html = '<table class="day-table">';
-    // var times = getArrayOfTimes(startDate, endDate);
-    // for (var i = 0, len = times.length; i < len; i++){
-    //   console.log(times[i]);
-    //   //i % 5 is where the # of openings should go
-    //   html += '<tr><td>' + times[i] + '</td><td>' + i % 5 + '</td></tr>';
-    // }
-    //
-    // html += '</table>';
-    console.log(html);
-
-    var html = "<table style='height: 100%; width: 100%; background-color: red;'>";
-
-    var times = getArrayOfTimes(startDate, endDate);
-    for (var i = 0, len = times.length; i < len; i++){
-      html += "<tr style='width: auto; height: auto;'>";
-      html += "<td style='float: left; width: 20%; text-align: center; background-color: lime;'>" + times[i] + "</td>";
-      html += "<td style='float: left;'>" + times[i] + "</td>";
-      html += "</tr>";
+        html += '</table>';
+        return html;
     }
 
-    html += "</table>";
 
-    calBody.innerHTML = html;
-  };
+    function dayView(month, day, year) {
+        //nav
+        var self = this;
+        var startDate = new Date(year, month, day, defaultStartTime.hours, defaultStartTime.minutes);
+        var endDate = new Date(year, month, day, defaultEndTime.hours, defaultEndTime.minutes);
 
-  dayView("10", "9", "2015");
+        var source = document.getElementById("bar-template").text;
+        var template = Handlebars.compile(source);
+        var context = {
+            "month": month,
+            "day": day,
+            "year": year
+        };
+
+        console.log(template(context));
+        calBar.innerHTML = template(context);
+
+        //cal body
+        source = document.getElementById("day-template").text;
+        template = Handlebars.compile(source);
+
+        context = {
+            start: defaultStartTime,
+            end: defaultEndTime
+        };
 
 
-  function getMinutes(date){
-    return date.getHours() * 60 + date.getMinutes();
-  }
-  // document.getElementsByTagName("body")[0].innerHTML = html;
-  function addMinutes(date, minutesToAdd){
-    var totalMils = date.getTime() + minutesToAdd * 60 * 1000;
-    return new Date(totalMils);
-  }
+        // var html = '<table class="day-table">';
+        // var times = getArrayOfTimes(startDate, endDate);
+        // for (var i = 0, len = times.length; i < len; i++){
+        //   console.log(times[i]);
+        //   //i % 5 is where the # of openings should go
+        //   html += '<tr><td>' + times[i] + '</td><td>' + i % 5 + '</td></tr>';
+        // }
+        //
+        // html += '</table>';
+        console.log(html);
 
-  function addHours(date, hoursToAdd){
-    return new Date(date.getTime() + hoursToAdd * 60 * 60 * 1000);
-  };
+        var html = "<table style='height: 100%; width: 100%; background-color: red;'>";
 
-  function addDays(date, daysToAdd){
-    return new Date(date.getTime() + hoursToAdd * 24 * 60 * 60 * 1000);
-  }
+        var times = getArrayOfTimes(startDate, endDate);
+        for (var i = 0, len = times.length; i < len; i++) {
+            html += "<tr style='width: auto; height: auto;'>";
+            html += "<td style='float: left; width: 20%; text-align: center; background-color: lime;'>" + times[i] + "</td>";
+            html += "<td style='float: left;'>" + times[i] + "</td>";
+            html += "</tr>";
+        }
 
-  //starting and ending time in minutes
-  //480 to 510
-  function getArrayOfTimes(startDate, endDate){
-    var times = [];
-    while (endDate >= startDate){
-      times.push(startDate.toLocaleString().split(", ")[1]);
-      startDate = addMinutes(startDate, 30);
+        html += "</table>";
+
+        calBody.innerHTML = html;
+        return html;
     }
-    return times;
-  };
+
+    dayView("10", "9", "2015");
+
+
+    function getMinutes(date) {
+        return date.getHours() * 60 + date.getMinutes();
+    }
+    // document.getElementsByTagName("body")[0].innerHTML = html;
+    function addMinutes(date, minutesToAdd) {
+        var totalMils = date.getTime() + minutesToAdd * 60 * 1000;
+        return new Date(totalMils);
+    }
+
+    function addHours(date, hoursToAdd) {
+        return new Date(date.getTime() + hoursToAdd * 60 * 60 * 1000);
+    }
+
+    function addDays(date, daysToAdd) {
+        return new Date(date.getTime() + hoursToAdd * 24 * 60 * 60 * 1000);
+    }
+
+    //starting and ending time in minutes
+    //480 to 510
+    function getArrayOfTimes(startDate, endDate) {
+        var times = [];
+        while (endDate >= startDate) {
+            times.push(startDate.toLocaleString().split(", ")[1]);
+            startDate = addMinutes(startDate, 30);
+        }
+        return times;
+    }
 </script>
 
 </html>

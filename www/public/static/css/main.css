@@ -4,12 +4,11 @@ table {
 }
 
 body {
-    margin: 2%;
     /*margin-top: 2%;
     margin-left: 2%;
     margin-right: 2%;*/
-    height: 800px;
-    width: 96%;
+    height: 100%;
+    width: 100%;
     font-family: "MetaNormal";
     background-color: #de7329;
 }
@@ -23,14 +22,6 @@ nav {
     background-color: #ffe6b4;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 5;
-    margin: 2%;
-    /*width: 100%;
-  justify-content: flex-end;*/
-}
-
-.padding {
-    padding: 1%;
 }
 
 #filter {
@@ -38,7 +29,6 @@ nav {
     width: 20%;
     height: auto;
     background-color: #ffe6b4;
-    margin-right: 2%;
 }
 
 #roomoptions input{
@@ -79,7 +69,7 @@ nav {
 #tv-selection {}
 
 #calendar-window {
-    width: 76%;
+    width: 80%;
     height: 400px;
     background-color: green;
 }
@@ -113,7 +103,6 @@ nav {
       float: right;
       width: auto;
       height: auto;
-
 }
 /*
 #month-switch-prev {
@@ -154,8 +143,9 @@ nav {
     float: left;
     /* border: 1px solid #d9d9d9;
         border-top: 0px;
-        border-bottom: 0px; */
+        border-bottom: 0px;
 }
+*/
 
 .calendar-day-wrapper {
     height: 100%;
