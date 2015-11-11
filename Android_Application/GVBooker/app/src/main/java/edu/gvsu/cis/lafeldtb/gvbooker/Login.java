@@ -24,14 +24,24 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
     Button createAccountButton;
 
 
+
     //map of users for testing
     HashMap<String, User> dummyUsers = new HashMap<>();
-   // ArrayList<User> dumbUsers = new ArrayList<>();
+    ArrayList<User> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        Intent recieveNewUser = getIntent();
+        if(recieveNewUser.hasExtra("newUser")) {
+             User recieved = recieveNewUser.getParcelableExtra("newUser");
+
+                dummyUsers.put(recieved.getUsername(), recieved);
+
+        }
+
 
         usernameEdit = (EditText) findViewById(R.id.username_editor);
         passwordEdit = (EditText) findViewById(R.id.password_editor);
@@ -39,13 +49,19 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         createAccountButton = (Button) findViewById(R.id.createAccountButton);
         loginButton.setOnClickListener(this);
         createAccountButton.setOnClickListener(this);
+
+
+
+
         //test user for debugging
-        User test = new User("test", "test");
+        //User test = new User("Test", "test");
 
         //dumbUsers.add(test);
-        dummyUsers.put(test.getUsername(), test);
+        //dummyUsers.put(test.getUsername(), test);
 
     }
+
+
 
     @Override
     public void onClick(View v) {
@@ -69,7 +85,7 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         }
         if(v == createAccountButton)
         {
-            Intent i = new Intent(getApplicationContext(), CreateAccount.class);
+            Intent i = new Intent(getApplicationContext(), ContentCreateAccount.class);
             startActivity(i);
 
         }
@@ -98,6 +114,8 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
 
-
+    }
 }

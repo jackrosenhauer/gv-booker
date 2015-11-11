@@ -3,6 +3,7 @@ package edu.gvsu.cis.lafeldtb.gvbooker;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 public class User implements Parcelable {
     private String username;
     private String password;
+
     private ArrayList<Reservation> reservations;
 
     public User (String username, String password)
@@ -52,6 +54,9 @@ public class User implements Parcelable {
 
     public void writeToParcel(Parcel out, int flags) {
         out.writeInt(mData);
+        out.writeString(username);
+        out.writeString(password);
+        //TODO: figure out how to write reservations
     }
 
     public static final Parcelable.Creator<User> CREATOR
@@ -63,10 +68,14 @@ public class User implements Parcelable {
         public User[] newArray(int size) {
             return new User[size];
         }
+
+
     };
 
     private User(Parcel in) {
         mData = in.readInt();
+        username = in.readString();
+        password = in.readString();
     }
 
 

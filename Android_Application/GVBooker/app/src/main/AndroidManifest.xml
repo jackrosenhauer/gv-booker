@@ -24,7 +24,8 @@
 
         <activity
             android:name=".Login"
-            android:label="@string/title_activity_login" >
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,12 +34,18 @@
         </activity>
         <activity
             android:name=".UserProfile"
-            android:label="@string/title_activity_user_profile" >
+            android:label="@string/title_activity_user_profile"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".CreateAccount"
+            android:name=".ContentCreateAccount"
             android:label="@string/title_activity_create_account"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".ReservedRooms"
+            android:label="@string/title_activity_reserved_rooms" >
         </activity>
     </application>
 

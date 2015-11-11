@@ -57,6 +57,15 @@ public class UserProfile extends ActionBarActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        if(v == reservedRoomsButton)
+        {
+            Intent i = new Intent(getApplicationContext(), ReservedRooms.class);
+            startActivity(i);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 }
