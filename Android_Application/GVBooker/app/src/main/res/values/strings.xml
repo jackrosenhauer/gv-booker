@@ -8,4 +8,5 @@
     <string name="title_activity_create_account">CreateAccount</string>
     <string name="title_activity_content_create_account">ContentCreateAccount</string>
     <string name="title_activity_reserved_rooms">ReservedRooms</string>
+    <string name="title_activity_reservation_attributes">ReservationAttributes</string>
 </resources>

@@ -1,5 +1,6 @@
 package edu.gvsu.cis.lafeldtb.gvbooker;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             super(v);
             mTextView = v;
         }
+
+
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)

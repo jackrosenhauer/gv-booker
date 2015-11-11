@@ -1,15 +1,18 @@
 package edu.gvsu.cis.lafeldtb.gvbooker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 
-public class ReservedRooms extends Activity {
+public class ReservedRooms extends Activity implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -34,6 +37,8 @@ public class ReservedRooms extends Activity {
         // specify an adapter (see also next example)
         mAdapter = new MyAdapter(new String[]{"Room 1", "Room 2", "MAK 121", "MAK 1213C", "LOH 165", "DEV 203A", "Reservation 1", "Reservation 2", "Hello", "Goodbye"});
         mRecyclerView.setAdapter(mAdapter);
+
+        mRecyclerView.setOnClickListener(this);
     }
 
     @Override
@@ -56,5 +61,14 @@ public class ReservedRooms extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent i = new Intent(getApplicationContext(), ReservationAttributes.class);
+        TextView t = (TextView) v.findViewById(R.id.textView2);
+        String s = t.getText().toString();
+        i.putExtra("name", s);
+        startActivity(i);
     }
 }

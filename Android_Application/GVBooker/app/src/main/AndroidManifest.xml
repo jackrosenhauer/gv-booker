@@ -47,6 +47,10 @@
             android:name=".ReservedRooms"
             android:label="@string/title_activity_reserved_rooms" >
         </activity>
+        <activity
+            android:name=".ReservationAttributes"
+            android:label="@string/title_activity_reservation_attributes" >
+        </activity>
     </application>
 
 </manifest>
