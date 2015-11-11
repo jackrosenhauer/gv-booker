@@ -138,7 +138,8 @@
         this.$body.innerHTML = html;
       break;
     }
-  }
+  };
+
   View.prototype.bind = function(event, handler){
     var self = this;
     if (this.$login){
@@ -216,7 +217,7 @@
    * @param viewCmd - The view to display
    * @param args - An object containing arguments for the individual views
      */
-  View.prototype.render = function(viewCmd, args){
+  View.prototype.render = function(viewCmd, date){
     var self = this;
     console.log("viewCmd => " + viewCmd);
 
@@ -240,13 +241,6 @@
 
       case "month":
         console.log("(view) render => month");
-        console.log(args);
-
-        var template = document.getElementById("month-cal").text;
-        template = Handlebars.compile(template);
-        var result = template();
-        console.log(result);
-        body.innerHTML = template();
         break;
 
       case "week":
@@ -292,10 +286,58 @@
     element.innerHTML = "Failed to register, try a different username";
   };
 
-  View.prototype.dayView = function(){
+  View.prototype.dayView = function(month, day, year, defaultStartTime, defaultEndTime){
     var self = this;
-    self.$calWin.innerHTML = "NOPE";
-  }
+    var startDate = new Date(year, month, day, defaultStartTime.hours, defaultStartTime.minutes);
+    var endDate = new Date(year, month, day, defaultEndTime.hours, defaultEndTime.minutes);
+
+    var source = document.getElementById("bar-template").text;
+    var template = Handlebars.compile(source);
+    var context = {
+      "month": month,
+      "day": day,
+      "year": year
+    };
+
+    console.log(template(context));
+    calBar.innerHTML = template(context);
+
+    //cal body
+    source = document.getElementById("day-template").text;
+    template = Handlebars.compile(source);
+
+    context = {
+      start: defaultStartTime,
+      end: defaultEndTime
+    };
+
+
+    // var html = '<table class="day-table">';
+    // var times = getArrayOfTimes(startDate, endDate);
+    // for (var i = 0, len = times.length; i < len; i++){
+    //   console.log(times[i]);
+    //   //i % 5 is where the # of openings should go
+    //   html += '<tr><td>' + times[i] + '</td><td>' + i % 5 + '</td></tr>';
+    // }
+    //
+    // html += '</table>';
+    console.log(html);
+
+    var html = "<table style='height: 100%; width: 100%; background-color: red;'>";
+
+    var times = getArrayOfTimes(startDate, endDate);
+    for (var i = 0, len = times.length; i < len; i++) {
+      html += "<tr style='width: auto; height: auto;'>";
+      html += "<td style='float: left; width: 20%; text-align: center; background-color: lime;'>" + times[i] + "</td>";
+      html += "<td style='float: left;'>" + times[i] + "</td>";
+      html += "</tr>";
+    }
+
+    html += "</table>";
+
+    calBody.innerHTML = html;
+    return html;
+  };
   /**
    * Shows the registration form to the user
    * @param element - Element to change the innerHTML of

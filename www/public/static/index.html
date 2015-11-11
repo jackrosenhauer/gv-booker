@@ -65,15 +65,15 @@
 </aside>
 
 <article id="calendar-window" class="floatleft">
-    <div id="calendar-bar" style="height: 40px;">
-        <!--<div id="bar-title">-->
-            <!--Some stuff goes here-->
-        <!--</div>-->
-        <!--<div style="width: auto; float: right;">-->
-            <!--<input id="prev-button" type="button" value="<">-->
-            <!--<input id="next-button" type="button" value=">">-->
-            <!--<input id="view-button" type="button" value="week view">-->
-        <!--</div>-->
+    <div id="calendar-bar">
+        <div id="bar-title">
+            Some stuff goes here
+        </div>
+        <div style="width: auto; float: right;">
+            <input id="prev-button" type="button" value="<">
+            <input id="next-button" type="button" value=">">
+            <input id="view-button" type="button" value="week view">
+        </div>
     </div>
 
     <div id="calendar-body">
@@ -400,7 +400,7 @@
     }
 
 
-    function dayView(month, day, year) {
+    function dayView(month, day, year, defaultStartTime, defaultEndTime) {
         //nav
         var self = this;
         var startDate = new Date(year, month, day, defaultStartTime.hours, defaultStartTime.minutes);
@@ -454,7 +454,7 @@
         return html;
     }
 
-    dayView("10", "9", "2015");
+//    dayView("10", "9", "2015");
 
 
     function getMinutes(date) {

@@ -11,7 +11,7 @@
  */
 
 var app = (function(window){
-  'use strict';
+  "use strict";
 
   var name = "gv-booker";
 
@@ -24,10 +24,8 @@ var app = (function(window){
     this.view = new app.View();
     this.model = new app.Model(name);
     this.controller = new app.Controller(this.model, this.view);
+    return this;
   }
-
-  //initalize our instance
-  var gvbooker = new Booker(name);
 
   /**
    * Bind window.location.hash changes to force our controller to check the view
@@ -36,9 +34,14 @@ var app = (function(window){
 		gvbooker.controller.setView(document.location.hash);
   }
 
-  // $on(window, 'load', setView);
-	// $on(window, 'hashchange', setView);
+  var gvbooker = new Booker(name);
+  window.app = gvbooker;
+  console.log("WTF");
+  console.log(window.app);
+  //window.app.controller.userRegistration("test", "test", "test@gmail.com");
+  //window.app.controller.create
+  //window.app.model.createRoom();
+  //window.app.view.dayView("10", "11", "2015");
 
-  window.gvbooker = gvbooker;
-  window.app = Booker;
+  return gvbooker;
 })(window);
