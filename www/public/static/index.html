@@ -214,13 +214,13 @@
             weeks[0].push(null);
         }
         
-        /** **/
+        /**  **/
         for (var i = startDate.getDate()-1; i < endDate.getDate()+1; i++) {
             var tmpDay = {
-                day: i,
+                day: i+1,
                 data: "AVAILABLE"
             };
-            if(tmpDay.day%7 === 0 && tmpDay.day > 0){
+            if(tmpDay.day%6 === 0 && tmpDay.day > 0){
                 weekTracker++;
                 weeks.push([]);
             }
