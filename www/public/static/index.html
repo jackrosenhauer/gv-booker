@@ -9,7 +9,6 @@
 </head>
 
 <body>
-
     <!--Main Nav-->
     <nav id="nav">
         <div id="login-message">Rando message here123</div>
@@ -19,49 +18,88 @@
         <input id="register" type="button" style='' value="Register">
     </nav>
 
-    <!--Don't think we'll ever change this, no template needed-->
-    <aside id="filter">
-        <h3>Room Option Filter</h3>
-        Please check boxes according to room needs. Calendar will show openings.
-        <div id="roomoptions" style="">
+    <aside id="filter" style="padding: 10px;">
+        <h3>Room Option Filter</h3> Please check boxes according to room needs. Calendar will show openings.
+        <div id="roomoptions" style "display: block;">
             <input type="number" id="seating-selection" min="1" max="10">
-            <label for="seating-selection"># of seats</label><br>
+            <label for="seating-selection"># of seats</label>
+            <br>
 
             <input type="checkbox" id="whiteboard-selection">
-            <label for="whiteboard-selection">Whiteboard?</label><br>
+            <label for="whiteboard-selection">Whiteboard?</label>
+            <br>
 
             <input type="checkbox" id="phone-selection">
-            <label for="phone-selection">Phone?</label><br>
+            <label for="phone-selection">Phone?</label>
+            <br>
 
             <input type="checkbox" id="tv-selection">
-            <label for="tv-selection">TV?</label><br>
+            <label for="tv-selection">TV?</label>
+            <br>
 
             <input type="checkbox" id="webcam-selection">
-            <label for="webcam-selection">Webcam?</label><br>
+            <label for="webcam-selection">Webcam?</label>
+            <br>
+
         </div>
+        <!-- <h3>Room Options</h3>
+        <div id="roomoptions">
+            <div id="options-text">
+                Please check boxes according to room needs. Calendar will show open days:
+            </div>
+            <div id="selections-container">
+                <div id="selections-wrapper">
+                    <div id="seating-number-selection" class="option">
+                        <input type="number" id="number-box" min="1" max="10"> Number of Seats
+                    </div>
+                    <div id="whiteboard-selection" class="option">
+                        <input type="checkbox">Whiteboard
+                    </div>
+                    <div id="phone-selection" class="option">
+                        <input type="checkbox">Polycom
+                    </div>
+                    <div id="tv-selection" class="option">
+                        <input type="checkbox">TV
+                    </div>
+                    <div id="webcam-selection" class="option">
+                        <input type="checkbox">Webcam
+                    </div>
+                </div>
+            </div>
+
+        </div> -->
     </aside>
 
-    <!-- Body / calendar-window will have main content like the various views, registration page, admin section etc-->
     <article id="calendar-window" class="floatleft">
-
-        <div id="calendar-bar">
+        <div id="calendar-bar" style="height: 40px;">
             <div id="bar-title">
-                Description of the page goes here: day, week or month view.
+                Some stuff goes here
             </div>
+            <input id="prev-button" style="float: right;" type="button" value="<">
+            <input id="next-button" style="float: right;" type="button" value=">">
+            <input id="viewMonth-button" style="float: right;" type="button" value="month view" onclick="monthView()">
+            <input id="viewWeek-button" style="float: right;" type="button" value="week view">
+            <input id="viewDay-button" style="float: right;" type="button" value="day view" onclick='dayView("10","09","2015")';
 
-            <!--Calendar nav buttons -->
-            <div style="width: auto; float: right;">
-                <input id="prev-button" type="button" value="<">
-                <input id="next-button" type="button" value=">">
-                <input id="view-button" type="button" value="week v123123iew">
-            </div>
         </div>
-
+        <br>
         <div id="calendar-body">
-            The calendar view. This is just a placeholder.
-        </div>
-    </article>
+            <div class="weekdays-header-wrapper">
+                <div class="dayname">Sunday</div>
+                <div class="dayname">Monday</div>
+                <div class="dayname">Tuesday</div>
+                <div class="dayname">Wednesday</div>
+                <div class="dayname">Thursday</div>
+                <div class="dayname">Friday</div>
+                <div class="dayname">Saturday</div>
+            </div>
 
+    </article>
+    </div>
+
+
+    <footer>
+    </footer>
 </body>
 <!-- scripts go at the end for performance  -->
 
@@ -123,8 +161,9 @@
 </script>
 
 <script id="month-template" type="text/x-handlebars-template">
+    {{#each weeks}}
     <div class="week_row">
-
+        {{#each this}}
         <div class="calendar-day-container">
             <div class="calendar-day-wrapper">
                 <div class="calendar-day-number">{{day}}</div>
@@ -145,7 +184,6 @@
 </script>
 
 <script id="bar-template" type="text/x-handlebars-template">
-    <!-- <div class="bar-title" style="float: left; font-size: 32px; font-color: blue; padding: 10px;">{{month}}, {{day}} {{year}}</div> -->
     <div id="bar-title" style='text-align: center; float:left;'>{{month}} {{day}}, {{year}}</div>
     <input id="viewMonth-button" style="float: right; width: 125px; height: 45px;" type="button" value="month view">
     <input id="viewWeek-button" style="float: right; width: 125px; height: 45px;" type="button" value="week view">
