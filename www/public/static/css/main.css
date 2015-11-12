@@ -36,10 +36,12 @@ input[type="button"]{
 
 #filter {
     float: left;
-    width: 20%;
-    height: auto;
+    width: 15%;
+    height: 400px;
     background-color: #ffe6b4;
-    margin-right: 10px;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 #calendar-window {
     width: calc(100% - 20% - 30px);
