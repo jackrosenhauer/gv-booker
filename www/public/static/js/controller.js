@@ -134,7 +134,10 @@
                 var source = document.getElementById("register-template").text;
                 var template = Handlebars.compile(source);
                 var html = template();
-                qs("#bar-title").innerText = "Registration Form";
+                qs("#login-username").value = "";
+                qs("#login-password").value = "";
+                qs("#login-message").innerText = "Registration Form";
+                qs("#login-message").style.color = "white";
                 qs("#calendar-body").innerHTML = html;
                 break;
             case "nav":
@@ -237,6 +240,14 @@
                     if (validator.username(username) && validator.password(password1) && validator.email(email)) {
                         var newUser = self.model.createUser(username, password1, email, permissions);
                         console.log(newUser);
+                        if (newUser){
+                            qs("#login-message").style.color = "white";
+                            qs("#login-message").textContent = "Registration Successful!! Please login.";
+                            self.buildDayView();
+                        }
+                    }else{
+                        qs("#login-message").textContent = "Must provide a valid e-mail during registration";
+                        qs("#login-message").style.color = "red";
                     }
                 } else {
                     alert("passwords do not match");
@@ -284,7 +295,8 @@
                         target.parentNode.replaceChild(div, target);
                     }
                 }else{
-                    console.log("not logged in");
+                    qs("#login-message").textContent = "You must be logged in to make reservations";
+                    qs("#login-message").style.color = "red";
                 }
 
                 //create reservation
@@ -328,7 +340,8 @@
                         console.log("update view, reservation deleted");
                     }
                 }else{
-                    console.log("not logged in");
+                    qs("#login-message").textContent = "You must be logged in to make reservations";
+                    qs("#login-message").style.color = "red";
                 }
 
                 break;
@@ -389,15 +402,18 @@
                     qs("#nav").innerHTML = html;
 
                     //self.view.dayView(self.currentDate.getMonth(), self.currentDate.getDay(), self.currentDate.getFullYear(), self.defaultStartTime, self.defaultEndTime);
-                    qs("#login-message").innerText = "Logged in as: " + user.username;
+                    qs("#login-message").innerText = "Logged in as [ '" + user.username + "' ]";
+                    qs("#login-message").style.color = "white";
                     return true;
                 }
             }
         } else {
-            qs("#login-message").innerHTML = "Invalid username/password";
+            qs("#login-message").innerText = "Invalid username/password";
+            qs("#login-message").style.color = "red";
         }
 
         qs("#login-message").innerHTML = "Invalid username/password";
+        qs("#login-message").style.color = "red";
         return false;
     };
 
