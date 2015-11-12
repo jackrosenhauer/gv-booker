@@ -1,4 +1,4 @@
-(function(window){
+var view = (function(window){
   "use strict";
 
   /**
@@ -73,20 +73,26 @@
 
   View.prototype.bind = function(event, handler){
     var self = this;
-    switch (event){
-          case "nav":
-            this.$nav.addEventListener("click", handler);
-            break;
-          case "filter":
-            this.$filter.addEventListener("click", handler);
-            this.$filter.addEventListener("keyup", handler);
-            break;
-          case "calendar":
-            this.$calWin.addEventListener("click", handler);
-            break;
-          default:
-            console.log("unknown bind event: " + event);
-          }
+    if (document.getElementById("nav") !== null){
+      switch (event){
+        case "nav":
+          this.$nav.addEventListener("click", handler);
+          break;
+        case "filter":
+          this.$filter.addEventListener("click", handler);
+          this.$filter.addEventListener("keyup", handler);
+          break;
+        case "calendar":
+          this.$calWin.addEventListener("click", handler);
+          break;
+        default:
+          console.log("unknown bind event: " + event);
+      }
+    }else{
+      console.log("no view, nothing to do");
+    }
+
+
   };
 
   /**
@@ -126,5 +132,5 @@
   };
 
   window.app = window.app || {};
-  window.app.View = View;
+  return View;
 })(window);

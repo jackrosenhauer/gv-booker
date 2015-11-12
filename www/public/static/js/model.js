@@ -1,4 +1,4 @@
-(function (window) {
+var model = (function (window) {
     "use strict";
 
     /**
@@ -7,10 +7,12 @@
      * @constructor - creates our storage data object (this.storage), builds its structure and then saves to localStorage
      */
     function Model(name) {
-        var self = this;
-        self.name = name;
+        this.name = name;
+        var storage;
+
         if (!localStorage[name]) {
-            var storage = {
+
+            storage = {
                 "users": {
                     ids: [],
                     userList: {}
@@ -31,13 +33,16 @@
                 "sessionSeed": 0
             };
 
-            localStorage[self.name] = JSON.stringify(storage);
-            self.storage = storage;
+            window.localStorage[this.name] = JSON.stringify(storage);
+            this.save();
+            this.storage = storage;
         } else {
             //we already have local storage
-            self.storage = JSON.parse(localStorage[name]);
+            storage = JSON.parse(localStorage[name]);
         }
-        window.storage = self.storage;
+
+        this.storage = storage;
+        //window.storage = this.storage;
     }
 
 
@@ -48,6 +53,9 @@
      */
     Model.prototype.getUser = function (username) {
         var self = this;
+        if (typeof self.storage.users.userList) {
+
+        };
         return self.storage.users.userList[username];
     };
 
@@ -61,7 +69,6 @@
     Model.prototype.createUser = function (username, password, email, permissions) {
         var self = this;
         var key = username;
-
         var newUser = {
             "username": username,
             "password": password,
@@ -92,7 +99,7 @@
             delete self.storage.users.userList[username];
             for (var i = 0, len = self.storage.users.ids.length; i < len; i++){
                 if (self.storage.users.ids[i] === username){
-                    app.model.storage.users.ids.splice(i, i + 1);
+                    self.storage.users.ids.splice(i, i + 1);
                     return true;
                 }
             }
@@ -303,7 +310,7 @@
 
         self.storage["sessionSeed"] = self.storage["sessionSeed"]++;
         self.storage["sessions"][userID] = session;
-        self.saveState();
+        self.save();
         return sessionID;
     };
 
@@ -328,5 +335,5 @@
     Model.prototype.save = Model.prototype.saveState;
 
     window.app = window.app || {};
-    window.app.Model = Model;
+    return Model;
 })(window);

@@ -1,4 +1,4 @@
-(function (window) {
+var controller = (function (window) {
     "use strict";
 
     /**
@@ -31,17 +31,17 @@
         this.currentDate = currentDate;
         this.currentUser = null;
 
-        view.bind("nav", function (event) {
+        this.view.bind("nav", function (event) {
             event.stopPropagation();
             self.navHandler(event);
         });
 
-        view.bind("filter", function (event) {
+        this.view.bind("filter", function (event) {
             event.stopPropagation();
             self.filterHandler(event);
         });
 
-        view.bind("calendar", function (event) {
+        this.view.bind("calendar", function (event) {
             event.stopPropagation();
             self.bodyHandler(event);
         });
@@ -218,6 +218,7 @@
                 qs("#register-password2").value = "";
                 qs("#register-email").value = "";
                 console.log("registration form cleared");
+                qs("#login-message").innerText = "Form cleared";
                 break;
             case "next-button":
                 self.currentDate = new Date(self.currentDate.valueOf() + self.twentyFourHours);
@@ -367,8 +368,7 @@
      */
     Controller.prototype.userRegistration = function (username, password, email) {
         var self = this;
-
-        if (validator.username(username) && validator.password(password) && validator.email(email)) {
+        if (window.validator.username(username) && window.validator.password(password) && window.validator.email(email)) {
             // console.log('valid inputs');
             //check if username exists in the model
             //if false, create user else return false
@@ -398,25 +398,50 @@
 
                     //logged in as user
                     self.currentUser = user;
-                    var source = qs("#loggedin-template").text;
+                    var source = self.getText("#loggedin-template");
                     var template = Handlebars.compile(source);
                     var html = template();
-                    qs("#nav").innerHTML = html;
+                    self.setHTML("#nav", html);
+                    //qs("#nav").innerHTML = html;
 
                     //self.view.dayView(self.currentDate.getMonth(), self.currentDate.getDay(), self.currentDate.getFullYear(), self.defaultStartTime, self.defaultEndTime);
-                    qs("#login-message").innerText = "Logged in as [ '" + user.username + "' ]";
-                    qs("#login-message").style.color = "white";
+
+                    self.showMessage("Logged in as [ '" + user.username + "' ]", "white");
+                    //qs("#login-message").innerText = "Logged in as [ '" + user.username + "' ]";
+                    //qs("#login-message").style.color = "white";
                     return true;
                 }
             }
         } else {
-            qs("#login-message").innerText = "Invalid username/password";
-            qs("#login-message").style.color = "red";
+            self.showMessage("Invalid username/password", "red");
+            //qs("#login-message").innerText = "Invalid username/password";
+            //qs("#login-message").style.color = "red";
         }
 
-        qs("#login-message").innerHTML = "Invalid username/password";
-        qs("#login-message").style.color = "red";
+        self.showMessage("Invalid username/password", "red");
+        //qs("#login-message").innerHTML = "Invalid username/password";
+        //qs("#login-message").style.color = "red";
         return false;
+    };
+
+
+    Controller.prototype.getText = function(selector){
+        if (qs(selector) !== null){
+            return qs(selector).text;
+        }
+        return "";
+    };
+    Controller.prototype.setHTML = function(selector, html){
+        if (qs(selector) !== null){
+            qs(selector).innerHTML = html;
+        }
+    };
+
+    Controller.prototype.showMessage = function (text, color){
+        if (qs("#login-message") !== null){
+            qs("#login-message").innerHTML = text;
+            qs("#login-message").style.color = color;
+        }
     };
 
     /**
@@ -446,6 +471,8 @@
         if (self.currentUser !== null){
             var reservation = self.model.getReservation(building, roomNumber, startTime);
             if (reservation.user !== self.currentUser.username){
+                qs("#login-message").innerText = "You don't own that reservation";
+                qs("#login-message").style.color = "red";
                 console.log("you do not own that reservation");
                 return false;
             }
@@ -721,7 +748,12 @@
 
     Controller.prototype.buildDayView = function () {
         var self = this;
-        var source = document.getElementById("bar-template").text;
+        var source;
+        if (qs("#bar-template")){
+            source = qs("#bar-template").text
+        }else{
+            return;
+        }
         var template = Handlebars.compile(source);
 
         var context = {
@@ -847,7 +879,6 @@
     };
 
     window.app = window.app || {};
-    window.app.Controller = Controller;
-
-
+    //window.app.controller = Controller;
+    return Controller;
 })(window);

@@ -50,5 +50,5 @@
   };
 
   window.app = window.app || {};
-  window.app.Store = Store;
+  window.app.store = Store;
 })(window);

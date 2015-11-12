@@ -1,14 +1,12 @@
+localStorage.clear();
+
 suite("Controller", function() {
 
   setup(function() {
-    localStorage.clear();
-    window.app.controller.setView = function(){};
-
-    window.app.controller.isAdmin = function(){
+    //god mode
+      window.app.controller.isAdmin = function(){
       return true;
     };
-
-    window.app.model.storage["users"] = {};
   });
 
   suite("#userRegistration(username, password, email)", function() {
@@ -152,7 +150,7 @@ suite("Controller", function() {
     });
 
     test("return 'room already exists'; when room already exists", function(){
-      assert.equal("room already exists", window.app.controller.adminCreateRoom({
+      assert.notEqual(true, window.app.controller.adminCreateRoom({
           "building": "MAK",
           "roomNumber": "C-2-206",
           "seating": 25
@@ -173,7 +171,6 @@ suite("Controller", function() {
       window.app.controller.isAdmin = function(){
         return true;
       };
-      console.log(window.app.controller.isAdmin);
       assert.equal(true, window.app.controller.isAdmin());
     });
 
@@ -191,7 +188,7 @@ suite("Controller", function() {
         return true;
       };
     });
-    
+
     //when admin is true
     test("when currentUser is an admin", function(){
       assert.equal(true, window.app.controller.adminCreateUser("testuser2", "testpass", "test@gmail.com"));

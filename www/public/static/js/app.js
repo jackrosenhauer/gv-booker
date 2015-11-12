@@ -21,9 +21,9 @@ var app = (function(window){
    * @constructor - creates the MVC Triad
      */
   function Booker(name){
-    this.view = new app.View();
-    this.model = new app.Model(name);
-    this.controller = new app.Controller(this.model, this.view);
+    this.model = new model(name);
+    this.view = new view();
+    this.controller = new controller(this.model, this.view);
     return this;
   }
 
@@ -31,7 +31,6 @@ var app = (function(window){
   localStorage.clear();
 
   var gvbooker = new Booker(name);
-  window.app = gvbooker;
-
+  gvbooker.controller.init();
   return gvbooker;
 })(window);
