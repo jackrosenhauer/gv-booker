@@ -1,36 +1,16 @@
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 body {
-    margin: 2%;
-    /*margin-top: 2%;
-    margin-left: 2%;
-    margin-right: 2%;*/
-    height: 800px;
-    width: 96%;
-    font-family: "MetaNormal";
+    width: 100%;
     background-color: #de7329;
 }
 
 .floatleft {
-    display: flex 0px;
     float: left;
 }
 
-nav {
+#nav {
     background-color: #ffe6b4;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 5;
-    margin: 2%;
-    /*width: 100%;
-  justify-content: flex-end;*/
-}
-
-.padding {
-    padding: 1%;
 }
 
 #filter {
@@ -38,56 +18,17 @@ nav {
     width: 20%;
     height: auto;
     background-color: #ffe6b4;
-    margin-right: 2%;
 }
-
-#roomoptions input{
-    width: 20px;
-    margin-left: 10px;
-    /*text-align: left;*/
-}
-
-#options-text {
-    width: 100%;
-    height: 5%;
-}
-
-#selections-container {
-    width: 100%;
-    height: 95%;
-}
-
-#selections-wrapper {
-    padding: 10%;
-}
-
-.option {
-    padding: 5%;
-}
-
-#seating-number-selection {
-    width: 100%;
-    height: calc(100%/8);
-}
-
-#number-box {
-    width: 15%;
-}
-
-#phone-selection {}
-
-#tv-selection {}
-
 #calendar-window {
-    width: 76%;
-    height: 400px;
-    background-color: green;
+    width: 80%;
+    /*height: 400px;*/
+    background-color: white;
 }
 
 #calendar-body{
-  height: 100vh;
   background-color: pink;
 }
+
 #calendar-bar {
     width: 100%;
     height: 40px;
@@ -185,112 +126,48 @@ nav {
         border-right: 0px; */
 }
 
-input{
 
+#calendar-bar {
+    height: 50px;
+    background-color: mediumpurple;
 }
 
 h3 {
     text-align: center;
     vertical-align: middle;
-    /*background: mintcream;*/
-    line-height: 40px;
-    height: 5%;
-    margin: 0;
 }
 
-
-/* Styles for week view */
-
-#week-view-container {
-    height: 93%;
-    width: 100%;
+.reservation{
+    border: solid 2px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    margin-right: 10px;
 }
 
-ol,
-li,
-ul {
-    list-style: none;
+.row{
+    border-bottom: solid 1px black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
-#week-header {
-    height: 5%;
-    width: 100%;
-    float: left;
-    text-align: center;
-    vertical-align: middle;
+.available-reservation{
+    cursor: pointer;
 }
 
-#week-spacer {
-    float: left;
-    width: 5%;
-    height: 100%;
+.available-reservation:hover{
+    cursor: pointer;
+    border-color: green;
 }
 
-#week-spacer- {
-    float: left;
-    width: 2%;
-    height: 100%;
+.unavailable-reservation{
+    cursor: pointer;
 }
 
-.week-label {
-    float: left;
-    height: 100%;
-    width: calc(93%/7);
-    text-align: center;
-    vertical-align: middle;
-}
-
-#week-view-wrapper {
-    float: left;
-    height: 95%;
-    width: 100%;
-}
-
-#day-hour-sidebar {
-    float: left;
-    width: 5%;
-    height: 150%
-}
-
-.hour-label {
-
-    height: calc(150%/24);
-    width: 100%;
-    border: 1px solid #d9d9d9;
-    text-align: center;
-}
-
-#week-view {
-    float: left;
-    height: 150%;
-    width: 94%;
-}
-
-.week-day-container {
-    float: left;
-    height: 100%;
-    width: calc(100%/7);
-}
-
-.week-hour-wrapper {
-    height: calc(150%/24);
-    width: 100%;
-    border: 1px solid #d9d9d9;
-}
-
-.day-table{
-  width: 100%;
-  height: 100%;
-  overflow-y: scroll;
-}
-
-.day-table tr{
-  width: 100%;
-  /*height: 40px;*/
-  /*background-color: blue;*/
-  border: solid black 1px;
-}
-
-.day-table td{
-  width: calc(100/10);
+.unavailable-reservation:hover{
+    cursor: not-allowed;
+    border-color: red;
 }
