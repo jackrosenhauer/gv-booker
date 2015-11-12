@@ -2,7 +2,7 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 10%;
-    background-color: #de7329;
+    background-color:#88b3da;
 }
 
 .floatleft {
@@ -10,7 +10,7 @@ body {
 }
 
 #nav {
-    background-color: #ffe6b4;
+    background-color: #0065A4;
     display: flex;
     justify-content: flex-end;
     height: 60px;
@@ -38,7 +38,7 @@ input[type="button"]{
     float: left;
     width: 20%;
     height: auto;
-    background-color: #ffe6b4;
+    background-color: #0065A4;
     margin-right: 10px;
 }
 #calendar-window {
@@ -48,7 +48,7 @@ input[type="button"]{
 }
 
 #calendar-body{
-  background-color: pink;
+  background-color: ghostwhite;
     overflow-y: scroll;
     height: 700px;
 }
@@ -172,7 +172,8 @@ input[type="button"]{
 
 #calendar-bar {
     height: 50px;
-    background-color: mediumpurple;
+    background-color: #004875;
+    
 }
 
 h3 {
