@@ -195,7 +195,7 @@
 
         var id = target.id;
         var classes = target.className;
-        //console.log(classes);
+        //console.log(id || classes);
         switch (id || classes) {
             case "viewDay-button":
                 self.buildDayView();
@@ -332,7 +332,10 @@
                 }
 
                 break;
-
+            case "calendar-day-container":
+                var day = target.innerText;
+                console.log("day: " + day);
+                break;
             default:
                 //do nothing
                 break;
@@ -651,36 +654,38 @@
         var endDay = 0;
         var currentDate = new Date();
         switch (currentDate.getMonth() + 1) {
-        case 9:
-        case 11:
-        case 4:
-        case 6:
-            endDay = 30;
-            break
-        case 2:
-            endDay = 29;
-            break;
-        default:
-            endDay = 31;
-            break;
+            case 9:
+            case 11:
+            case 4:
+            case 6:
+                endDay = 30;
+                break
+            case 2:
+                endDay = 29;
+                break;
+            default:
+                endDay = 31;
+                break;
         }
         var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1, defaultStartTime.hours, defaultStartTime.minutes);
         var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, endDay, defaultEndTime.hours, defaultEndTime.minutes);
         var weeks = [];
         var weekTracker = 0;
-        var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-        firstDay = firstDay.getDay();
+
+        var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+        //firstDay = firstDay.getDay();
         // what is first day of the month and what is that day. That will be starting index.
         weeks[0] = [];
+
         for(var j = 0; j < firstDay; j++){
             weeks[0].push(null);
         }
         
         /**  **/
-        for (var i = startDate.getDate()-1; i < endDate.getDate()+1; i++) {
+        for (var i = startDate.getDate() - 1; i < endDate.getDate() + 1; i++) {
             var tmpDay = {
                 day: i+1,
-                data: "AVAILABLE"
+                data: "Status:"
             };
             if(tmpDay.day%8 === 0 && tmpDay.day > 0){
                 weekTracker++;
@@ -696,7 +701,6 @@
         var source = document.getElementById("month-template").text;
         var template = Handlebars.compile(source);
         calBody.innerHTML = template(context);
-	    calBody.innerHTML = html;
     };
 
     Controller.prototype.buildDayView = function () {

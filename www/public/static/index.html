@@ -128,16 +128,18 @@
 
 <script id="month-template" type="text/x-handlebars-template">
     {{#each weeks}}
+
     <div class="week_row">
         {{#each this}}
         <div class="calendar-day-container">
-            <div class="calendar-day-wrapper">
-                <div class="calendar-day-number">{{day}}</div>
-                <div class="calendar-day-data">{{data}}</div>
+            <div style="height: 100%; width: 100%; border: 1px solid: #d9d9d9;">
+                <div style="height: 15%; width: 15%;">{{day}}</div>
+                <div>{{data}}</div>
             </div>
         </div>
         {{/each}}
     </div>
+
     {{/each}}
 </script>
 
