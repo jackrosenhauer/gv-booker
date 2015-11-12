@@ -284,6 +284,9 @@
                         target.parentNode.replaceChild(div, target);
                     }
                 }else{
+
+                    qs("#login-message").innerText = "You're not logged in!";
+                    qs("#login-message").style.color = "red";
                     console.log("not logged in");
                 }
 
@@ -649,7 +652,6 @@
     };
 
     Controller.prototype.buildMonthView = function () {
-        
         var self = this;
         var endDay = 0;
         var currentDate = new Date();
@@ -667,12 +669,12 @@
                 endDay = 31;
                 break;
         }
-        var startDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1, defaultStartTime.hours, defaultStartTime.minutes);
-        var endDate = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, endDay, defaultEndTime.hours, defaultEndTime.minutes);
+        var startDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() + 1, 1, self.defaultStartTime.hours, self.defaultStartTime.minutes);
+        var endDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() + 1, endDay, self.defaultEndTime.hours, self.defaultEndTime.minutes);
         var weeks = [];
         var weekTracker = 0;
 
-        var firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+        var firstDay = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth(), 1).getDay();
         //firstDay = firstDay.getDay();
         // what is first day of the month and what is that day. That will be starting index.
         weeks[0] = [];
@@ -680,8 +682,7 @@
         for(var j = 0; j < firstDay; j++){
             weeks[0].push(null);
         }
-        
-        /**  **/
+
         for (var i = startDate.getDate() - 1; i < endDate.getDate() + 1; i++) {
             var tmpDay = {
                 day: i+1,
