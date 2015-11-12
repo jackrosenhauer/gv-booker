@@ -11,7 +11,7 @@
 <body>
     <!--Main Nav-->
     <nav id="nav">
-        <div id="login-message">Rando message here123</div>
+        <div id="login-message">GV-Booker, keepin it real</div>
         <input id="login-username" type="text" style='padding: 20px; font-weight: bold; font-size: 16px;' placeholder="Username">
         <input id="login-password" type="password" style='padding: 20px; font-weight: bold; font-size: 16px;' placeholder="Password">
         <input id="login" type="button" style='' value="Log In">
@@ -19,21 +19,26 @@
     </nav>
 
     <aside id="filter" style="text-align: center;">
-        <h2 style="text-align: center;">Room Options</h2>
+        <h2>Room Options</h2>
         Choose your options below
 
-        <div id="roomoptions" style="display: block; text-align: left; margin-top: 20px;">
-            <input type="number" id="seating-selection">
+        <div id="roomoptions" style="text-align: left; display: block; background-color: white;height: 80%; padding: 15px;">
+            <br>
+            <input type="number" id="seating-selection" style="height: 20px; width: 60px;" placeholder="#">
             <label for="seating-selection">minimum # of seats</label>
+
             <br><br>
             <input type="checkbox" id="whiteboard-selection">
             <label for="whiteboard-selection">Whiteboard</label>
+
             <br><br>
             <input type="checkbox" id="phone-selection">
             <label for="phone-selection">Phone</label>
+
             <br><br>
             <input type="checkbox" id="tv-selection">
             <label for="tv-selection">TV</label>
+
             <br><br>
             <input type="checkbox" id="webcam-selection">
             <label for="webcam-selection">Webcam</label>
@@ -77,7 +82,7 @@
 <script src="js/app.js"></script>
 
 <script id="login-template" type="text/x-handlebars-template">
-    <div id="login-message">LOGIN MO FUCKIN TEMPLATE</div>
+    <div id="login-message">GV-Booker, keepin it real</div>
     <input id="login-username" type="text" placeholder="Username">
     <input id="login-password" type="password" placeholder="Password">
     <input id="login" type="button" value="Log In">
