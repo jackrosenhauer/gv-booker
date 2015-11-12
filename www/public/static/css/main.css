@@ -42,7 +42,7 @@ input[type="button"]{
     margin-right: 10px;
 }
 #calendar-window {
-    width: calc(100% - 20% - 10px);
+    width: calc(100% - 20% - 30px);
     /*height: 400px;*/
     background-color: white;
 }

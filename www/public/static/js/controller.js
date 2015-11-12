@@ -717,6 +717,8 @@
         }
 
         calBody.innerHTML = html;
+        //this is a hack!
+        document.getElementById("calendar-window").appendChild(calBody);
 
     };
     Controller.prototype.buildDayView2 = function () {
