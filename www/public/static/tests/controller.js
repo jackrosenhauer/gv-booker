@@ -207,6 +207,7 @@ suite("Controller", function() {
   });
 
   suite("#adminRemoveUser()", function(){
+
     test("returns false when user is undefined", function(){
       assert.equal(false, window.app.controller.adminRemoveUser());
     });
@@ -216,7 +217,7 @@ suite("Controller", function() {
     });
 
     test("returns false when user does not exist", function(){
-      assert.equal(false, window.app.controller.adminRemoveUser("testuser"));
+      assert.equal(false, window.app.controller.adminRemoveUser("doesnotexist"));
     });
 
     test("returns true when user does exist", function(){

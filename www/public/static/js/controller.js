@@ -543,7 +543,7 @@ var controller = (function (window) {
         //roomInfo is undefined
         // if (!!roomInfo){ console.log("roomInfo is undefiend"); return false }
 
-        if (self.isAdmin(self.currentUser)) {
+        if (self.isAdmin(self.currentUser) !== null) {
             if (!roomInfo["building"] || (roomInfo["building"] === undefined) || (roomInfo["building"].length === 0)) {
                 //invalid building
                 //console.log("invalid building");
@@ -645,10 +645,9 @@ var controller = (function (window) {
      */
     Controller.prototype.adminRemoveUser = function (username) {
         var self = this;
-        if (self.isAdmin(self.currentuser)) {
+        if (self.isAdmin(self.currentUser) !== null) {
             //do stuff
             return self.model.deleteUser(username);
-
         }
         //user is not admin
         return false;
