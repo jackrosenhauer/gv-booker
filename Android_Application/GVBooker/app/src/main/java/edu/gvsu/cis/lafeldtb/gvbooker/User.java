@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class User implements Parcelable {
     private String username;
     private String password;
-
+    private String[] dummyReservations;
     private ArrayList<Reservation> reservations;
 
     public User (String username, String password)
@@ -56,6 +56,7 @@ public class User implements Parcelable {
         out.writeInt(mData);
         out.writeString(username);
         out.writeString(password);
+        out.writeStringArray(dummyReservations);
         //TODO: figure out how to write reservations
     }
 
@@ -76,6 +77,7 @@ public class User implements Parcelable {
         mData = in.readInt();
         username = in.readString();
         password = in.readString();
+    //    dummyReservations = in.readStringArray();
     }
 
 

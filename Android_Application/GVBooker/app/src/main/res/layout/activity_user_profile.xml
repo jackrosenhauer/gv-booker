@@ -4,7 +4,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="edu.gvsu.cis.lafeldtb.gvbooker.UserProfile">
+    tools:context="edu.gvsu.cis.lafeldtb.gvbooker.UserProfile"
+    android:background="#88b3da">
 
     <TextView
         android:layout_width="fill_parent"
@@ -14,25 +15,23 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textSize="35dp"
-        android:gravity="center_vertical|center_horizontal" />
-
-    <Button
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Create Reservation"
-        android:id="@+id/create_reservation_button"
-        android:layout_alignParentBottom="false"
-        android:layout_alignParentTop="false"
-        android:layout_alignParentLeft="false"
-        android:layout_alignParentRight="false"
-        android:layout_centerInParent="true" />
+        android:gravity="center_vertical|center_horizontal"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Reserved Rooms"
         android:id="@+id/reserved_rooms_button"
-        android:layout_below="@+id/create_reservation_button"
-        android:layout_alignRight="@+id/create_reservation_button"
-        android:layout_alignEnd="@+id/create_reservation_button" />
+        android:layout_centerInParent="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logoutButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="51dp" />
 </RelativeLayout>

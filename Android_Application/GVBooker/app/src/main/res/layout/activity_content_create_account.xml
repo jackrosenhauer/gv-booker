@@ -48,5 +48,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout>

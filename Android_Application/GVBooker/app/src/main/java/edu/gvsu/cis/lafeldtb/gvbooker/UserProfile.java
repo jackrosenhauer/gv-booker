@@ -16,16 +16,19 @@ public class UserProfile extends ActionBarActivity implements View.OnClickListen
     private TextView usernameLabel;
     private Button createReservationButton;
     private Button reservedRoomsButton;
+    private Button logoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
         usernameLabel = (TextView) findViewById(R.id.username_label);
-        createReservationButton = (Button) findViewById(R.id.create_reservation_button);
-        createReservationButton.setOnClickListener(this);
+       // createReservationButton = (Button) findViewById(R.id.create_reservation_button);
+        //createReservationButton.setOnClickListener(this);
         reservedRoomsButton = (Button) findViewById(R.id.reserved_rooms_button);
         reservedRoomsButton.setOnClickListener(this);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(this);
 
         Intent j = getIntent();
         person = j.getParcelableExtra("user");
@@ -61,6 +64,13 @@ public class UserProfile extends ActionBarActivity implements View.OnClickListen
         {
             Intent i = new Intent(getApplicationContext(), ReservedRooms.class);
             startActivity(i);
+        }
+        if(v == logoutButton)
+        {
+            Intent i = new Intent(getApplicationContext(), Login.class);
+            i.putExtra("newUser", person);
+            startActivity(i);
+            finish();
         }
     }
 

@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class ReservedRooms extends Activity implements View.OnClickListener {
+public class ReservedRooms extends Activity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -38,7 +38,7 @@ public class ReservedRooms extends Activity implements View.OnClickListener {
         mAdapter = new MyAdapter(new String[]{"Room 1", "Room 2", "MAK 121", "MAK 1213C", "LOH 165", "DEV 203A", "Reservation 1", "Reservation 2", "Hello", "Goodbye"});
         mRecyclerView.setAdapter(mAdapter);
 
-        mRecyclerView.setOnClickListener(this);
+
     }
 
     @Override
@@ -63,12 +63,5 @@ public class ReservedRooms extends Activity implements View.OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent i = new Intent(getApplicationContext(), ReservationAttributes.class);
-        TextView t = (TextView) v.findViewById(R.id.textView2);
-        String s = t.getText().toString();
-        i.putExtra("name", s);
-        startActivity(i);
-    }
+
 }
