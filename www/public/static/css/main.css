@@ -30,6 +30,7 @@ input[type="button"]{
     width: 100%;
     font-weight: bold;
     font-size: 20px;
+    color: white;
     padding: inherit;
     margin-right: 20px;
 }

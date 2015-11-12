@@ -210,6 +210,7 @@ var controller = (function (window) {
                 self.buildMonthView();
                 break;
             case "register-cancel":
+                qs("#login-message").innerText = "GV-Booker, keepin it real";
                 self.buildDayView();
                 break;
             case "register-clear":
@@ -760,7 +761,6 @@ var controller = (function (window) {
             "day": self.currentDate.toString().split(" ")[2],
             "year": self.currentDate.getFullYear()
         };
-
         calBar.innerHTML = template(context);
 
         //get reservations
