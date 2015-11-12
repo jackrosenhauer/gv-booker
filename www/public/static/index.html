@@ -61,6 +61,7 @@
             The calendar view. This is just a placeholder.
         </div>
     </article>
+
 </body>
 <!-- scripts go at the end for performance  -->
 
@@ -125,13 +126,16 @@
 
 <script id="month-template" type="text/x-handlebars-template">
     <div class="week_row">
+
         <div class="calendar-day-container">
             <div class="calendar-day-wrapper">
                 <div class="calendar-day-number">{{day}}</div>
                 <div class="calendar-day-data">{{data}}</div>
             </div>
         </div>
+        {{/each}}
     </div>
+    {{/each}}
 </script>
 
 <script id="week-template" type="text/x-handlebars-template">
@@ -150,122 +154,13 @@
     <input id="viewMonth-button" style="float: right;" type="button" value="month view">
     <input id="viewWeek-button" style="float: right;" type="button" value="week view">
     <input id="viewDay-button" style="float: right;" type="button" value="day view">
+
 </script>
 
 <script>
     var calBar = document.getElementById("calendar-bar");
     var calBarTitle = document.getElementById("bar-title");
     var calBody = document.getElementById("calendar-body");
-
-    var defaultStartTime = {
-        "hours": 8,
-        "minutes": 0
-    };
-    var defaultEndTime = {
-        "hours": 23,
-        "minutes": 0
-    };
-
-    function weekView(month, day, year) {
-        var html = '<table>';
-        html += '<tr>';
-        html += '<td>Sunday</td>';
-        html += '<td>Monday</td>';
-        html += '<td>Tuesday</td>';
-        html += '<td>Wednesday</td>';
-        html += '<td>Thursday</td>';
-        html += '<td>Friday</td>';
-        html += '<td>Saturday</td>';
-        html += '</tr>';
-
-        html += '</table>';
-        return html;
-    }
-
-
-    function dayView(month, day, year, defaultStartTime, defaultEndTime) {
-        //nav
-        var self = this;
-        var startDate = new Date(year, month, day, defaultStartTime.hours, defaultStartTime.minutes);
-        var endDate = new Date(year, month, day, defaultEndTime.hours, defaultEndTime.minutes);
-
-        var source = document.getElementById("bar-template").text;
-        var template = Handlebars.compile(source);
-        var context = {
-            "month": month,
-            "day": day,
-            "year": year
-        };
-
-        console.log(template(context));
-        calBar.innerHTML = template(context);
-
-        //cal body
-        source = document.getElementById("day-template").text;
-        template = Handlebars.compile(source);
-
-        context = {
-            start: defaultStartTime,
-            end: defaultEndTime
-        };
-
-
-        // var html = '<table class="day-table">';
-        // var times = getArrayOfTimes(startDate, endDate);
-        // for (var i = 0, len = times.length; i < len; i++){
-        //   console.log(times[i]);
-        //   //i % 5 is where the # of openings should go
-        //   html += '<tr><td>' + times[i] + '</td><td>' + i % 5 + '</td></tr>';
-        // }
-        //
-        // html += '</table>';
-        console.log(html);
-
-        var html = "<table style='height: 100%; width: 100%; background-color: red;'>";
-
-        var times = getArrayOfTimes(startDate, endDate);
-        for (var i = 0, len = times.length; i < len; i++) {
-            html += "<tr style='width: auto; height: auto;'>";
-            html += "<td style='float: left; width: 20%; text-align: center; background-color: lime;'>" + times[i] + "</td>";
-            html += "<td style='float: left;'>" + times[i] + "</td>";
-            html += "</tr>";
-        }
-
-        html += "</table>";
-
-        calBody.innerHTML = html;
-        return html;
-    }
-
-
-
-    function getMinutes(date) {
-        return date.getHours() * 60 + date.getMinutes();
-    }
-    // document.getElementsByTagName("body")[0].innerHTML = html;
-    function addMinutes(date, minutesToAdd) {
-        var totalMils = date.getTime() + minutesToAdd * 60 * 1000;
-        return new Date(totalMils);
-    }
-
-    function addHours(date, hoursToAdd) {
-        return new Date(date.getTime() + hoursToAdd * 60 * 60 * 1000);
-    }
-
-    function addDays(date, daysToAdd) {
-        return new Date(date.getTime() + hoursToAdd * 24 * 60 * 60 * 1000);
-    }
-
-    //starting and ending time in minutes
-    //480 to 510
-    function getArrayOfTimes(startDate, endDate) {
-        var times = [];
-        while (endDate >= startDate) {
-            times.push(startDate.toLocaleString().split(", ")[1]);
-            startDate = addMinutes(startDate, 30);
-        }
-        return times;
-    }
 
     app.controller.init();
 
@@ -347,63 +242,6 @@
 
     app.controller.getAvailableReservations(d2.valueOf(), d3.valueOf());
     app.controller.init();
-    //returns all reservations (5 total)
-    //app.model.getAllReservations();
-    //returns 2 reservations, they all start at time d
-    //app.model.getAllReservations(d.valueOf());
-
-
-    //    //
-//    var room = app.model.getRooms();
-//    console.log(room);
-//    for (var key in room){
-//        console.log(room[key]);
-//    }
-
-
-
-
-//    for (var key in app.model.storage.reservations.reservationList) {
-//        console.log("obj." + key + " = " + app.model.storage.rooms.roomList[key]);
-//        console.info(app.model.storage.reservations.reservationList[key]);
-//    }
-//
-//    //var testRoom = app.model.storage.rooms[0];
-//    //app.model.storage.rooms.map(function(obj){
-//    //  console.log(obj === testRoom);
-//    //  return false;
-//    //});
-//    //
-//    //console.log(app.model.storage.rooms.indexOf(testRoom));
-//    ////console.log(app.model.deleteRoom("MAK", "C-2-210"));
-//
-//    var tempRoom = {
-//        "key": "MAKC-2-210",
-//        "building": "MAK",
-//        "roomNumber": "C-2-210",
-//        "seating": 25
-//    };
-//
-//    //app.model.storage.rooms.map(function(room){
-//    //  //console.log(room.building === tempRoom.building && room.roomNumber === tempRoom.roomNumber);
-//    //
-//    //});
-//
-//    app.model.createRoom("MAK", "C-2-210", 25, false, false, false, false);
-//    console.log(app.model.deleteRoom("MAK", "C-2-210"));
-//    //room was already deleted (does not exist)
-//    console.log(app.model.deleteRoom("MAK", "C-2-210"));
-//
-//    var room = app.model.storage.rooms["MAKC-2-210"];
-//    app.model.deleteRoom(room.building, room.roomNumber);
-//
-//    console.log(room);
-
-    //what info do we need for a reservation
-    //room
-    //app.model.createReservation(tempRoom.key, app.controller.currentUser, app.controller.defaultStartTime, app.controller.defaultEndTime);
-
-    //console.log(app.model.createRoom("MAK", "C-2-206", 25, false, false, false, false));
 
 </script>
 
