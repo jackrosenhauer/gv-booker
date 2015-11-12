@@ -165,7 +165,6 @@
     Model.prototype.createReservation = function (building, roomNumber, username, startTime, endTime) {
         var self = this;
         var room = self.getRoom(building, roomNumber);
-
         if (!room){
             //move to controller
             console.log("tried to create a reservation for a room that does not exist");
@@ -185,7 +184,7 @@
             self.storage.reservations.ids.push(key);
             self.storage.reservations.reservationList[key] = reservation;
             self.save();
-            return true;
+            return reservation;
         }
 
 
@@ -197,17 +196,19 @@
     Model.prototype.deleteReservation = function(building, roomNumber, startTime){
         var self = this;
         var key = building + roomNumber + startTime;
+
         if (self.storage.reservations.reservationList[key]){
             delete self.storage.reservations.reservationList[key];
 
             for (var i = 0, len = self.storage.reservations.ids.length; i < len; i++){
                 if (self.storage.reservations.ids[i] === key){
                     self.storage.reservations.ids.splice(i, i + 1);
+                    self.save();
                     return true;
                 }
             }
-
         }
+
         console.log("reservation did not exist");
         return false;
     };
@@ -230,6 +231,13 @@
         }
 
         return rooms;
+    };
+
+    Model.prototype.getReservation = function(building, roomNumber, startTime){
+        var self = this;
+        var key = building + roomNumber + startTime;
+        return self.storage.reservations.reservationList[key];
+
     };
 
     Model.prototype.getNumberOfRooms = function(){

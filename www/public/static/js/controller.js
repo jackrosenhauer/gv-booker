@@ -12,6 +12,8 @@
         this.model = model;
         this.view = view;
 
+        this.currentView = "day";
+
         this.defaultStartTime = {
             "hours": 8,
             "minutes": 0
@@ -27,8 +29,6 @@
         currentDate.setSeconds(0);
         currentDate.setMilliseconds(0);
         this.currentDate = currentDate;
-
-
         this.currentUser = null;
 
         view.bind("nav", function (event) {
@@ -45,15 +45,6 @@
             event.stopPropagation();
             self.bodyHandler(event);
         });
-
-        var defaultStartTime = {
-            "hours": 8,
-            "minutes": 0
-        };
-        var defaultEndTime = {
-            "hours": 23,
-            "minutes": 0
-        };
 
         this.months = {
             0: {
@@ -122,6 +113,7 @@
         this.oneMinute = this.oneSecond * 60;
         this.oneHour = this.oneMinute * 60;
         this.oneDay = (this.defaultEndTime.hours * this.oneHour + this.defaultEndTime.minutes * this.oneMinute) - (this.defaultStartTime.hours * this.oneHour + this.defaultStartTime.minutes * this.oneMinute);
+        this.twentyFourHours = this.oneHour * 24;
     }
 
     Controller.prototype.navHandler = function (event) {
@@ -135,6 +127,7 @@
                 var login = qs("#login-username").value;
                 var password = qs("#login-password").value;
                 self.userLogin(login, password);
+
                 break;
             case "register":
                 //show registration
@@ -207,13 +200,13 @@
                 self.buildDayView();
                 break;
             case "viewWeek-button":
-                self.view.setHTML("body", self.buildWeekView());
+                self.buildWeekView();
                 break;
             case "viewMonth-button":
-                self.view.setHTML("body", self.buildMonthView());
+                self.buildMonthView();
                 break;
             case "register-cancel":
-                self.view.setHTML("body", self.buildDayView());
+                self.buildDayView();
                 break;
             case "register-clear":
                 qs("#register-username").value = "";
@@ -221,6 +214,14 @@
                 qs("#register-password2").value = "";
                 qs("#register-email").value = "";
                 console.log("registration form cleared");
+                break;
+            case "next-button":
+                self.currentDate = new Date(self.currentDate.valueOf() + self.twentyFourHours);
+                self.init();
+                break;
+            case "prev-button":
+                self.currentDate = new Date(self.currentDate.valueOf() - self.twentyFourHours);
+                self.init();
                 break;
             case "register-submit":
                 var username = qs("#register-username").value;
@@ -234,42 +235,103 @@
                 if (password1 === password2) {
                     if (validator.username(username) && validator.password(password1) && validator.email(email)) {
                         var newUser = self.model.createUser(username, password1, email, permissions);
+                        console.log(newUser);
                     }
                 } else {
                     alert("passwords do not match");
                 }
                 break;
             case "reservation available-reservation":
-                //alert("you've reserved this room!");
-                var divs = target.getElementsByTagName("div");
+                //if your not logged in, don't do anything
+                if (self.currentUser !== null){
+                    var divs = target.getElementsByTagName("div");
 
-                var building = divs[1].innerText.split(": ")[1];
-                var roomNumber = divs[2].innerText.split(": ")[1];
-                var time = target.parentNode.previousSibling.innerText;
-                time = time.split(":");
+                    var building = divs[1].innerText.split(": ")[1];
+                    var roomNumber = divs[2].innerText.split(": ")[1];
+                    var time = target.parentNode.previousSibling.innerText;
+                    time = time.split(":");
 
-                var date = new Date(self.currentDate.valueOf());
-                date.setHours(time[0]);
-                date.setMinutes(time[1]);
+                    var date = new Date(self.currentDate.valueOf());
+                    date.setHours(time[0]);
+                    date.setMinutes(time[1]);
+                    console.log(building + " " + roomNumber + " " + time.join(":") + ", " +  date.valueOf());
 
-                console.log(building + " " + roomNumber + " " + time.join(":") + ", " +  date.valueOf());
+                    var created = self.userCreateReservation(building, roomNumber, date.valueOf());
+                    //console.log(created);
+                    if (created){
+                        console.log(created);
+                        var source = document.getElementById("unavailable-reservation").text;
+                        var template = Handlebars.compile(source);
 
+                        var context = {
+                            user: created.user,
+                            start: new Date(created.startTime).toString().split(" ")[4],
+                            end: new Date(created.endTime).toString().split(" ")[4],
+                            building: created.room.building,
+                            roomNumber: created.room.roomNumber
+
+                        };
+                        //console.log(template(context));
+                        //target.innerHTML = template(context);
+
+                        var html = template(context);
+
+                        var div = document.createElement("div");
+                        div.innerHTML = html;
+                        div = div.firstElementChild;
+
+                        target.parentNode.replaceChild(div, target);
+                    }
+                }else{
+                    console.log("not logged in");
+                }
 
                 //create reservation
                 //update view
                 break;
 
             case "reservation unavailable-reservation":
-                console.log("unavail click");
-                //alert("you've reserved this room!");
-                var divs = target.getElementsByTagName("div");
+                //if your not logged in, don't do anything
+                if (self.currentUser !== null) {
+                    var divs = target.getElementsByTagName("div");
 
+                    var time = target.parentNode.previousSibling.innerText;
+                    time = time.split(":");
 
-                console.log(divs[0].innerText);
-                //console.log(divs[1].innerText.split(": ")[1]);
-                //console.log(divs[2].innerText.split(": ")[1]);
-                //console.log(target.getElementsByTagName("div"));
+                    var date = new Date(self.currentDate.valueOf());
+                    date.setHours(time[0]);
+                    date.setMinutes(time[1]);
+
+                    var user = divs[1].innerText.split(": ")[1];
+                    var building = divs[4].innerText.split(": ")[1];
+                    var roomNumber = divs[5].innerText.split(": ")[1];
+                    console.log(user + " " + building + " " + roomNumber + " " + date.valueOf());
+
+                    var success = self.userDeleteReservation(building, roomNumber, date.valueOf());
+
+                    if (success){
+                        var source = document.getElementById("available-reservation").text;
+                        var template = Handlebars.compile(source);
+                        var context = {
+                            building: building,
+                            roomNumber: roomNumber,
+                        };
+                        var html = template(context);
+                        var div = document.createElement("div");
+                        div.innerHTML = html;
+                        div = div.firstElementChild;
+
+                        target.parentNode.replaceChild(div, target);
+
+                        console.log(success);
+                        console.log("update view, reservation deleted");
+                    }
+                }else{
+                    console.log("not logged in");
+                }
+
                 break;
+
             default:
                 //do nothing
                 break;
@@ -314,12 +376,16 @@
             var user = self.model.getUser(username);
             if (typeof user !== "undefined") {
                 if (user.username === username && user.password === password) {
+
+                    //logged in as user
                     self.currentUser = user;
                     var source = qs("#loggedin-template").text;
                     var template = Handlebars.compile(source);
-                    var html = template({"username": user.username});
+                    var html = template();
                     qs("#nav").innerHTML = html;
-                    self.view.dayView(self.currentDate.getMonth(), self.currentDate.getDay(), self.currentDate.getFullYear(), self.defaultStartTime, self.defaultEndTime);
+
+                    //self.view.dayView(self.currentDate.getMonth(), self.currentDate.getDay(), self.currentDate.getFullYear(), self.defaultStartTime, self.defaultEndTime);
+                    qs("#login-message").innerText = "Logged in as: " + user.username;
                     return true;
                 }
             }
@@ -340,16 +406,34 @@
     };
 
     //Reservation functions
-    Controller.prototype.userCreateReservation = function (date, user, startTime, endTime) {
+    Controller.prototype.userCreateReservation = function (building, roomNumber, startTime) {
+        var self = this;
+        if (self.currentUser !== null){
+            var endTime = startTime + self.oneMinute * 30;
+            var success = self.model.createReservation(building, roomNumber, self.currentUser.username, startTime, endTime);
+            return success;
+        }else{
+            console.log("not logged in");
+        }
 
+        return false;
     };
 
-    Controller.prototype.userVoidReservation = function (date, user, startTime) {
+    Controller.prototype.userDeleteReservation = function (building, roomNumber, startTime) {
+        var self = this;
+        if (self.currentUser !== null){
+            var reservation = self.model.getReservation(building, roomNumber, startTime);
+            if (reservation.user !== self.currentUser.username){
+                console.log("you do not own that reservation");
+                return false;
+            }
 
-    };
-
-    Controller.prototype.userExtendReservation = function (date, user, startTime, newEndTime) {
-
+            var success = self.model.deleteReservation(building, roomNumber, startTime);
+            return success;
+        }else{
+            console.log("not logged in");
+        }
+        return false;
     };
 
     //lots of work for a day work of timeslots that are available for reservation
@@ -541,16 +625,27 @@
 
     Controller.prototype.init = function () {
         var self = this;
-        self.buildDayView();
-        //self.view.dayView(self.currentDate.getMonth(), self.currentDate.toString().split(" ")[2], self.currentDate.getFullYear(), self.defaultStartTime, self.defaultEndTime);
+
+        switch (self.currentView){
+            case "day":
+                self.buildDayView();
+                break;
+            case "week":
+                break;
+            case "month":
+                break;
+            default:
+                //do nothing
+                break;
+        }
     };
 
     Controller.prototype.buildWeekView = function () {
-        return "week view stuff in here";
+        calBody.innerHTML = "week view stuff in here";
     };
 
     Controller.prototype.buildMonthView = function () {
-        return "month view stuff in here";
+        calBody.innerHTML = "month view stuff in here";
     };
 
     Controller.prototype.buildDayView = function () {
@@ -570,9 +665,6 @@
 
         //a list of reservations
         var reservations = self.getAvailableReservations(self.currentDate.valueOf(), new Date((self.currentDate.valueOf() + self.oneDay)).valueOf());
-
-        console.log("Reservations: ");
-        console.log(reservations);
         var html = "dayView!";
 
         html = "";
