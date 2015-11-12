@@ -137,24 +137,24 @@ suite("Controller", function() {
 
     test("return false when only seating is null", function(){
       assert.equal(false, window.app.controller.adminCreateRoom({
-          "building": "mac",
-          "roomNumber": "A-118",
+          "building": "MAK",
+          "roomNumber": "C-2-206",
           "seating": null
       }));
     });
 
     test("return true for valid room", function(){
       assert.equal(true, window.app.controller.adminCreateRoom({
-          "building": "mac",
-          "roomNumber": "A-118",
+          "building": "MAK",
+          "roomNumber": "C-2-206",
           "seating": 25
       }));
     });
 
     test("return 'room already exists'; when room already exists", function(){
       assert.equal("room already exists", window.app.controller.adminCreateRoom({
-          "building": "mac",
-          "roomNumber": "A-118",
+          "building": "MAK",
+          "roomNumber": "C-2-206",
           "seating": 25
       }));
     });

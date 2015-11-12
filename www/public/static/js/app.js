@@ -27,21 +27,11 @@ var app = (function(window){
     return this;
   }
 
-  /**
-   * Bind window.location.hash changes to force our controller to check the view
-   */
-  function setView() {
-		gvbooker.controller.setView(document.location.hash);
-  }
+  //clears local storage everytime, for testing
+  localStorage.clear();
 
   var gvbooker = new Booker(name);
   window.app = gvbooker;
-  console.log("WTF");
-  console.log(window.app);
-  //window.app.controller.userRegistration("test", "test", "test@gmail.com");
-  //window.app.controller.create
-  //window.app.model.createRoom();
-  //window.app.view.dayView("10", "11", "2015");
 
   return gvbooker;
 })(window);
