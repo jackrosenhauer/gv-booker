@@ -1,95 +1,94 @@
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
 body {
-    margin-top: 1%;
-    margin-left: 2%;
-    margin-right: 2%;
-    height: 800px;
-    width: 96%;
-    font-family: "MetaNormal";
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 10%;
+    background-color:#88b3da;
 }
 
 .floatleft {
-    display: flex 0px;
     float: left;
 }
 
-nav {
+#nav {
     background-color: #0065A4;
     display: flex;
     justify-content: flex-end;
-    margin-bottom: 5;
-    /*width: 100%;
-  justify-content: flex-end;*/
+    height: 60px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+input{
+    margin-right: 10px;
+}
+input[type="button"]{
+    width: auto;
 }
 
-.padding {
-    padding: 1%;
+#login-message{
+    content: "LOGIN MESSAGE!!!";
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    color: white;
+    padding: inherit;
+    margin-right: 20px;
 }
 
-#filterlist {
+#filter {
     float: left;
-    width: 20%;
-    height: 100%;
-    background-color: whitesmoke;
-    
-}
-
-#roomoptions {
-    width: 100%;
-    height: 95%;
-}
-
-#options-text {
-    width: 100%;
-    height: 5%;
-    ;
-}
-
-#selections-container {
-    width: 100%;
-    height: 95%;
-}
-
-#selections-wrapper {
-    padding: 10%;
-}
-
-.option {
-    padding: 5%;
-}
-
-#seating-number-selection {
-    width: 100%;
-    height: calc(100%/8);
-}
-
-#number-box {
     width: 15%;
+    height: 400px;
+    background-color: #0065A4;
+    margin-right: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
 }
-
-#phone-selection {}
-
-#tv-selection {}
-
 #calendar-window {
-    /*position: right;*/
-    width: 80%;
-    height: 100%;
-    background-color: whitesmoke;
+    width: calc(100% - 19%);
+    /*height: 400px;*/
+    background-color: white;
 }
 
+#calendar-body{
+  background-color: ghostwhite;
+    overflow-y: scroll;
+    height: 700px;
+}
+h2{
+    margin: 0;
+    height: 10%;
+}
+
+#logout{
+    width: 20%;
+}
 #calendar-bar {
     width: 100%;
-    height: 7%;
-    background-color: whitesmoke;
-    border: 1px solid #d9d9d9;
-    border-left: 1px;
-    border-right: 0px;
-    border-top: 0px;
+    height: 30px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.calendar-day-container:hover{
+    -moz-box-shadow: 0px 0px 10px #0065A4;
+    -webkit-box-shadow:0px 0px 10px #0065A4;
+    box-shadow: 0px 0px 10px #0065A4;
+}
+#bar-title{
+    text-align: center;
+    float: left;
+    padding-left: 40px;
+    font-size: 40px;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+#viewMonth-button{
+    margin-right: 20px;
+}
+#calendar-bar div, #calendar-bar input{
+    margin-left: 2px;
 }
 
 #month-bar-name {
@@ -108,24 +107,11 @@ nav {
     width: 5%;
 }
 
-#next-button {
-    position: relative;
-    top: 30%;
-    width: 75%;
-}
+#next-button #prev-button #viewMonth-button #viewWeek-button #viewDay-button{
+      float: right;
+      width: auto;
+      height: auto;
 
-#prev-button {
-    position: relative;
-    top: 30%;
-    width: 75%;
-}
-
-#view-button {
-    position: relative;
-    text-align: center;
-    top: 30%;
-    width: 100%;
-    font-size: 75%;
 }
 
 #month-switch-prev {
@@ -162,16 +148,13 @@ nav {
 
 .calendar-day-container {
     height: 100%;
-    width: calc(100% / 7);
-    float: left;
-    /* border: 1px solid #d9d9d9;
-        border-top: 0px;
-        border-bottom: 0px; */
+    display: inline-block;
+    width: calc(100% / 8);
 }
 
 .calendar-day-wrapper {
     height: 100%;
-    width: 99%;
+    width: 100%;
     border: 1px solid #d9d9d9;
 }
 
@@ -197,97 +180,49 @@ nav {
         border-right: 0px; */
 }
 
-input {
-    height: 20px;
-    width: 70px;
-    margin-right: 5px;
+
+#calendar-bar {
+    height: 50px;
+    background-color: #004875;
+    
 }
 
 h3 {
     text-align: center;
     vertical-align: middle;
-    background: mintcream;
-    line-height: 40px;
-    height: 5%;
-    margin: 0;
+}
+.row{
+    border-bottom: solid 1px black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-left: 10px;
+}
+
+.reservation{
+    border: solid 2px;
+    width: 100px;
+    height: auto;
+    padding: 10px;
+    margin-right: 10px;
+}
+.available-reservation{
+    border-color: blue;
+}
+.unavailable-reservation{
+    border-color: red;
+}
+.available-reservation:hover{
+    cursor: pointer;
+    border-color: green;
+}
+.unavailable-reservation:hover{
+    cursor: not-allowed;
+    border-color: red;
 }
 
 
-/* Styles for week view */
 
-#week-view-container {
-    height: 93%;
-    width: 100%;
-}
 
-ol,
-li,
-ul {
-    list-style: none;
-}
-
-#week-header {
-    height: 5%;
-    width: 100%;
-    float: left;
-    text-align: center;
-    vertical-align: middle;
-}
-
-#week-spacer {
-    float: left;
-    width: 5%;
-    height: 100%;
-}
-
-#week-spacer- {
-    float: left;
-    width: 2%;
-    height: 100%;
-}
-
-.week-label {
-    float: left;
-    height: 100%;
-    width: calc(93%/7);
-    text-align: center;
-    vertical-align: middle;
-}
-
-#week-view-wrapper {
-    float: left;
-    height: 95%;
-    width: 100%;
-}
-
-#day-hour-sidebar {
-    float: left;
-    width: 5%;
-    height: 150%
-}
-
-.hour-label {
-
-    height: calc(150%/24);
-    width: 100%;
-    border: 1px solid #d9d9d9;
-    text-align: center;
-}
-
-#week-view {
-    float: left;
-    height: 150%;
-    width: 94%;
-}
-
-.week-day-container {
-    float: left;
-    height: 100%;
-    width: calc(100%/7);
-}
-
-.week-hour-wrapper {
-    height: calc(150%/24);
-    width: 100%;
-    border: 1px solid #d9d9d9;
-}

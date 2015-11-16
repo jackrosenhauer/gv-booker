@@ -10,10 +10,8 @@
  *
  */
 
-
-
 var app = (function(window){
-  'use strict';
+  "use strict";
 
   var name = "gv-booker";
 
@@ -23,24 +21,16 @@ var app = (function(window){
    * @constructor - creates the MVC Triad
      */
   function Booker(name){
-    this.view = new app.View();
-    this.model = new app.Model(name);
-    this.controller = new app.Controller(this.model, this.view);
+    this.model = new model(name);
+    this.view = new view();
+    this.controller = new controller(this.model, this.view);
+    return this;
   }
 
-  //initalize our instance
+  //clears local storage everytime, for testing
+  localStorage.clear();
+
   var gvbooker = new Booker(name);
-
-  /**
-   * Bind window.location.hash changes to force our controller to check the view
-   */
-  function setView() {
-		gvbooker.controller.setView(document.location.hash);
-  }
-
-  // $on(window, 'load', setView);
-	// $on(window, 'hashchange', setView);
-
-  window.gvbooker = gvbooker;
-  window.app = Booker;
+  gvbooker.controller.init();
+  return gvbooker;
 })(window);

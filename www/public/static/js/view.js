@@ -1,4 +1,4 @@
-(function(window){
+var view = (function(window){
   "use strict";
 
   /**
@@ -19,6 +19,16 @@
     this.$logout = qs("#logout");
     this.$defaultBodyHTML = document.getElementsByTagName("body")[0].innerHTML;
 
+    this.$nav = qs("#nav");
+    this.$filter = qs("#filter");
+    this.$title = qs("#bar-title");
+    this.bar = qs("#calendar-bar");
+    this.$body = qs("#calendar-body");
+
+    //console.log(this.$nav);
+    //console.log(this.$filter);
+    //console.log(this.$body);
+
     //registration
     this.$submitRegistration = qs("reg-submit");
 
@@ -29,7 +39,7 @@
       }
       return "";
     })();
-    
+
     this.$defaultCalWinHTML = (function(){
       var calWin = self.$calWin;
       if (calWin !== null){
@@ -37,7 +47,6 @@
       }
       return "";
     })();
-
 
   }
 
@@ -47,65 +56,42 @@
    * @param event - The event that the controller is binding
    * @param handler - The callback function from the controller
      */
+  View.prototype.setHTML = function(element, html){
+    var self = this;
+    switch (element){
+      case "nav":
+        self.$nav.innerHTML = html;
+      break;
+      case "filter":
+        self.$filter.innerHTML = html;
+      break;
+      case "body":
+        self.$body.innerHTML = html;
+      break;
+    }
+  };
+
   View.prototype.bind = function(event, handler){
     var self = this;
-    if (this.$login){
+    if (document.getElementById("nav") !== null){
       switch (event){
-          case "login":
-            $delegate(self.$home, "#login", "click", function(){
-              console.log("(view) bind => 'login')");
-              var username = self.$loginusername.value + "";
-              var password = self.$loginpassword.value + "";
+        case "nav":
+          this.$nav.addEventListener("click", handler);
+          break;
+        case "filter":
+          this.$filter.addEventListener("click", handler);
+          this.$filter.addEventListener("keyup", handler);
+          break;
+        case "calendar":
+          this.$calWin.addEventListener("click", handler);
+          break;
+        default:
+          console.log("unknown bind event: " + event);
+      }
+    }else{
+      console.log("no view, nothing to do");
+    }
 
-              console.log("username: " + username + ", password: " + password);
-              if (!validator.username(username)){
-                console.log("invalid username");
-              }else if (!validator.password(password)){
-                console.log("invalid password");
-              }else{
-                handler(username, password);
-              }
-            });
-            break;
-          case "logout":
-            $delegate(self.$home, "#logout", "click", function(){
-              console.log("Logout?");
-              handler();
-            });
-            break;
-          case "default":
-            $on(self.$home, "click", function(){
-              console.log("(view) bind => 'default'");
-              self.showDefaultView(self.$calWin);
-              handler();
-            });
-            break;
-          case "reg":
-            $delegate(self.$home, "#register", "click", function(){
-              self.showRegistrationView(self.$calWin);
-              console.log("(view) bind => 'register'");
-              handler();
-            });
-            break;
-          case "reg-submit":
-            $delegate(self.$calWin, "#reg-submit", "click", function(){
-              console.log("submit registration");
-              var username = qs("#reg-username").value + "";
-              var password = qs("#reg-password").value + "";
-              var email = qs("#reg-email").value + "";
-
-              handler(username, password, email);
-            });
-
-            $delegate(self.$calWin, "#reg-cancel", "click", function(){
-              self.$calWin.innerHTML = self.$defaultCalWinHTML;
-            });
-            break;
-          default:
-            console.log("(view) bind => '" + event + "'");
-            handler();
-          }
-        }
 
   };
 
@@ -116,68 +102,7 @@
      */
   View.prototype.render = function(viewCmd, args){
     var self = this;
-    console.log("viewCmd => " + viewCmd);
-
-    var body = document.getElementById("calendar-window");
-
-    switch (viewCmd){
-      case "login":
-        console.log("(view) render => login");
-        var template = document.getElementById("login-template").text;
-        template = Handlebars.compile(template);
-        body.innerHTML = template();
-        break;
-
-      case "nav":
-        console.log("(view) render => nav");
-        break;
-
-      case "filter":
-        console.log("(view) render => filter");
-        break;
-
-      case "month":
-        console.log("(view) render => month");
-        console.log(args);
-
-        var template = document.getElementById("month-cal").text;
-        template = Handlebars.compile(template);
-        var result = template();
-        console.log(result);
-        body.innerHTML = template();
-        break;
-
-      case "week":
-        console.log("(view) render => week");
-        break;
-
-      case "day":
-        console.log("(view) render => day");
-        break;
-      case "register":
-        self.showRegistration(body);
-        break;
-      case "registration-success":
-        self.$calWin.innerText = "Successfully registered, please login with your new credentials";
-        break;
-      case "registration-failed":
-        self.showRegistrationFailedView(qs("#registration-message"));
-        break;
-      case "login-failed":
-        self.$loginMessage.innerText = "Login failed, try again";
-        break;
-      case "login-success":
-        var currentUser = args["currentUser"];
-        var html = "";
-        html += "<div>Logged in as " + currentUser.username + "</div>";
-        html += "<input id='logout' type='button' value='logout'></input>";
-        self.$home.innerHTML = html;
-        break;
-      default:
-
-        //document.getElementsByTagName("body")[0].innerHTML = self.$defaultBodyHTML;
-        self.$home.innerHTML = self.$defaultNavHTML;
-    }
+    console.log("render: " + viewCmd);
 
   };
 
@@ -194,36 +119,18 @@
    * @param element - Element to change the innerHTML of
      */
   View.prototype.showRegistrationView = function(element){
+    var self = this;
     var html = "";
     html += "<div>";
-    html += "<div>Username: <input id='reg-username' type='text'></input></div>";
-    html += "<div>password: <input id='reg-password' type='text'></input></div>";
-    html += "<div>E-mail: <input id='reg-email' type='text'></input></div>";
+    html += "<div>Username: <input id='reg-username' type='text'></div>";
+    html += "<div>password: <input id='reg-password' type='text'></div>";
+    html += "<div>E-mail: <input id='reg-email' type='text'></div>";
     html += "<button id='reg-submit'>Okay</button><button id='reg-cancel'>Cancel</button><br>";
     html += "<label id='registration-message'></label>";
     html += "</div>";
-    element.innerHTML = html;
-  };
-
-  /**
-   * Shows the login view
-   * @param element - Element to change the innerHTML of
-     */
-  View.prototype.showLoginView = function(element){
-    var html = "loginView";
-    element.innerHTML = html;
-  };
-
-  /**
-   * Shows the default view (is set when the view is created)
-   * @param element - Element to change the innerHTML of
-     */
-  View.prototype.showDefaultView = function(element){
-    var html = "defaultView";
-
-    element.innerHTML = html;
+    self.$body.innerHTML = html;
   };
 
   window.app = window.app || {};
-  window.app.View = View;
+  return View;
 })(window);
