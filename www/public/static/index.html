@@ -127,8 +127,31 @@
 </script>
 
 <script id="month-template" type="text/x-handlebars-template">
+    <div class = "weekdays-header-wrapper">
+        <div class ="dayname">
+            <div class="daynames_item">Sunday</div>
+        </div> 
+        <div class ="dayname">
+            <div class="daynames_item">Monday</div>
+        </div>  
+        <div class ="dayname">
+            <div class="daynames_item">Tuesday</div>
+        </div>  
+        <div class ="dayname">
+            <div class="daynames_item">Wednesday</div>
+        </div>  
+        <div class ="dayname">
+            <div class="daynames_item">Thursday</div>
+        </div>  
+        <div class ="dayname">
+            <div class="daynames_item">Friday</div>
+        </div>  
+        <div class ="dayname">
+            <div class="daynames_item">Saturday</div>
+        </div>  
+    </div>
+    
     {{#each weeks}}
-
     <div class="week_row">
         {{#each this}}
         <div class="calendar-day-container">

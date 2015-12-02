@@ -130,25 +130,28 @@ h2{
 .weekdays-header-wrapper {
     height: 3%;
     width: 100%;
-    text-align: center;
 }
 
 .dayname {
-    height: 3%;
-    width: calc(100% / 7);
+    display: flex;
+    align-items: center;
+    justify-content: c
+    height: 100%;
     float: left;
+    width: calc(96% / 7);
 }
 
 .daynames_item {
-    height: 5%;
+    height: 100%;
     float: left;
     margin-right: 5%;
     margin-left: 5%;
+    font-weight: bold;
 }
 
 .calendar-day-container {
     height: 100%;
-    display: inline-block;
+    float: left;
     width: calc(96% / 7);
 }
 
@@ -173,7 +176,7 @@ h2{
 }
 
 .week_row {
-    height: 18%;
+    height: calc(96% / 5);
     width: 100%;
     /* border: 1px solid #d9d9d9;
         border-left: 0px;
