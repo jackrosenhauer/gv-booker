@@ -167,7 +167,30 @@
 </script>
 
 <script id="week-template" type="text/x-handlebars-template">
-    <div>insert a week template here</div>
+    <div id= "week-view-container">
+        <div id = "week-header">
+            <div class ="week-label">Sunday</div>
+            <div class="week-label">Monday</div>
+            <div class="week-label">Tuesday</div>
+            <div class="week-label">Wednesday</div>
+            <div class="week-label">Thursday</div>
+            <div class="week-label">Friday</div>
+            <div class="week-label">Saturday</div>
+        </div>
+        <div id="week-view-wrapper">
+            <div id="" style="overflow-y: scroll; height:100%;">
+                <div id="day-hour-sidebar">
+                    <div class ="hour-label">{{hour}} AM</div>
+                </div>
+                <div id="week-view">
+                    {{#each hours}}
+                    <div class="week-day-container">
+                        {{#each this}}
+                        <div class="week-hour-wrapper">{{data}}</div>
+                    </div>
+                </div>
+        </div>
+    </div>
 </script>
 
 <script id="day-template" type="text/x-handlebars-template">

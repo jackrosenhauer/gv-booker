@@ -690,15 +690,26 @@ var controller = (function (window) {
     };
 
     Controller.prototype.buildWeekView = function () {
-        calBody.innerHTML = "week view stuff in here";
+        var self = this;
+        
+        
+        
+        
+        
+        var context = {
+            hours: hour
+        };
+        
+        var source = document.getElementById("week-template").text;
+        var template = Handlebars.compile(source);
+        calBody.innerHTML = template(context);
     };
 
     Controller.prototype.buildMonthView = function () {
         var self = this;
         var endDay = 0;
         var currentDate = new Date();
-        // Some calculation is wrong here. endDay is always defaulting to 31
-        switch (currentDate.getMonth() + 1) {
+        switch (self.currentDate.getMonth() + 1) {
             case 9:
             case 11:
             case 4:
