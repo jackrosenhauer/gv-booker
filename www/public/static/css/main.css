@@ -149,7 +149,7 @@ h2{
 .calendar-day-container {
     height: 100%;
     display: inline-block;
-    width: calc(100% / 8);
+    width: calc(96% / 7);
 }
 
 .calendar-day-wrapper {

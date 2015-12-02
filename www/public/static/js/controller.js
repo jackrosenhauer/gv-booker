@@ -697,6 +697,7 @@ var controller = (function (window) {
         var self = this;
         var endDay = 0;
         var currentDate = new Date();
+        // Some calculation is wrong here. endDay is always defaulting to 31
         switch (currentDate.getMonth() + 1) {
             case 9:
             case 11:
@@ -712,7 +713,7 @@ var controller = (function (window) {
                 break;
         }
         var startDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() + 1, 1, self.defaultStartTime.hours, self.defaultStartTime.minutes);
-        var endDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() + 1, endDay, self.defaultEndTime.hours, self.defaultEndTime.minutes);
+        var endDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() +1, endDay, self.defaultEndTime.hours, self.defaultEndTime.minutes);
         var weeks = [];
         var weekTracker = 0;
 
@@ -720,21 +721,25 @@ var controller = (function (window) {
         //firstDay = firstDay.getDay();
         // what is first day of the month and what is that day. That will be starting index.
         weeks[0] = [];
-
+        var weekDayCounter = 0;
+        
         for(var j = 0; j < firstDay; j++){
             weeks[0].push(null);
+            weekDayCounter++;
         }
 
-        for (var i = startDate.getDate() - 1; i < endDate.getDate() + 1; i++) {
+        for (var i = startDate.getDate() - 1; i < endDate.getDate(); i++) {
             var tmpDay = {
                 day: i+1,
                 data: "Status:"
             };
-            if(tmpDay.day%8 === 0 && tmpDay.day > 0){
+            if(weekDayCounter === 7 && tmpDay.day > 0){
                 weekTracker++;
                 weeks.push([]);
+                weekDayCounter = 0;
             }
             weeks[weekTracker].push(tmpDay);
+            weekDayCounter++;
             
         }
         var context = {
