@@ -135,7 +135,7 @@ h2{
 .dayname {
     display: flex;
     align-items: center;
-    justify-content: c
+    justify-content: center;
     height: 100%;
     float: left;
     width: calc(96% / 7);
@@ -150,9 +150,10 @@ h2{
 }
 
 .calendar-day-container {
-    height: 100%;
+    height: 99%;
     float: left;
     width: calc(96% / 7);
+    border: 1px solid #d9d9d9;
 }
 
 .calendar-day-wrapper {
