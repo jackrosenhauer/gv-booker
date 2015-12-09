@@ -2,7 +2,7 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 10%;
-    background-color:#88b3da;
+    background-color: #88b3da;
 }
 
 .floatleft {
@@ -13,26 +13,30 @@ body {
     background-color: #0065A4;
     display: flex;
     justify-content: flex-end;
-    height: 60px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    padding: 20px;
+    height: 60%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 1%;
 }
-input{
-    margin-right: 10px;
+
+input {
+    margin-right: 1%;
 }
-input[type="button"]{
+
+input[type="button"] {
     width: auto;
 }
 
-#login-message{
+#login-message {
     content: "LOGIN MESSAGE!!!";
     width: 100%;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 150%;
     color: white;
     padding: inherit;
-    margin-right: 20px;
+    margin-right: 2%;
 }
 
 #filter {
@@ -40,61 +44,68 @@ input[type="button"]{
     width: 15%;
     height: 400px;
     background-color: #0065A4;
-    margin-right: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-
+    margin-right: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
+
 #calendar-window {
-    width: calc(100% - 19%);
-    /*height: 400px;*/
-    background-color: white;
+    width: 100% background-color: white;
 }
 
-#calendar-body{
-  background-color: ghostwhite;
+#calendar-body {
+    float: left;
+    width: 80%;
+    background-color: ghostwhite;
     overflow-y: scroll;
     height: 700px;
 }
-h2{
+
+h2 {
     margin: 0;
     height: 10%;
 }
 
-#logout{
+#logout {
     width: 20%;
 }
+
 #calendar-bar {
-    width: 100%;
-    height: 30px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-}
-.calendar-day-container:hover{
-    -moz-box-shadow: 0px 0px 10px #0065A4;
-    -webkit-box-shadow:0px 0px 10px #0065A4;
-    box-shadow: 0px 0px 10px #0065A4;
-}
-#bar-title{
-    text-align: center;
     float: left;
-    padding-left: 40px;
-    font-size: 40px;
-    font-weight: bold;
-    margin-right: 20px;
+    width: 80%;
+    height: 2%;
+    padding-top: 1.4%;
+    padding-bottom: 1.3%;
 }
 
-#viewMonth-button{
-    margin-right: 20px;
+.calendar-day-container:hover {
+    -moz-box-shadow: 0px 0px 10px #0065A4;
+    -webkit-box-shadow: 0px 0px 10px #0065A4;
+    box-shadow: 0px 0px 10px #0065A4;
 }
-#calendar-bar div, #calendar-bar input{
-    margin-left: 2px;
+
+#bar-title {
+    text-align: center;
+    float: left;
+    padding-left: 2%;
+    font-size: 225%;
+    font-weight: bold;
+    margin-right: 1%;
+}
+
+#viewMonth-button {
+    margin-right: 1.5%;
+}
+
+#calendar-bar div,
+#calendar-bar input {
+    margin-left: .05%;
 }
 
 #month-bar-name {
     position: relative;
     float: left;
-    font-size: 30px;
+    font-size: ;
     height: 100%;
     width: 15%;
     top: 15%;
@@ -107,11 +118,10 @@ h2{
     width: 5%;
 }
 
-#next-button #prev-button #viewMonth-button #viewWeek-button #viewDay-button{
-      float: right;
-      width: auto;
-      height: auto;
-
+#next-button #prev-button #viewMonth-button #viewWeek-button #viewDay-button {
+    float: right;
+    width: auto;
+    height: auto;
 }
 
 #month-switch-prev {
@@ -184,49 +194,48 @@ h2{
         border-right: 0px; */
 }
 
-
 #calendar-bar {
-    height: 50px;
+    height: 10%;
     background-color: #004875;
-    
 }
 
 h3 {
     text-align: center;
     vertical-align: middle;
 }
-.row{
+
+.row {
     border-bottom: solid 1px black;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    margin-left: 10px;
+    padding-bottom: 1%;
+    padding-top: 1%;
+    margin-left: 1%;
 }
 
-.reservation{
-    border: solid 2px;
-    width: 100px;
+.reservation {
+    border: solid 1px black;
+    width: 10%;
     height: auto;
-    padding: 10px;
-    margin-right: 10px;
+    padding: 1%;
+    margin-right: 1%;
 }
-.available-reservation{
+
+.available-reservation {
     border-color: blue;
 }
-.unavailable-reservation{
+
+.unavailable-reservation {
     border-color: red;
 }
-.available-reservation:hover{
+
+.available-reservation:hover {
     cursor: pointer;
     border-color: green;
 }
-.unavailable-reservation:hover{
+
+.unavailable-reservation:hover {
     cursor: not-allowed;
     border-color: red;
 }
-
-
-
-
