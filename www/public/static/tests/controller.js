@@ -225,11 +225,4 @@ suite("Controller", function() {
       assert.equal(true, window.app.controller.adminRemoveUser("testuser"));
     });
   });
-
-  suite("#test()", function(){
-    test("returns 'do you see this'", function(){
-      assert.equal("do you see this", window.app.controller.test());
-    });
-  });
-
 });
