@@ -114,6 +114,7 @@ var controller = (function (window) {
         this.oneHour = this.oneMinute * 60;
         this.oneDay = (this.defaultEndTime.hours * this.oneHour + this.defaultEndTime.minutes * this.oneMinute) - (this.defaultStartTime.hours * this.oneHour + this.defaultStartTime.minutes * this.oneMinute);
         this.twentyFourHours = this.oneHour * 24;
+        this.filterState;
     }
 
     Controller.prototype.navHandler = function (event) {
@@ -127,8 +128,8 @@ var controller = (function (window) {
                 var login = qs("#login-username").value;
                 var password = qs("#login-password").value;
                 self.userLogin(login, password);
-
                 break;
+
             case "register":
                 //show registration
                 var source = document.getElementById("register-template").text;
@@ -140,6 +141,7 @@ var controller = (function (window) {
                 qs("#login-message").style.color = "white";
                 qs("#calendar-body").innerHTML = html;
                 break;
+
             case "nav":
                 //go home?
                 break;
@@ -159,33 +161,9 @@ var controller = (function (window) {
     };
 
     Controller.prototype.filterHandler = function (event) {
+        var self = this;
         console.log("filter update");
-        var type = event.type, target = event.target, id = target.id, classes = target.className;
-        if (type === "keyup") {
-            switch (id) {
-                case "seating-number-selection":
-                    break;
-                default:
-                //console.log("uncaught filter handler.. type:" + type + ", id: " + id);
-            }
-        } else if (type === "click") {
-            switch (id) {
-                case "whiteboard-selection":
-                    break;
-                case "phone-selection":
-                    break;
-                case "tv-selection":
-                    break;
-                case "webcam-selection":
-                    break;
-                default:
-                //console.log("uncaught filter handler.. type:" + type + ", id: " + id);
-            }
-        } else {
-            //do nothing
-
-            console.log("uncaught filter handler.. type:" + type + ", id: " + id);
-        }
+        self.rerenderCurrentView();
     };
 
     Controller.prototype.bodyHandler = function (event) {
@@ -194,7 +172,7 @@ var controller = (function (window) {
         var target = event.target;
         while (target.id === "" && target.className === ""){
             target = target.parentNode;
-        }
+        };
 
         var id = target.id;
         var classes = target.className;
@@ -425,13 +403,13 @@ var controller = (function (window) {
         return false;
     };
 
-
     Controller.prototype.getText = function(selector){
         if (qs(selector) !== null){
             return qs(selector).text;
         }
         return "";
     };
+
     Controller.prototype.setHTML = function(selector, html){
         if (qs(selector) !== null){
             qs(selector).innerHTML = html;
@@ -486,7 +464,43 @@ var controller = (function (window) {
         return false;
     };
 
-    //lots of work for a day work of timeslots that are available for reservation
+    Controller.prototype.applyFilter = function(rooms){
+      var self = this;
+      console.log(self.view);
+      var filterState = self.getFilterState();
+      var filteredRooms = rooms.filter(function(room, index, array){
+        console.log(room);
+        console.log(filterState);
+        if (filterState.building !== "" && room.building !== filterState.building){
+          return false;
+        }
+
+        if (filterState.seating && room.seating < filterState.seating){
+          return false;
+        }
+
+        if (filterState.whiteboard && !room.whiteboard){
+          return false;
+        }
+
+        if (filterState.polycom && !room.polycom){
+          return false;
+        }
+
+        if (filterState.tv && !room.tv){
+          return false;
+        }
+
+        if (filterState.webcam && !room.webcam){
+          return false;
+        }
+
+        return true;
+      });
+
+      return filteredRooms;
+    };
+
     //8am to 11pm
     Controller.prototype.getAvailableReservations = function (startTime, endTime) {
         //console.log("start: " + startTime + ", endTime: " + endTime);
@@ -495,17 +509,14 @@ var controller = (function (window) {
         var interval = self.oneMinute * 30;
         var timeslots = {};
 
-
-        var rooms = self.model.getRooms();
+        var rooms = self.applyFilter(self.model.getRooms());
 
         for (var i = startTime; i <= endTime; i += interval) {
             timeslots[i] = self.model.getAllReservationsAtTime(i);
             //console.log(timeslots[i]);
-
             for (var j = 0, roomLength = rooms.length; j < roomLength; j++) {
                 //console.log(rooms[j]);
                 var wtf = timeslots[i];
-
                 var found = false;
                 for (var w in wtf) {
                     if (rooms[j].key + i === wtf[w].key) {
@@ -514,15 +525,11 @@ var controller = (function (window) {
                     }
                     //console.log(rooms[j].key + i);
                     //console.log(wtf[w].key);
-
-                }
-                ;
-
+                };
                 if (!found) {
                     timeslots[i].push(rooms[j]);
                     //console.log("avail");
-                }
-
+                };
             }
         }
 
@@ -616,7 +623,6 @@ var controller = (function (window) {
         if (self.isAdmin(self.currentuser)) {
             //admin stuff
         }
-
         //user is not admin
         return false;
     };
@@ -664,14 +670,6 @@ var controller = (function (window) {
         return true;
     };
 
-    /**
-     * Test function
-     * @returns {string}
-     */
-    Controller.prototype.test = function () {
-        return "do you see this";
-    };
-
     Controller.prototype.init = function () {
         var self = this;
 
@@ -689,27 +687,16 @@ var controller = (function (window) {
         }
     };
 
+    //TODO: implment
     Controller.prototype.buildWeekView = function () {
-        var self = this;
-        
-        
-        
-        
-        
-        var context = {
-            hours: hour
-        };
-        
-        var source = document.getElementById("week-template").text;
-        var template = Handlebars.compile(source);
-        calBody.innerHTML = template(context);
+        calBody.innerHTML = "week view stuff in here";
     };
 
     Controller.prototype.buildMonthView = function () {
         var self = this;
         var endDay = 0;
         var currentDate = new Date();
-        switch (self.currentDate.getMonth() + 1) {
+        switch (currentDate.getMonth() + 1) {
             case 9:
             case 11:
             case 4:
@@ -724,7 +711,7 @@ var controller = (function (window) {
                 break;
         }
         var startDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() + 1, 1, self.defaultStartTime.hours, self.defaultStartTime.minutes);
-        var endDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() +1, endDay, self.defaultEndTime.hours, self.defaultEndTime.minutes);
+        var endDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth() + 1, endDay, self.defaultEndTime.hours, self.defaultEndTime.minutes);
         var weeks = [];
         var weekTracker = 0;
 
@@ -732,31 +719,27 @@ var controller = (function (window) {
         //firstDay = firstDay.getDay();
         // what is first day of the month and what is that day. That will be starting index.
         weeks[0] = [];
-        var weekDayCounter = 0;
-        
+
         for(var j = 0; j < firstDay; j++){
             weeks[0].push(null);
-            weekDayCounter++;
         }
 
-        for (var i = startDate.getDate() - 1; i < endDate.getDate(); i++) {
+        for (var i = startDate.getDate() - 1; i < endDate.getDate() + 1; i++) {
             var tmpDay = {
                 day: i+1,
                 data: "Status:"
             };
-            if(weekDayCounter === 7 && tmpDay.day > 0){
+            if(tmpDay.day%8 === 0 && tmpDay.day > 0){
                 weekTracker++;
                 weeks.push([]);
-                weekDayCounter = 0;
             }
             weeks[weekTracker].push(tmpDay);
-            weekDayCounter++;
-            
+
         }
         var context = {
             weeks: weeks
         };
-    
+
         var source = document.getElementById("month-template").text;
         var template = Handlebars.compile(source);
         calBody.innerHTML = template(context);
@@ -780,7 +763,6 @@ var controller = (function (window) {
         calBar.innerHTML = template(context);
 
         //get reservations
-
         //a list of reservations
         var reservations = self.getAvailableReservations(self.currentDate.valueOf(), new Date((self.currentDate.valueOf() + self.oneDay)).valueOf());
         var html = "dayView!";
@@ -808,7 +790,6 @@ var controller = (function (window) {
                         end: new Date(x.endTime).toString().split(" ")[4],
                         building: x.room.building,
                         roomNumber: x.room.roomNumber
-
                     };
 
                     html += template(context);
@@ -817,12 +798,17 @@ var controller = (function (window) {
                     //its a room thats available
                     var source = document.getElementById("available-reservation").text;
                     var template = Handlebars.compile(source);
-                    var context = {
-                        building: x.building,
-                        roomNumber: x.roomNumber
-                    };
 
-                    html += template(context);
+                    // var context = {
+                    //     "building": x.building,
+                    //     "roomNumber": x.roomNumber,
+                    //     "whiteboard": x.whiteboard,
+                    //     "polycom": x.polycom,
+                    //     "tv": x.tv,
+                    //     "webcam"
+                    // };
+
+                    html += template(x);
                 }
 
                 //html += "</div>";
@@ -893,6 +879,31 @@ var controller = (function (window) {
         return html;
     };
 
+
+    Controller.prototype.rerenderCurrentView = function(){
+      var self = this;
+      switch(this.currentView){
+        case "day":
+          self.buildDayView();
+          break;
+        case "month":
+          self.buildMonthView();
+          break;
+        default:
+          self.buildDayView();
+      }
+    };
+
+    Controller.prototype.getFilterState = function(){
+      return {
+        "building": document.getElementById("building-selection").value,
+        "seating": parseInt(document.getElementById("seating-selection").value),
+        "whiteboard": document.getElementById("whiteboard-selection").checked,
+        "polycom": document.getElementById("phone-selection").checked,
+        "tv": document.getElementById("tv-selection").checked,
+        "webcam": document.getElementById("webcam-selection").checked,
+      }
+    };
     window.app = window.app || {};
     //window.app.controller = Controller;
     return Controller;
