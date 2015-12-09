@@ -1,6 +1,5 @@
+"use strict";
 var view = (function(window){
-  "use strict";
-
   /**
    * Sets all of our 'global' variables
    * Creates the links between the view controller and the elements on the page with queryselectors (qs) so we can references them later in our functions
@@ -25,10 +24,6 @@ var view = (function(window){
     this.bar = qs("#calendar-bar");
     this.$body = qs("#calendar-body");
 
-    //console.log(this.$nav);
-    //console.log(this.$filter);
-    //console.log(this.$body);
-
     //registration
     this.$submitRegistration = qs("reg-submit");
 
@@ -47,7 +42,6 @@ var view = (function(window){
       }
       return "";
     })();
-
   }
 
   /**
@@ -79,7 +73,7 @@ var view = (function(window){
           this.$nav.addEventListener("click", handler);
           break;
         case "filter":
-          this.$filter.addEventListener("click", handler);
+          this.$filter.addEventListener("change", handler);
           this.$filter.addEventListener("keyup", handler);
           break;
         case "calendar":
@@ -91,8 +85,6 @@ var view = (function(window){
     }else{
       console.log("no view, nothing to do");
     }
-
-
   };
 
   /**
@@ -103,7 +95,6 @@ var view = (function(window){
   View.prototype.render = function(viewCmd, args){
     var self = this;
     console.log("render: " + viewCmd);
-
   };
 
   /**

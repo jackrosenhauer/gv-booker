@@ -24,8 +24,12 @@
 
         <div id="roomoptions" style="text-align: left; display: block; background-color: white;height: 80%; padding: 15px;">
             <br>
-            <input type="number" id="seating-selection" style="height: 20px; width: 60px;" placeholder="#">
-            <label for="seating-selection">minimum # of seats</label>
+            <input type="number" id="seating-selection" style="height: 20px; width: 40px;" placeholder="#">
+            <label for="seating-selection">Seating</label>
+
+            <br><br>
+            <input type="number" id="building-selection" style="height: 20px; width: 40px;" placeholder="#">
+            <label for="building-selection">Building</label>
 
             <br><br>
             <input type="checkbox" id="whiteboard-selection">
@@ -42,6 +46,8 @@
             <br><br>
             <input type="checkbox" id="webcam-selection">
             <label for="webcam-selection">Webcam</label>
+            <br><br><br>
+            <input id="reset-filter" type="button" style="margin: auto; width: 60%; padding: 1px;" value="Reset Filter">
         </div>
     </aside>
 
@@ -104,8 +110,12 @@
 <script id="available-reservation" type="text/x-handlebars-template">
     <div class="reservation available-reservation">
         <div>Available</div>
-        <div>BLDG: {{building}}</div>
-        <div>RM: {{roomNumber}}</div>
+        <div>Building: {{ building }}</div>
+        <div>Room: {{ roomNumber }}</div>
+        <div>Whiteboard: {{ whiteboard }}</div>
+        <div>TV: {{ tv }}</div>
+        <div>Phone: {{ polycom }}</div>
+        <div>Webcam: {{ webcam }}</div>
     </div>
 </script>
 
@@ -130,27 +140,27 @@
     <div class = "weekdays-header-wrapper">
         <div class ="dayname">
             <div class="daynames_item">Sunday</div>
-        </div> 
+        </div>
         <div class ="dayname">
             <div class="daynames_item">Monday</div>
-        </div>  
+        </div>
         <div class ="dayname">
             <div class="daynames_item">Tuesday</div>
-        </div>  
+        </div>
         <div class ="dayname">
             <div class="daynames_item">Wednesday</div>
-        </div>  
+        </div>
         <div class ="dayname">
             <div class="daynames_item">Thursday</div>
-        </div>  
+        </div>
         <div class ="dayname">
             <div class="daynames_item">Friday</div>
-        </div>  
+        </div>
         <div class ="dayname">
             <div class="daynames_item">Saturday</div>
-        </div>  
+        </div>
     </div>
-    
+
     {{#each weeks}}
     <div class="week_row">
         {{#each this}}
