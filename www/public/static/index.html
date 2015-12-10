@@ -12,12 +12,12 @@
     <!--Main Nav-->
     <nav id="nav">
         <div id="login-message">GV-Booker, keepin it real</div>
-        <input id="login-username" type="text" style='padding: 20px; font-weight: bold; font-size: 16px;' placeholder="Username">
-        <input id="login-password" type="password" style='padding: 20px; font-weight: bold; font-size: 16px;' placeholder="Password">
+        <input id="login-username" type="text" style='padding: 1%; font-weight: bold; font-size: 100%;' placeholder="Username">
+        <input id="login-password" type="password" style='padding: 1%; font-weight: bold; font-size: 100%;' placeholder="Password">
         <input id="login" type="button" style="width: 15%;" value="Log In">
         <input id="register" type="button" style="width: 15%;"  value="Register">
     </nav>
-
+    
     <aside id="filter" style="text-align: center;">
         <h2>Room Options</h2>
         Choose your options below
@@ -51,13 +51,13 @@
         </div>
     </aside>
 
-    <article id="calendar-window" class="floatleft">
-        <div id="calendar-bar" style="height: 40px;">
+    <article id="calendar-window" type="floatleft">
+        <div id="calendar-bar" type = "floatleft">
             <div id="bar-title">
                 Some stuff goes here
             </div>
-            <input id="prev-button" style="float: right;" type="button" value="<">
-            <input id="next-button" style="float: right;" type="button" value=">">
+            <input id="prev-button" style="float: right" type="button" value="<">
+            <input id="next-button" style="float: right" type="button" value=">">
             <input id="viewMonth-button" style="float: right;" type="button" value="month view" onclick="monthView()">
             <input id="viewWeek-button" style="float: right;" type="button" value="week view">
             <input id="viewDay-button" style="float: right;" type="button" value="day view" onclick='dayView("10","09","2015")';
@@ -68,7 +68,7 @@
         </div>
     </article>
     </div>
-
+    
 
     <footer>
     </footer>
@@ -99,7 +99,7 @@
     <div>
         <input id="register-username" type="text" placeholder="Username"><br>
         <input id="register-password1" type="text" placeholder="Password"><br>
-        <input id="register-password2" type="text" placeholder="Reenter Password"><br>
+        <input id="register-password2" type="text" placeholder="Re-enter Password"><br>
         <input id="register-email" type="text" placeholder="email"><br>
         <input id="register-submit" type="button" value="Register">
         <input id="register-clear" type="button" value="Clear Form">
@@ -109,19 +109,19 @@
 
 <script id="available-reservation" type="text/x-handlebars-template">
     <div class="reservation available-reservation">
-        <div>Available</div>
-        <div>Building: {{ building }}</div>
-        <div>Room: {{ roomNumber }}</div>
-        <div>Whiteboard: {{ whiteboard }}</div>
-        <div>TV: {{ tv }}</div>
-        <div>Phone: {{ polycom }}</div>
-        <div>Webcam: {{ webcam }}</div>
+            <div style="text-align: center; padding: 5%; font-weight: bold; background-color: palegreen; border: solid 1px black;">Available</div>
+            <div>Building: {{ building }}</div>
+            <div>Room: {{ roomNumber }}</div>
+            <div>Whiteboard: {{ whiteboard }}</div>
+            <div>TV: {{ tv }}</div>
+            <div>Phone: {{ polycom }}</div>
+            <div>Webcam: {{ webcam }}</div>  
     </div>
 </script>
 
 <script id="unavailable-reservation" type="text/x-handlebars-template">
     <div class="reservation unavailable-reservation">
-        <div>Unavailable</div>
+        <div style="text-align: center; padding: 5%; font-weight: bold; background-color: palevioletred; border: solid 1px black;">Unavailable</div>
         <div>User: {{user}}</div>
         <div>Starting: {{start}}</div>
         <div>Ending: {{end}}</div>
@@ -167,7 +167,7 @@
         <div class="calendar-day-container">
             <div style="height: 100%; width: 100%; border: 1px solid: #d9d9d9;">
                 <div style="height: 15%; width: 15%;">{{day}}</div>
-                <div>{{data}}</div>
+                <div style="background-color: palegreen;">{{data}}</div>
             </div>
         </div>
         {{/each}}
