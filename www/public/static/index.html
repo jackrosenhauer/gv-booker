@@ -17,7 +17,7 @@
         <input id="login" type="button" style="width: 15%;" value="Log In">
         <input id="register" type="button" style="width: 15%;"  value="Register">
     </nav>
-    
+
     <aside id="filter" style="text-align: center;">
         <h2>Room Options</h2>
         Choose your options below
@@ -68,7 +68,7 @@
         </div>
     </article>
     </div>
-    
+
 
     <footer>
     </footer>
@@ -110,12 +110,14 @@
 <script id="available-reservation" type="text/x-handlebars-template">
     <div class="reservation available-reservation">
             <div style="text-align: center; padding: 5%; font-weight: bold; background-color: palegreen; border: solid 1px black;">Available</div>
-            <div>Building: {{ building }}</div>
-            <div>Room: {{ roomNumber }}</div>
-            <div>Whiteboard: {{ whiteboard }}</div>
-            <div>TV: {{ tv }}</div>
-            <div>Phone: {{ polycom }}</div>
-            <div>Webcam: {{ webcam }}</div>  
+            <article>
+              <div>Building: {{ building }}</div>
+              <div>Room: {{ roomNumber }}</div>
+              <div>Whiteboard: {{ whiteboard }}</div>
+              <div>TV: {{ tv }}</div>
+              <div>Phone: {{ polycom }}</div>
+              <div>Webcam: {{ webcam }}</div>
+            </article>
     </div>
 </script>
 
