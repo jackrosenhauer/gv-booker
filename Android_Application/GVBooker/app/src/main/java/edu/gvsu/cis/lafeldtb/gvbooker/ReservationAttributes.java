@@ -11,6 +11,10 @@ import android.widget.TextView;
 public class ReservationAttributes extends ActionBarActivity {
 
     TextView roomName;
+    TextView date;
+    TextView startTime;
+    TextView endTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

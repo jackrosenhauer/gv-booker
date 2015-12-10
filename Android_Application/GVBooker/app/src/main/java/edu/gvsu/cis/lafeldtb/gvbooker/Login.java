@@ -52,12 +52,12 @@ public class Login extends ActionBarActivity implements View.OnClickListener {
 
 
 
-
-        //test user for debugging
-        //User test = new User("Test", "test");
+//
+//        test user for debugging
+        User test = new User("test", "test");
 
         //dumbUsers.add(test);
-        //dummyUsers.put(test.getUsername(), test);
+        dummyUsers.put(test.getUsername(), test);
 
     }
 
