@@ -136,6 +136,7 @@
     <input id="logout" type="button" value="Logout">
 </script>
 
+    
 <script id="month-template" type="text/x-handlebars-template">
     <div class = "weekdays-header-wrapper">
         <div class ="dayname">
@@ -166,7 +167,7 @@
         {{#each this}}
         <div class="calendar-day-container">
             <div style="height: 100%; width: 100%; border: 1px solid: #d9d9d9;">
-                <div style="height: 15%; width: 15%;">{{day}}</div>
+                <div id="ourDay" style="height: 15%; width: 15%;">{{day}}</div>
                 <div style="background-color: palegreen;">{{data}}</div>
             </div>
         </div>
@@ -203,14 +204,10 @@
     </div>
 </script>
 
-<script id="day-template" type="text/x-handlebars-template">
-    <div>insert a day template</div>
-</script>
-
 <script id="bar-template" type="text/x-handlebars-template">
     <div id="bar-title" style='text-align: center; float:left;'>{{month}} {{day}}, {{year}}</div>
     <input id="viewMonth-button" style="float: right; width: 125px; height: 45px;" type="button" value="month view">
-    <input id="viewWeek-button" style="float: right; width: 125px; height: 45px;" type="button" value="week view">
+    
     <input id="viewDay-button" style="float: right; width: 125px; height: 45px;" type="button" value="day view">
 
     <input id="next-button" style="float: right; width: 45px; height: 45px;" type="button" value=">">

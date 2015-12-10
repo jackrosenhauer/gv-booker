@@ -227,19 +227,19 @@ h3 {
 }
 
 .available-reservation {
-    border-color: blue;
+    border-color: black;
 }
 
 .unavailable-reservation {
-    border-color: red;
+    border-color: black;
 }
 
 .available-reservation:hover {
     cursor: pointer;
-    border-color: green;
+    border-color: palegreen;
 }
 
 .unavailable-reservation:hover {
     cursor: not-allowed;
-    border-color: red;
+    border-color: palevioletred;
 }

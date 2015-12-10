@@ -187,6 +187,10 @@ var controller = (function (window) {
             case "viewMonth-button":
                 self.buildMonthView();
                 break;
+            case "calendar-day-container":
+                self.buildDayView(); // Need to add ability to buildDayView from day clicked.
+                break;
+                
             case "register-cancel":
                 qs("#login-message").innerText = "GV-Booker, keepin it real";
                 self.buildDayView();
@@ -212,6 +216,7 @@ var controller = (function (window) {
                 var password1 = qs("#register-password1").value;
                 var password2 = qs("#register-password2").value;
                 var email = qs("#register-email").value;
+        
 
                 //default to no permissions
                 var permissions = 0;
@@ -725,10 +730,12 @@ var controller = (function (window) {
         }
 
         for (var i = startDate.getDate() - 1; i < endDate.getDate() + 1; i++) {
+            
             var tmpDay = {
                 day: i+1,
-                data: "Status:"
+                data: "Rooms: "
             };
+            
             if(tmpDay.day%8 === 0 && tmpDay.day > 0){
                 weekTracker++;
                 weeks.push([]);
