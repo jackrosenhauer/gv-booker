@@ -77,7 +77,10 @@ module.exports = function(config) {
   config.set({
     browsers: ['PhantomJS'],
     frameworks: ['mocha', "chai"],
-    preprocessors: { "www/public/static/js/controller.js": "coverage" },
+    preprocessors: {
+      "www/public/static/js/controller.js": "coverage",
+      "www/public/static/js/validator.js": "coverage"
+    },
     reporters: ["progress", "coverage"],
     // coverageReporter: { type: "html", dir: "coverage/" },
     coverageReporter: { type: "text", dir: "coverage/" },
