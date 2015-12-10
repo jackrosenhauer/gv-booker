@@ -109,7 +109,7 @@
 
 <script id="available-reservation" type="text/x-handlebars-template">
     <div class="reservation available-reservation">
-            <div style="text-align: center; padding: 5%; font-weight: bold;">Available</div>
+            <div style="text-align: center; padding: 5%; font-weight: bold; background-color: palegreen; border: solid 1px black;">Available</div>
             <div>Building: {{ building }}</div>
             <div>Room: {{ roomNumber }}</div>
             <div>Whiteboard: {{ whiteboard }}</div>
@@ -121,7 +121,7 @@
 
 <script id="unavailable-reservation" type="text/x-handlebars-template">
     <div class="reservation unavailable-reservation">
-        <div style="text-align: center; padding: 5%; font-weight: bold;">Unavailable</div>
+        <div style="text-align: center; padding: 5%; font-weight: bold; background-color: palevioletred; border: solid 1px black;">Unavailable</div>
         <div>User: {{user}}</div>
         <div>Starting: {{start}}</div>
         <div>Ending: {{end}}</div>
@@ -167,7 +167,7 @@
         <div class="calendar-day-container">
             <div style="height: 100%; width: 100%; border: 1px solid: #d9d9d9;">
                 <div style="height: 15%; width: 15%;">{{day}}</div>
-                <div>{{data}}</div>
+                <div style="background-color: palegreen;">{{data}}</div>
             </div>
         </div>
         {{/each}}

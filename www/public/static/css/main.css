@@ -228,12 +228,10 @@ h3 {
 
 .available-reservation {
     border-color: blue;
-    background-color: palegreen;
 }
 
 .unavailable-reservation {
     border-color: red;
-    background-color: palevioletred;
 }
 
 .available-reservation:hover {
