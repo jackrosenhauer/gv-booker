@@ -10,12 +10,12 @@ var Server = require("karma").Server;
 gulp.task('default', ["watch"]);
 
 gulp.task("watch", function(){
-  gulp.watch("www/public/static/js/*.js", ["tdd"]);
+  gulp.watch("src/js/*.js", ["tdd"]);
 });
 
 //builds production version
 gulp.task("build", function(){
-  return gulp.src("www/public/static/js/*.js")
+  return gulp.src("src/js/*.js")
     .pipe(concat("main.js"))
     .pipe(uglify())
     .pipe(gulp.dest("dist"));

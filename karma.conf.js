@@ -78,20 +78,20 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
     frameworks: ['mocha', "chai"],
     preprocessors: {
-      "www/public/static/js/controller.js": "coverage",
-      "www/public/static/js/validator.js": "coverage"
+      "src/js/controller.js": "coverage",
+      "src/js/validator.js": "coverage"
     },
     reporters: ["progress", "coverage"],
     // coverageReporter: { type: "html", dir: "coverage/" },
     coverageReporter: { type: "text", dir: "coverage/" },
     files: [
-      'www/public/static/js/model.js',
-      'www/public/static/js/controller.js',
-      'www/public/static/js/view.js',
-      'www/public/static/js/helpers.js',
-      'www/public/static/js/error.js',
-      'www/public/static/js/app.js',
-      'www/public/static/js/*.js',
+      'src/js/model.js',
+      'src/js/controller.js',
+      'src/js/view.js',
+      'src/js/helpers.js',
+      'src/js/error.js',
+      'src/js/app.js',
+      'src/js/*.js',
       'test/*.js'
     ],
     client: {
