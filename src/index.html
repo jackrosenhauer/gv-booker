@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>GV Booker</title>
+    <!-- build:css -->
     <link rel="stylesheet" type="text/css" href="bower_components/normalize-css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <!-- endbuild -->
 </head>
 
 <body>
@@ -79,6 +81,7 @@
 <script src="bower_components/handlebars/handlebars.js"></script>
 
 <!-- MVC files -->
+<!-- build:js -->
 <script src="js/validator.js"></script>
 <script src="js/helpers.js"></script>
 <script src="js/model.js"></script>
@@ -86,6 +89,7 @@
 <script src="js/controller.js"></script>
 <script src="js/store.js"></script>
 <script src="js/app.js"></script>
+<!-- endbuild -->
 
 <script id="login-template" type="text/x-handlebars-template">
     <div id="login-message" >GV-Booker, keepin it real</div>
@@ -138,7 +142,7 @@
     <input id="logout" type="button" value="Logout">
 </script>
 
-    
+
 <script id="month-template" type="text/x-handlebars-template">
     <div class = "weekdays-header-wrapper">
         <div class ="dayname">
@@ -209,7 +213,7 @@
 <script id="bar-template" type="text/x-handlebars-template">
     <div id="bar-title" style='text-align: center; float:left;'>{{month}} {{day}}, {{year}}</div>
     <input id="viewMonth-button" style="float: right; width: 125px; height: 45px;" type="button" value="month view">
-    
+
     <input id="viewDay-button" style="float: right; width: 125px; height: 45px;" type="button" value="day view">
 
     <input id="next-button" style="float: right; width: 45px; height: 45px;" type="button" value=">">
