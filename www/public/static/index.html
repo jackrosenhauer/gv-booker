@@ -109,19 +109,19 @@
 
 <script id="available-reservation" type="text/x-handlebars-template">
     <div class="reservation available-reservation">
-        <div>Available</div>
-        <div>Building: {{ building }}</div>
-        <div>Room: {{ roomNumber }}</div>
-        <div>Whiteboard: {{ whiteboard }}</div>
-        <div>TV: {{ tv }}</div>
-        <div>Phone: {{ polycom }}</div>
-        <div>Webcam: {{ webcam }}</div>
+            <div style="text-align: center; padding: 5%; font-weight: bold;">Available</div>
+            <div>Building: {{ building }}</div>
+            <div>Room: {{ roomNumber }}</div>
+            <div>Whiteboard: {{ whiteboard }}</div>
+            <div>TV: {{ tv }}</div>
+            <div>Phone: {{ polycom }}</div>
+            <div>Webcam: {{ webcam }}</div>  
     </div>
 </script>
 
 <script id="unavailable-reservation" type="text/x-handlebars-template">
     <div class="reservation unavailable-reservation">
-        <div>Unavailable</div>
+        <div style="text-align: center; padding: 5%; font-weight: bold;">Unavailable</div>
         <div>User: {{user}}</div>
         <div>Starting: {{start}}</div>
         <div>Ending: {{end}}</div>

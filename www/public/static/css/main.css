@@ -216,18 +216,24 @@ h3 {
 
 .reservation {
     border: solid 1px black;
-    width: 10%;
+    width: 15%;
     height: auto;
-    padding: 1%;
+    padding: 2%;
     margin-right: 1%;
+}
+
+#reservation-status{
+    text-align: center;
 }
 
 .available-reservation {
     border-color: blue;
+    background-color: palegreen;
 }
 
 .unavailable-reservation {
     border-color: red;
+    background-color: palevioletred;
 }
 
 .available-reservation:hover {
