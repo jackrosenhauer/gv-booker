@@ -29,9 +29,9 @@
             <input type="number" id="seating-selection" style="height: 20px; width: 40px;" placeholder="#">
             <label for="seating-selection">Seating</label>
 
-            <br><br>
-            <input type="number" id="building-selection" style="height: 20px; width: 40px;" placeholder="#">
-            <label for="building-selection">Building</label>
+            <!-- not implemented yet -->
+            <input type="number" id="building-selection" style="height: 20px; width: 40px; display: none;" placeholder="#">
+            <label for="building-selection" style="display: none;">Building</label>
 
             <br><br>
             <input type="checkbox" id="whiteboard-selection">
@@ -60,9 +60,9 @@
             </div>
             <input id="prev-button" style="float: right" type="button" value="<">
             <input id="next-button" style="float: right" type="button" value=">">
-            <input id="viewMonth-button" style="float: right;" type="button" value="month view" onclick="monthView()">
-            <input id="viewWeek-button" style="float: right;" type="button" value="week view">
-            <input id="viewDay-button" style="float: right;" type="button" value="day view" onclick='dayView("10","09","2015")';
+            <input id="viewMonth-button" style="float: right;" type="button" value="Month View" onclick="monthView()">
+            <input id="viewWeek-button" style="float: right;" type="button" value="Week View">
+            <input id="viewDay-button" style="float: right;" type="button" value="Day View" onclick='dayView("10","09","2015")';
 
         </div>
         <div id="calendar-body">
