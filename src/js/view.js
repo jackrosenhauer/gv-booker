@@ -20,7 +20,7 @@ var view = (function(window){
     this.$calBar = document.getElementById("calendar-bar");
     this.$calBarTitle = document.getElementById("bar-title");
     this.$calBody = document.getElementById("calendar-body");
-    
+
     this.$nav = qs("#nav");
     this.$filter = qs("#filter");
     this.$title = qs("#bar-title");
@@ -46,17 +46,20 @@ var view = (function(window){
       return "";
     })();
 
-    document.getElementById("reset-filter").addEventListener("click", function(event){
-      document.getElementById("seating-selection").value = "";
-      document.getElementById("building-selection").value = "";
-      document.getElementById("whiteboard-selection").checked = false;
-      document.getElementById("phone-selection").checked = false;
-      document.getElementById("tv-selection").checked = false;
-      document.getElementById("webcam-selection").checked = false;
+    var resetFilter = document.getElementById("reset-filter");
+    if (resetFilter){
+      resetFilter.addEventListener("click", function(event){
+        document.getElementById("seating-selection").value = "";
+        document.getElementById("building-selection").value = "";
+        document.getElementById("whiteboard-selection").checked = false;
+        document.getElementById("phone-selection").checked = false;
+        document.getElementById("tv-selection").checked = false;
+        document.getElementById("webcam-selection").checked = false;
 
-      var e = new Event("change");
-      document.getElementById("filter").dispatchEvent(e);
-    });
+        var e = new Event("change");
+        document.getElementById("filter").dispatchEvent(e);
+      })
+    }
   }
 
   /**

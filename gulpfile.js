@@ -21,7 +21,7 @@ gulp.task("build", ["package-js", "package-html", "package-css"]);
 gulp.task("tdd", function(done){
   console.log = function(){};
   new Server({
-    configFile: __dirname + "\\karma.conf.js",
+    configFile: __dirname + "/karma.conf.js",
     singleRun: false
   }, done).start();
 });
