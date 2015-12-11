@@ -34,7 +34,6 @@ gulp.task("clean", function(){
 gulp.task("package-js", function(){
   return gulp.src([
       "src/bower_components/handlebars/handlebars.js",
-      "src/js/error.js",
       "src/js/helpers.js",
       "src/js/validator.js",
       "src/js/view.js",
