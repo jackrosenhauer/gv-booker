@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var watch = require("gulp-watch");
 var min = require("gulp-minify");
+var minifyCss = require('gulp-minify-css');
 var uglify = require("gulp-uglify");
 var concat = require("gulp-concat");
 var clean = require("gulp-clean");
@@ -8,7 +9,7 @@ var htmlreplace = require("gulp-html-replace");
 var Server = require("karma").Server;
 
 // define tasks here
-gulp.task('default', ["watch"]);
+gulp.task("default", ["watch"]);
 
 gulp.task("watch", function(){
   gulp.watch("src/js/*.js", ["tdd"]);
@@ -58,7 +59,8 @@ gulp.task("package-deps", function(){
 });
 
 gulp.task("package-css", function(){
-  return gulp.src(["src/bower_components/normalize-css/normalize.css", "src/css/*.css"])
+  return gulp.src(["src/bower_components/normalize-css/normalize.css", "src/css/main.css"])
     .pipe(concat("main.css"))
+    .pipe(minifyCss())
     .pipe(gulp.dest("dist/css"))
 });
