@@ -1,5 +1,5 @@
-"use strict";
 var view = (function(window){
+  "use strict";
   /**
    * Sets all of our 'global' variables
    * Creates the links between the view controller and the elements on the page with queryselectors (qs) so we can references them later in our functions
@@ -88,16 +88,6 @@ var view = (function(window){
   };
 
   /**
-   * Updates the view
-   * @param viewCmd - The view to display
-   * @param args - An object containing arguments for the individual views
-     */
-  View.prototype.render = function(viewCmd, args){
-    var self = this;
-    console.log("render: " + viewCmd);
-  };
-
-  /**
    * Displays the failed registration message to the user
    * @param element - Element to change the innerHTML of
      */
@@ -109,7 +99,7 @@ var view = (function(window){
    * Shows the registration form to the user
    * @param element - Element to change the innerHTML of
      */
-  View.prototype.showRegistrationView = function(element){
+  View.prototype.showRegistrationView = function(){
     var self = this;
     var html = "";
     html += "<div>";
@@ -121,6 +111,17 @@ var view = (function(window){
     html += "</div>";
     self.$body.innerHTML = html;
   };
+
+  View.prototype.getFilterState = function(){
+    return {
+      "building": document.getElementById("building-selection").value,
+      "seating": parseInt(document.getElementById("seating-selection").value),
+      "whiteboard": document.getElementById("whiteboard-selection").checked,
+      "polycom": document.getElementById("phone-selection").checked,
+      "tv": document.getElementById("tv-selection").checked,
+      "webcam": document.getElementById("webcam-selection").checked,
+    }
+  }
 
   window.app = window.app || {};
   return View;

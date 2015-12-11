@@ -1,3 +1,4 @@
+/*global window */
 /**
  *  much of this js design (MVC) detail is taken from the vanillajs MVC todo
  *  https://github.com/tastejs/todomvc/tree/gh-pages/examples/vanillajs
@@ -12,7 +13,6 @@
 
 var app = (function(window){
   "use strict";
-
   var name = "gv-booker";
 
   /**

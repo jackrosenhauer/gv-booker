@@ -1,5 +1,5 @@
 var validator = (function(window){
-
+  "use strict";
   /**
    * Checks the validity of an email
    * Format: Username only contains numbers, letters, _ and .

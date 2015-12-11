@@ -1,6 +1,5 @@
 var controller = (function (window) {
     "use strict";
-
     /**
      * Main constructor
      * @param model - model for the controller (holds our data)
@@ -122,7 +121,7 @@ var controller = (function (window) {
         //target is the element that was clicked, we then switch it based on its id to fire various events
         var target = event.target, id = target.id, classes = target.className;
         event.stopPropagation();
-        switch (id) {
+        switch (id || classes) {
             case "login":
                 //user clicked "login button"
                 var login = qs("#login-username").value;
@@ -268,8 +267,6 @@ var controller = (function (window) {
                             building: created.room.building,
                             roomNumber: created.room.roomNumber
                         };
-                        //console.log(template(context));
-                        //target.innerHTML = template(context);
 
                         var html = template(context);
 
@@ -329,10 +326,6 @@ var controller = (function (window) {
                     qs("#login-message").style.color = "red";
                 }
 
-                break;
-            case "calendar-day-container":
-                var day = target.innerText;
-                console.log("day: " + day);
                 break;
             default:
                 //do nothing
@@ -470,8 +463,8 @@ var controller = (function (window) {
     Controller.prototype.applyFilter = function(rooms){
       var self = this;
       console.log(self.view);
-      var filterState = self.getFilterState();
-      var filteredRooms = rooms.filter(function(room, index, array){
+      var filterState = self.view.getFilterState();
+      var filteredRooms = rooms.filter(function(room, index){
         console.log(room);
         console.log(filterState);
         if (filterState.building !== "" && room.building !== filterState.building){
@@ -676,6 +669,7 @@ var controller = (function (window) {
     Controller.prototype.init = function () {
         var self = this;
 
+        //we can allow users to change their default views by using this method later
         switch (self.currentView){
             case "day":
                 self.buildDayView();
@@ -728,7 +722,6 @@ var controller = (function (window) {
         }
 
         for (var i = startDate.getDate() - 1; i < endDate.getDate() + 1; i++) {
-
             var tmpDay = {
                 day: i+1,
                 data: "Rooms: "
@@ -739,8 +732,8 @@ var controller = (function (window) {
                 weeks.push([]);
             }
             weeks[weekTracker].push(tmpDay);
-
         }
+
         var context = {
             weeks: weeks
         };
@@ -752,12 +745,15 @@ var controller = (function (window) {
 
     Controller.prototype.buildDayView = function () {
         var self = this;
-        var source;
-        if (qs("#bar-template")){
-            source = qs("#bar-template").text
+        var source = qs("#bar-template");
+        if (source !== null){
+          source = source.text;
         }else{
-            return;
+          return;
         }
+        
+        //not there or testing
+        if (source === null) { return; };
         var template = Handlebars.compile(source);
 
         var context = {
@@ -770,9 +766,7 @@ var controller = (function (window) {
         //get reservations
         //a list of reservations
         var reservations = self.getAvailableReservations(self.currentDate.valueOf(), new Date((self.currentDate.valueOf() + self.oneDay)).valueOf());
-        var html = "dayView!";
-
-        html = "";
+        var html = "";
 
         for (var time in reservations) {
             var date = new Date(parseInt(time));
@@ -784,7 +778,6 @@ var controller = (function (window) {
             for (var i = 0, len = reservations[time].length; i < len; i++) {
                 var x = reservations[time][i];
 
-                //html += "<div style='border: solid black 2px; margin: 5px;'>";
                 if (x.user) {
                     var source = document.getElementById("unavailable-reservation").text;
                     var template = Handlebars.compile(source);
@@ -798,30 +791,14 @@ var controller = (function (window) {
                     };
 
                     html += template(context);
-
                 } else {
                     //its a room thats available
                     var source = document.getElementById("available-reservation").text;
                     var template = Handlebars.compile(source);
-
-                    // var context = {
-                    //     "building": x.building,
-                    //     "roomNumber": x.roomNumber,
-                    //     "whiteboard": x.whiteboard,
-                    //     "polycom": x.polycom,
-                    //     "tv": x.tv,
-                    //     "webcam"
-                    // };
-
                     html += template(x);
                 }
-
-                //html += "</div>";
-                //console.log(reservations[time][i]);
-
             }
             html += "</div>";
-
             html += "</div>";
         }
 
@@ -830,60 +807,6 @@ var controller = (function (window) {
         document.getElementById("calendar-window").appendChild(calBody);
 
     };
-    Controller.prototype.buildDayView2 = function () {
-        var self = this;
-
-        var startDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth(), self.currentDate.toString().split(" ")[2], self.defaultStartTime.hours, self.defaultStartTime.minutes);
-        var endDate = new Date(self.currentDate.getFullYear(), self.currentDate.getMonth(), self.currentDate.toString().split(" ")[2], self.defaultEndTime.hours, self.defaultEndTime.minutes);
-
-        var source = document.getElementById("bar-template").text;
-        var template = Handlebars.compile(source);
-
-        var context = {
-            "month": self.months[startDate.getMonth()].name,
-            "day": self.currentDate.toString().split(" ")[2],
-            "year": self.currentDate.getFullYear()
-        };
-
-        calBar.innerHTML = template(context);
-
-        //cal body
-        source = document.getElementById("day-template").text;
-        template = Handlebars.compile(source);
-
-        context = {
-            start: defaultStartTime,
-            end: defaultEndTime
-        };
-
-
-        // var html = '<table class="day-table">';
-        // var times = getArrayOfTimes(startDate, endDate);
-        // for (var i = 0, len = times.length; i < len; i++){
-        //   console.log(times[i]);
-        //   //i % 5 is where the # of openings should go
-        //   html += '<tr><td>' + times[i] + '</td><td>' + i % 5 + '</td></tr>';
-        // }
-        //
-        // html += '</table>';
-        //console.log(html);
-
-        var html = "<table style='height: 100%; width: 100%; background-color: red;'>";
-
-        var times = getArrayOfTimes(startDate, endDate);
-        for (var i = 0, len = times.length; i < len; i++) {
-            html += "<tr style='width: auto; height: auto;'>";
-            html += "<td style='float: left; width: 20%; text-align: center; background-color: lime;'>" + times[i] + "</td>";
-            html += "<td style='float: left;'>" + times[i] + "</td>";
-            html += "</tr>";
-        }
-
-        html += "</table>";
-
-        calBody.innerHTML = html;
-        return html;
-    };
-
 
     Controller.prototype.rerenderCurrentView = function(){
       var self = this;
@@ -899,17 +822,6 @@ var controller = (function (window) {
       }
     };
 
-    Controller.prototype.getFilterState = function(){
-      return {
-        "building": document.getElementById("building-selection").value,
-        "seating": parseInt(document.getElementById("seating-selection").value),
-        "whiteboard": document.getElementById("whiteboard-selection").checked,
-        "polycom": document.getElementById("phone-selection").checked,
-        "tv": document.getElementById("tv-selection").checked,
-        "webcam": document.getElementById("webcam-selection").checked,
-      }
-    };
     window.app = window.app || {};
-    //window.app.controller = Controller;
     return Controller;
 })(window);

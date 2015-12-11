@@ -2,7 +2,7 @@
 //https://github.com/tastejs/todomvc
 
 (function (window) {
-	'use strict';
+	"use strict";
 
 	// Get element(s) by CSS selector:
 	window.qs = function (selector, scope) {
@@ -31,7 +31,7 @@
 		}
 
 		// https://developer.mozilla.org/en-US/docs/Web/Events/blur
-		var useCapture = type === 'blur' || type === 'focus';
+		var useCapture = type === "blur" || type === "focus";
 
 		window.$on(target, type, dispatchEvent, useCapture);
 	};

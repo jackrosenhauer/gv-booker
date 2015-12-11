@@ -9,9 +9,7 @@ var model = (function (window) {
     function Model(name) {
         this.name = name;
         var storage;
-
         if (!localStorage[name]) {
-
             storage = {
                 "users": {
                     ids: [],
