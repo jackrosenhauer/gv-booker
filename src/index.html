@@ -75,19 +75,17 @@
     <footer>
     </footer>
 </body>
-<!-- scripts go at the end for performance  -->
 
-<!-- Bower components and templates -->
+<!-- build:handlebars -->
 <script src="bower_components/handlebars/handlebars.js"></script>
+<!-- endbuild -->
 
-<!-- MVC files -->
 <!-- build:js -->
 <script src="js/validator.js"></script>
 <script src="js/helpers.js"></script>
 <script src="js/model.js"></script>
 <script src="js/view.js"></script>
 <script src="js/controller.js"></script>
-<script src="js/store.js"></script>
 <script src="js/app.js"></script>
 <!-- endbuild -->
 
@@ -225,87 +223,92 @@
     var calBar = document.getElementById("calendar-bar");
     var calBarTitle = document.getElementById("bar-title");
     var calBody = document.getElementById("calendar-body");
-    app.controller.init();
 
-//    //setup data, run this once! It will save to local storage after
-    localStorage.clear();
-    app.model.createUser("test", "test", "test@fake.com", 0);
-    app.model.createUser("test", "test", "test@fake.com", 0);
-    app.model.deleteUser("test");
-    app.model.createUser("test", "test", "test@fake.com", 0);
+    window.onload = function(){
+      app.controller.init();
 
-    var testUsername = app.model.getUser("test").username;
+  //    //setup data, run this once! It will save to local storage after
+      localStorage.clear();
+      app.model.createUser("test", "test", "test@fake.com", 0);
+      app.model.createUser("test", "test", "test@fake.com", 0);
+      app.model.deleteUser("test");
+      app.model.createUser("test", "test", "test@fake.com", 0);
 
-    app.model.createRoom("MAK", "C-2-206", 31, false, false, false, false);
-    app.model.createRoom("MAK", "C-2-208", 5, false, false, false, false);
-    app.model.createRoom("MAK", "C-2-210", 20, false, false, false, false);
-    app.model.createRoom("MAK", "C-2-210", 20, false, false, false, false);
+      var testUsername = app.model.getUser("test").username;
 
-    app.model.deleteRoom("MAK", "C-2-210");
-    app.model.deleteRoom("MAK", "C-2-210");
+      app.model.createRoom("MAK", "C-2-206", 31, false, false, false, false);
+      app.model.createRoom("MAK", "C-2-208", 5, false, false, false, false);
+      app.model.createRoom("MAK", "C-2-210", 20, false, false, false, false);
+      app.model.createRoom("MAK", "C-2-210", 20, false, false, false, false);
 
-    app.model.createRoom("MAK", "C-2-210", 20, true, false, false, false);
+      app.model.deleteRoom("MAK", "C-2-210");
+      app.model.deleteRoom("MAK", "C-2-210");
 
-    //dates 9am to 9:30 am
-    var d = new Date(2015, 10, 11, 9, 0);
-    var d1 = new Date(2015, 10, 11, 9, 30);
-    //start and end dates 8am - 11pm
-    var d2 = new Date(2015, 10, 11, 8);
-    var d3 = new Date(2015, 10, 11, 23);
-    //start and end dates, 8am to 8:30am
-    var d4 = new Date(2015, 10, 11, 10, 0);
-    var d5 = new Date(2015, 10, 11, 10, 30);
-    //start and end dates, 8am to 8:30am
-    var d6 = new Date(2015, 10, 10, 10, 0);
-    var d7 = new Date(2015, 10, 10, 10, 30);
+      app.model.createRoom("MAK", "C-2-210", 20, true, false, false, false);
 
-    //create reservations
-    app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
-    app.model.createReservation("MAK", "C-2-208", testUsername, d.valueOf(), d1.valueOf());
-    app.model.createReservation("MAK", "C-2-210", testUsername, d.valueOf(), d1.valueOf());
+      //dates 9am to 9:30 am
+      var d = new Date(2015, 10, 11, 9, 0);
+      var d1 = new Date(2015, 10, 11, 9, 30);
+      //start and end dates 8am - 11pm
+      var d2 = new Date(2015, 10, 11, 8);
+      var d3 = new Date(2015, 10, 11, 23);
+      //start and end dates, 8am to 8:30am
+      var d4 = new Date(2015, 10, 11, 10, 0);
+      var d5 = new Date(2015, 10, 11, 10, 30);
+      //start and end dates, 8am to 8:30am
+      var d6 = new Date(2015, 10, 10, 10, 0);
+      var d7 = new Date(2015, 10, 10, 10, 30);
 
-    //already exists
-    app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
-    //invalid room
-    app.model.createReservation("ABC", "C-2-209", testUsername, d.valueOf(), d1.valueOf());
+      //create reservations
+      app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
+      app.model.createReservation("MAK", "C-2-208", testUsername, d.valueOf(), d1.valueOf());
+      app.model.createReservation("MAK", "C-2-210", testUsername, d.valueOf(), d1.valueOf());
 
-    //deletes success
-    app.model.deleteReservation("MAK", "C-2-206", d.valueOf());
-    app.model.deleteReservation("MAK", "C-2-208", d.valueOf());
-    app.model.deleteReservation("MAK", "C-2-210", d.valueOf());
+      //already exists
+      app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
+      //invalid room
+      app.model.createReservation("ABC", "C-2-209", testUsername, d.valueOf(), d1.valueOf());
 
-    //reservation did not exist (it's actually deleted)
-    app.model.deleteReservation("MAK", "C-2-206", d.valueOf());
+      //deletes success
+      app.model.deleteReservation("MAK", "C-2-206", d.valueOf());
+      app.model.deleteReservation("MAK", "C-2-208", d.valueOf());
+      app.model.deleteReservation("MAK", "C-2-210", d.valueOf());
 
-
-    app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
-    app.model.deleteReservation("MAK", "C-2-206", d.valueOf());
-
-    //create 5 reservations
-    app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
-    app.model.createReservation("MAK", "C-2-208", testUsername, d.valueOf(), d1.valueOf());
-    app.model.createReservation("MAK", "C-2-210", testUsername, d.valueOf(), d1.valueOf());
+      //reservation did not exist (it's actually deleted)
+      app.model.deleteReservation("MAK", "C-2-206", d.valueOf());
 
 
-    app.model.createReservation("MAK", "C-2-208", testUsername, d4.valueOf(), d5.valueOf());
-    app.model.createReservation("MAK", "C-2-210", testUsername, d4.valueOf(), d5.valueOf());
+      app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
+      app.model.deleteReservation("MAK", "C-2-206", d.valueOf());
 
-    //gets reservations that are happening during a period of time
-    //one day, between 8am and 11pm (d2 and d3) get the reservations
-    app.controller.getAvailableReservations(d2.valueOf(), d3.valueOf());
-
-
-    //day before
-    app.model.createReservation("MAK", "C-2-208", testUsername, d6.valueOf(), d7.valueOf());
-    app.model.createReservation("MAK", "C-2-210", testUsername, d6.valueOf(), d7.valueOf());
-
-    app.controller.getAvailableReservations(d6.valueOf(), d7.valueOf());
-    app.model.deleteReservation("MAK", "C-2-210", d6.valueOf());
+      //create 5 reservations
+      app.model.createReservation("MAK", "C-2-206", testUsername, d.valueOf(), d1.valueOf());
+      app.model.createReservation("MAK", "C-2-208", testUsername, d.valueOf(), d1.valueOf());
+      app.model.createReservation("MAK", "C-2-210", testUsername, d.valueOf(), d1.valueOf());
 
 
+      app.model.createReservation("MAK", "C-2-208", testUsername, d4.valueOf(), d5.valueOf());
+      app.model.createReservation("MAK", "C-2-210", testUsername, d4.valueOf(), d5.valueOf());
 
-    app.controller.getAvailableReservations(d2.valueOf(), d3.valueOf());
-    app.controller.init();
+      //gets reservations that are happening during a period of time
+      //one day, between 8am and 11pm (d2 and d3) get the reservations
+      app.controller.getAvailableReservations(d2.valueOf(), d3.valueOf());
+
+
+      //day before
+      app.model.createReservation("MAK", "C-2-208", testUsername, d6.valueOf(), d7.valueOf());
+      app.model.createReservation("MAK", "C-2-210", testUsername, d6.valueOf(), d7.valueOf());
+
+      app.controller.getAvailableReservations(d6.valueOf(), d7.valueOf());
+      app.model.deleteReservation("MAK", "C-2-210", d6.valueOf());
+
+
+
+      app.controller.getAvailableReservations(d2.valueOf(), d3.valueOf());
+      app.controller.init();
+    };
+
+
 
 </script>
 

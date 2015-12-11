@@ -1,4 +1,4 @@
-var controller = (function (window) {
+var controller = (function () {
     "use strict";
     /**
      * Main constructor
@@ -751,7 +751,7 @@ var controller = (function (window) {
         }else{
           return;
         }
-        
+
         //not there or testing
         if (source === null) { return; };
         var template = Handlebars.compile(source);
@@ -824,4 +824,4 @@ var controller = (function (window) {
 
     window.app = window.app || {};
     return Controller;
-})(window);
+})();

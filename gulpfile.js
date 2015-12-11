@@ -7,7 +7,6 @@ var clean = require("gulp-clean");
 var htmlreplace = require("gulp-html-replace");
 var Server = require("karma").Server;
 
-
 // define tasks here
 gulp.task('default', ["watch"]);
 
@@ -16,7 +15,7 @@ gulp.task("watch", function(){
 });
 
 //builds production version
-gulp.task("build", ["clean", "package-js", "package-html", "package-deps"]);
+gulp.task("build", ["package-js", "package-html", "package-css"]);
 
 //run tests once
 gulp.task("tdd", function(done){
@@ -33,7 +32,16 @@ gulp.task("clean", function(){
 });
 
 gulp.task("package-js", function(){
-  return gulp.src("src/js/*.js")
+  return gulp.src([
+      "src/bower_components/handlebars/handlebars.js",
+      // "src/js/error.js",
+      "src/js/helpers.js",
+      "src/js/validator.js",
+      "src/js/view.js",
+      "src/js/model.js",
+      "src/js/controller.js",
+      "src/js/app.js"
+    ])
     .pipe(concat("main.min.js"))
     .pipe(uglify())
     .pipe(gulp.dest("dist/js"));
@@ -41,14 +49,19 @@ gulp.task("package-js", function(){
 
 gulp.task("package-html", function(){
   return gulp.src("src/index.html")
-    .pipe(htmlreplace({js: "js/main.min.js"}))
-    .pipe(gulp.dest("dist/"))
+    .pipe(htmlreplace({css: "css/main.css", js: "js/main.min.js", handlebars: ""}))
+    // .pipe(htmlreplace({handlebars: "what in the actual fucking shit"}))
+    // .pipe(htmlreplace({js: "js/main.min.js"}))
+    .pipe(gulp.dest("dist/"));
 });
 
 gulp.task("package-deps", function(){
-  return gulp.src("")
+  return gulp.src("src/bower_components/handlebars/handlebars.min.js")
+    .pipe(gulp.dest("dist/js/handlebars.js"));
 });
 
 gulp.task("package-css", function(){
-
+  return gulp.src(["src/bower_components/normalize-css/normalize.css", "src/css/*.css"])
+    .pipe(concat("main.css"))
+    .pipe(gulp.dest("dist/css"))
 });

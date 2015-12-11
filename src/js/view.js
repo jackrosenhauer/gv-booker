@@ -17,7 +17,10 @@ var view = (function(window){
     this.$loginMessage = qs("#login-message");
     this.$logout = qs("#logout");
     this.$defaultBodyHTML = document.getElementsByTagName("body")[0].innerHTML;
-
+    this.$calBar = document.getElementById("calendar-bar");
+    this.$calBarTitle = document.getElementById("bar-title");
+    this.$calBody = document.getElementById("calendar-body");
+    
     this.$nav = qs("#nav");
     this.$filter = qs("#filter");
     this.$title = qs("#bar-title");
