@@ -42,6 +42,18 @@ var view = (function(window){
       }
       return "";
     })();
+
+    document.getElementById("reset-filter").addEventListener("click", function(event){
+      document.getElementById("seating-selection").value = "";
+      document.getElementById("building-selection").value = "";
+      document.getElementById("whiteboard-selection").checked = false;
+      document.getElementById("phone-selection").checked = false;
+      document.getElementById("tv-selection").checked = false;
+      document.getElementById("webcam-selection").checked = false;
+
+      var e = new Event("change");
+      document.getElementById("filter").dispatchEvent(e);
+    });
   }
 
   /**
