@@ -240,10 +240,11 @@
     app.model.createRoom("MAK", "C-2-208", 5, false, false, false, false);
     app.model.createRoom("MAK", "C-2-210", 20, false, false, false, false);
     app.model.createRoom("MAK", "C-2-210", 20, false, false, false, false);
-    app.model.deleteRoom("MAK", "C-2-210");
-    app.model.deleteRoom("MAK", "C-2-210");
-    app.model.createRoom("MAK", "C-2-210", 20, false, false, false, false);
 
+    app.model.deleteRoom("MAK", "C-2-210");
+    app.model.deleteRoom("MAK", "C-2-210");
+
+    app.model.createRoom("MAK", "C-2-210", 20, true, false, false, false);
 
     //dates 9am to 9:30 am
     var d = new Date(2015, 10, 11, 9, 0);
