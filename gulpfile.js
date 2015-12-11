@@ -50,8 +50,6 @@ gulp.task("package-js", function(){
 gulp.task("package-html", function(){
   return gulp.src("src/index.html")
     .pipe(htmlreplace({css: "css/main.css", js: "js/main.min.js", handlebars: ""}))
-    // .pipe(htmlreplace({handlebars: "what in the actual fucking shit"}))
-    // .pipe(htmlreplace({js: "js/main.min.js"}))
     .pipe(gulp.dest("dist/"));
 });
 
